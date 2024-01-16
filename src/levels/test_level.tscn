@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccfpxpswug3xp"]
+[gd_scene load_steps=12 format=3 uid="uid://ccfpxpswug3xp"]
 
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_4u2.tscn" id="1_6i511"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Frame_1u.tscn" id="2_ykdyt"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Wall_Basic_1u_Green.tscn" id="3_m72ab"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Door_1u.tscn" id="4_3b358"]
+[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_1u.tscn" id="5_n37mv"]
 [ext_resource type="PackedScene" uid="uid://qljtbpamrc2e" path="res://src/enemies/shelving/ShelfEnemy.tscn" id="5_up6t7"]
 [ext_resource type="PackedScene" uid="uid://ccjw386fyxb8n" path="res://src/enemies/forklift/Forklift.tscn" id="6_khnjj"]
-[ext_resource type="PackedScene" uid="uid://dqaq5axwki75x" path="res://assets/shotgun/Shotgun.tscn" id="7_aogrp"]
+[ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="8_xm3lm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2wv68"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -42,16 +43,26 @@ transform = Transform3D(-4.37114e-08, 0, 1.428, 0, 1, 0, -1, 0, -6.24199e-08, 4.
 [node name="MESH_Bay_Door_1u" parent="Geom" instance=ExtResource("4_3b358")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 0, -4.76837e-07)
 
+[node name="MESH_Floor_Basic_1u" parent="Geom" instance=ExtResource("5_n37mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -21)
+
+[node name="MESH_Floor_Basic_1u2" parent="Geom" instance=ExtResource("5_n37mv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -9)
+
 [node name="Enemies" type="Node3D" parent="."]
 
+[node name="Forklift" parent="Enemies" instance=ExtResource("6_khnjj")]
+transform = Transform3D(0.34641, 0, 0.2, 0, 0.4, 0, -0.2, 0, 0.34641, -21, 1.13353, -35.4392)
+
 [node name="ShelfEnemy" parent="Enemies" instance=ExtResource("5_up6t7")]
-transform = Transform3D(-0.3, 0, -0.519615, 0, 0.6, 0, 0.519615, 0, -0.3, -6.04189, 0, -31.9757)
+transform = Transform3D(0.15, 0, -0.259808, 0, 0.3, 0, 0.259808, 0, 0.15, -31.0206, 4.76837e-07, -34.7404)
 
 [node name="ShelfEnemy2" parent="Enemies" instance=ExtResource("5_up6t7")]
-transform = Transform3D(0.3, 0, -0.519615, 0, 0.6, 0, 0.519615, 0, 0.3, -34.0635, 0, -33.1563)
+transform = Transform3D(-0.15, 0, -0.259808, 0, 0.3, 0, 0.259808, 0, -0.15, -6.50462, 4.76837e-07, -36.0775)
 
-[node name="Forklift" parent="Enemies" instance=ExtResource("6_khnjj")]
-transform = Transform3D(0.772741, 0, -0.207055, 0, 0.8, 0, 0.207055, 0, 0.772741, -20, 2.26706, -35)
+[node name="Player" parent="." instance=ExtResource("8_xm3lm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1, -25.7503)
 
-[node name="Shotgun" parent="." instance=ExtResource("7_aogrp")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -20, 5, -7)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.378764, 0.782896, -0.49357, 0.0364579, 0.545513, 0.837309, 0.924775, 0.299148, -0.235163, -21.8534, 35.8798, 0)
+light_energy = 3.068

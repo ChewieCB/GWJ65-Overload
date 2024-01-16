@@ -11,7 +11,7 @@ shader_parameter/target_color_depth = 4
 shader_parameter/dithering = true
 shader_parameter/scale_resolution = true
 shader_parameter/target_resolution_scale = 3
-shader_parameter/enable_recolor = true
+shader_parameter/enable_recolor = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8lgov"]
 shader = ExtResource("1_x4tcl")
@@ -65,3 +65,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

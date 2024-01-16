@@ -279,6 +279,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3vncp")
 
 [node name="Forklift" type="Node3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="Forklift" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, -0.00032316, 0.000200782, 0.000323295, 1, -0.000667046, -0.000200564, 0.000667111, 1, 0, 0, 0)
