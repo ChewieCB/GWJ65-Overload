@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://c86mbjpvbvqbx"]
+
+[ext_resource type="Shader" path="res://src/levels/crt_blur.gdshader" id="1_7orwg"]
+[ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="1_x4tcl"]
+[ext_resource type="PackedScene" uid="uid://ccfpxpswug3xp" path="res://src/levels/test_level.tscn" id="2_e13b3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q64x3"]
+shader = ExtResource("1_7orwg")
+shader_parameter/change_color_depth = true
+shader_parameter/target_color_depth = 4
+shader_parameter/dithering = true
+shader_parameter/scale_resolution = true
+shader_parameter/target_resolution_scale = 3
+shader_parameter/enable_recolor = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8lgov"]
+shader = ExtResource("1_x4tcl")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.038
+shader_parameter/scanlines_width = 0.101
+shader_parameter/grille_opacity = 0.022
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.13
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.015
+shader_parameter/noise_opacity = 0.078
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.121
+shader_parameter/aberration = 0.02
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.195
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.244
+
+[node name="TestLevelPost" type="Node2D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_q64x3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="TestLevel" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_e13b3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_8lgov")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,20 @@
+[gd_resource type="SpatialMaterial" load_steps=6 format=3]
+
+[ext_resource type="Texture" uid="uid://cdbhnxv5olpys" path="res://assets/warehouse/Textures/TEX_Door_Rollup_1024x1024_normal.png" id="1"]
+[ext_resource type="Texture" uid="uid://b8xxmvcrgdt6x" path="res://assets/warehouse/Textures/TEX_Door_Rollup_1024x1024_metallic.png" id="2"]
+[ext_resource type="Texture" uid="uid://etgfy0sjegpm" path="res://assets/warehouse/Textures/TEX_Door_Rollup_1024x1024_albedo.png" id="3"]
+[ext_resource type="Texture" uid="uid://dp0tsuj1jnibm" path="res://assets/warehouse/Textures/TEX_Door_Rollup_1024x1024_roughness.png" id="4"]
+[ext_resource type="Texture" uid="uid://cmkrrkmj1xupl" path="res://assets/warehouse/Textures/TEX_Door_Rollup_1024x1024_ao.png" id="5"]
+
+[resource]
+albedo_texture = ExtResource( 3 )
+metallic_texture = ExtResource( 2 )
+roughness_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 1 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 5 )
+ao_on_uv2 = false
+ao_texture_channel = 0

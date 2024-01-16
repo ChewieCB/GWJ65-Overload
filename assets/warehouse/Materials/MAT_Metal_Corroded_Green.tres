@@ -1,0 +1,16 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=3]
+
+[ext_resource type="Texture" uid="uid://bxli0s8xop7u7" path="res://assets/warehouse/Textures/TEX_Metal_Corroded_1024x1024_normal.png" id="1"]
+[ext_resource type="Texture" uid="uid://i71ejfta0vg5" path="res://assets/warehouse/Textures/TEX_Metal_Corroded_Green_1024x1024_albedo.png" id="2"]
+[ext_resource type="Texture" uid="uid://c1ygst5k5hdqy" path="res://assets/warehouse/Textures/TEX_Metal_Corroded_1024x1024_metallic.png" id="3"]
+[ext_resource type="Texture" uid="uid://21r5dfayvehm" path="res://assets/warehouse/Textures/TEX_Metal_Corroded_1024x1024_roughness.png" id="4"]
+
+[resource]
+albedo_texture = ExtResource( 2 )
+metallic = 0.1
+metallic_texture = ExtResource( 3 )
+roughness = 0.9
+roughness_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource( 1 )

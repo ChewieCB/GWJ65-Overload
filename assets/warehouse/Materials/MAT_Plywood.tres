@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" load_steps=4 format=3]
+
+[ext_resource type="Texture" uid="uid://8dp3kb70y6vm" path="res://assets/warehouse/Textures/TEX_Plywood_1024x1024_albedo.png" id="1"]
+[ext_resource type="Texture" uid="uid://cwmfw86skuu3f" path="res://assets/warehouse/Textures/TEX_Plywood_1024x1024_normal.png" id="2"]
+[ext_resource type="Texture" uid="uid://dhxhu6hjya8ma" path="res://assets/warehouse/Textures/TEX_Plywood_1024x1024_roughness.png" id="3"]
+
+[resource]
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.0
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 2 )

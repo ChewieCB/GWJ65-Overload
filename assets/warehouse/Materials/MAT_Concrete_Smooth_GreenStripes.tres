@@ -1,0 +1,18 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=3]
+
+[ext_resource type="Texture" uid="uid://b360mkhiar845" path="res://assets/warehouse/Textures/TEX_Concrete_Smooth_1024x1024_roughness.png" id="1"]
+[ext_resource type="Texture" uid="uid://duhbrqqupgwq3" path="res://assets/warehouse/Textures/TEX_Concrete_Smooth_GreenStripes_1024x1024_albedo.png" id="2"]
+[ext_resource type="Texture" uid="uid://du7lulu1tpnmq" path="res://assets/warehouse/Textures/TEX_Concrete_Smooth_1024x1024_normal.png" id="3"]
+[ext_resource type="Texture" uid="uid://b28dux80sm6s6" path="res://assets/warehouse/Textures/TEX_Concrete_Smooth_1024x1024_ao.png" id="4"]
+
+[resource]
+albedo_texture = ExtResource( 2 )
+roughness_texture = ExtResource( 1 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 3 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 4 )
+ao_on_uv2 = false
+ao_texture_channel = 0

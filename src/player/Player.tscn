@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c14qaqos0v1hu"]
+
+[ext_resource type="PackedScene" uid="uid://dqaq5axwki75x" path="res://assets/shotgun/Shotgun.tscn" id="1_hbrti"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_00n12"]
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="Shotgun" parent="." instance=ExtResource("1_hbrti")]
+
+[node name="LHandTarget" parent="Shotgun/Rig/Shotgun/Shotgun-Detach" index="0"]
+transform = Transform3D(-0.0154123, 0.0326121, 0.196721, 0.00652578, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_00n12")
+
+[editable path="Shotgun"]

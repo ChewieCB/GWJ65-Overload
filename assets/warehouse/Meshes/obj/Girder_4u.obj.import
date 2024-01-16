@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://diy58xduweedh"
+path="res://.godot/imported/Girder_4u.obj-ae01a9fd8d9b85e2b0ee5d81f1fe437d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Girder_4u.obj-ae01a9fd8d9b85e2b0ee5d81f1fe437d.mesh"]
+
+source_file="res://assets/warehouse/Meshes/obj/Girder_4u.obj"
+dest_files=["res://.godot/imported/Girder_4u.obj-ae01a9fd8d9b85e2b0ee5d81f1fe437d.mesh", "res://.godot/imported/Girder_4u.obj-ae01a9fd8d9b85e2b0ee5d81f1fe437d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

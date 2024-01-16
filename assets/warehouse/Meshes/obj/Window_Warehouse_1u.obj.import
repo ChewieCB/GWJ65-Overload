@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cxac3ds07lbgn"
+path="res://.godot/imported/Window_Warehouse_1u.obj-51ae15ebdd3ff6b1bd69af872377799e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Window_Warehouse_1u.obj-51ae15ebdd3ff6b1bd69af872377799e.mesh"]
+
+source_file="res://assets/warehouse/Meshes/obj/Window_Warehouse_1u.obj"
+dest_files=["res://.godot/imported/Window_Warehouse_1u.obj-51ae15ebdd3ff6b1bd69af872377799e.mesh", "res://.godot/imported/Window_Warehouse_1u.obj-51ae15ebdd3ff6b1bd69af872377799e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

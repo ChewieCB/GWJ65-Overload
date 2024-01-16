@@ -1,0 +1,201 @@
+[gd_scene load_steps=23 format=3 uid="uid://qljtbpamrc2e"]
+
+[ext_resource type="PackedScene" uid="uid://bdcaoftpssotf" path="res://assets/warehouse/Meshes/MESH_Shelf_Warehouse_Simple.tscn" id="1_gfq56"]
+[ext_resource type="PackedScene" uid="uid://bqcawdsl5hnwk" path="res://assets/warehouse/Meshes/MESH_CardboardBox_01.tscn" id="2_2sjdx"]
+
+[sub_resource type="Animation" id="Animation_66yqa"]
+resource_name = "die"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1.93187, 2.14355, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0250597, 0), Vector3(0, 5.06205, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.35, 0.45, 0.55),
+"transitions": PackedFloat32Array(1.93187, 2.14355, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0698132), Vector3(0, 0, 1.53381), Vector3(0, 0, 1.5708), Vector3(0, 0, 1.53381), Vector3(0, 0, 1.5708)]
+}
+
+[sub_resource type="Animation" id="Animation_6131a"]
+resource_name = "shoot"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1.932, 1, 1, 0.42, 1.51, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.48091, 0), Vector3(0, 2.23031, 0), Vector3(0, 2.40573, 0), Vector3(0, 0.0751789, 0), Vector3(0, 0.0751789, 0), Vector3(0, 0.551312, 0), Vector3(0, 0.0751789, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1.93187, 1, 1, 0.420448, 1.51572, 1.93187, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.507385), Vector3(0, 0, 0.441795), Vector3(0, 0, 0.507385), Vector3(0, 0, -0.28297), Vector3(0, 0, 0), Vector3(0, 0, 0.110549), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lhax4"]
+resource_name = "static"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ubcmj"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.59959, 0), Vector3(0, 0, 0), Vector3(0, 2.09692, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.312312, 0.402789, -0.110813), Vector3(0.00660553, -0.0550449, -0.0184266), Vector3(-0.312414, -0.382227, 0.109956)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lnod0"]
+_data = {
+"die": SubResource("Animation_66yqa"),
+"shoot": SubResource("Animation_6131a"),
+"static": SubResource("Animation_lhax4"),
+"walk": SubResource("Animation_ubcmj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7uh77"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_47i37"]
+animation = &"shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v72ym"]
+animation = &"static"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mukmr"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gtoag"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r1tr8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c4pcw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4dwbo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0wu20"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qoyr2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hje1e"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_447xq"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6qbbw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bgyu8"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4wxmx"]
+states/Start/position = Vector2(167, 84)
+states/die/node = SubResource("AnimationNodeAnimation_7uh77")
+states/die/position = Vector2(663, 84)
+states/shoot/node = SubResource("AnimationNodeAnimation_47i37")
+states/shoot/position = Vector2(494, 35)
+states/static/node = SubResource("AnimationNodeAnimation_v72ym")
+states/static/position = Vector2(295, 88)
+states/walk/node = SubResource("AnimationNodeAnimation_mukmr")
+states/walk/position = Vector2(426, 186)
+transitions = ["Start", "static", SubResource("AnimationNodeStateMachineTransition_gtoag"), "static", "walk", SubResource("AnimationNodeStateMachineTransition_r1tr8"), "walk", "shoot", SubResource("AnimationNodeStateMachineTransition_c4pcw"), "shoot", "walk", SubResource("AnimationNodeStateMachineTransition_4dwbo"), "walk", "static", SubResource("AnimationNodeStateMachineTransition_0wu20"), "shoot", "static", SubResource("AnimationNodeStateMachineTransition_qoyr2"), "shoot", "die", SubResource("AnimationNodeStateMachineTransition_hje1e"), "walk", "die", SubResource("AnimationNodeStateMachineTransition_447xq"), "static", "die", SubResource("AnimationNodeStateMachineTransition_6qbbw"), "die", "End", SubResource("AnimationNodeStateMachineTransition_bgyu8")]
+graph_offset = Vector2(7, -13)
+
+[node name="ShelfEnemy" type="Node3D"]
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="ShelfMesh" parent="Meshes" instance=ExtResource("1_gfq56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.535187, 0, 0, 0)
+
+[node name="BoxMesh1" parent="Meshes" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(1.69545, 0, -0.124327, 0, 1.7, 0, 0.124327, 0, 1.69545, -1.5814, 2.91292, 2.35492)
+
+[node name="BoxMesh2" parent="Meshes" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(1.69676, 0, 0.104967, 0, 1.7, 0, -0.104967, 0, 1.69676, -1.5814, 2.91292, -1.38888)
+
+[node name="BoxMesh3" parent="Meshes" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(-1.62956, 0, 0.484277, 0, 1.7, 0, -0.484277, 0, -1.62956, -1.5814, 7.27253, -2.34493)
+
+[node name="BoxMesh4" parent="Meshes" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(-0.0845264, 0, -1.6979, 0, 1.7, 0, 1.6979, 0, -0.0845264, -1.5814, 7.27253, 2.84566)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lnod0")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lnod0")
+}
+tree_root = SubResource("AnimationNodeStateMachine_4wxmx")
+anim_player = NodePath("../AnimationPlayer")

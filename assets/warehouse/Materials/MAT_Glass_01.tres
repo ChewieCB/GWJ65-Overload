@@ -1,0 +1,11 @@
+[gd_resource type="SpatialMaterial" load_steps=2 format=3]
+
+[ext_resource type="Texture" uid="uid://b360mkhiar845" path="res://assets/warehouse/Textures/TEX_Concrete_Smooth_1024x1024_roughness.png" id="1"]
+
+[resource]
+flags_transparent = true
+params_cull_mode = 2
+albedo_color = Color( 1, 1, 1, 0.470588 )
+albedo_texture = ExtResource( 1 )
+roughness = 0.5
+roughness_texture = ExtResource( 1 )

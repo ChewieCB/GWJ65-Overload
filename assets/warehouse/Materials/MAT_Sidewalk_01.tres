@@ -1,0 +1,18 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=3]
+
+[ext_resource type="Texture" uid="uid://ko2wy3okw5bb" path="res://assets/warehouse/Textures/TEX_Concrete_Sidewalk_1024x1024_normal.png" id="1"]
+[ext_resource type="Texture" uid="uid://c44nlbku3yf01" path="res://assets/warehouse/Textures/TEX_Concrete_Sidewalk_1024x1024_albedo.png" id="2"]
+[ext_resource type="Texture" uid="uid://ysrc4px3o2ui" path="res://assets/warehouse/Textures/TEX_Concrete_Sidewalk_1024x1024_roughness.png" id="3"]
+[ext_resource type="Texture" uid="uid://4p4p3c482kw7" path="res://assets/warehouse/Textures/TEX_Concrete_Sidewalk_1024x1024_ao.png" id="4"]
+
+[resource]
+albedo_texture = ExtResource( 2 )
+roughness_texture = ExtResource( 3 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 1 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 4 )
+ao_on_uv2 = false
+ao_texture_channel = 0

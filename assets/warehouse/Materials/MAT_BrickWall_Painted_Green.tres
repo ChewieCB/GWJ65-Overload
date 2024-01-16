@@ -1,0 +1,18 @@
+[gd_resource type="SpatialMaterial" load_steps=5 format=3]
+
+[ext_resource type="Texture" uid="uid://cr7odrr4toh7p" path="res://assets/warehouse/Textures/TEX_Brick_Painted_Green_1024x1024_albedo.png" id="1"]
+[ext_resource type="Texture" uid="uid://xyg0r80t8s6j" path="res://assets/warehouse/Textures/TEX_Brick_Painted_1024x1024_normal.png" id="2"]
+[ext_resource type="Texture" uid="uid://cthqrno0kwxcl" path="res://assets/warehouse/Textures/TEX_Brick_Painted_1024x1024_ao.png" id="3"]
+[ext_resource type="Texture" uid="uid://d35irwv2h76ks" path="res://assets/warehouse/Textures/TEX_Brick_Painted_1024x1024_roughness.png" id="4"]
+
+[resource]
+albedo_texture = ExtResource( 1 )
+roughness_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 2 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 3 )
+ao_on_uv2 = false
+ao_texture_channel = 0
