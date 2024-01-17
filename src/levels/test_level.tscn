@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccfpxpswug3xp"]
+[gd_scene load_steps=13 format=3 uid="uid://ccfpxpswug3xp"]
 
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_4u2.tscn" id="1_6i511"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Frame_1u.tscn" id="2_ykdyt"]
-[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Wall_Basic_1u_Green.tscn" id="3_m72ab"]
+[ext_resource type="PackedScene" uid="uid://0ge3tvjfoo07" path="res://assets/warehouse/Meshes/MESH_Wall_Basic_1u_Green.tscn" id="3_m72ab"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Door_1u.tscn" id="4_3b358"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_1u.tscn" id="5_n37mv"]
 [ext_resource type="PackedScene" uid="uid://qljtbpamrc2e" path="res://src/enemies/shelving/ShelfEnemy.tscn" id="5_up6t7"]
 [ext_resource type="PackedScene" uid="uid://ccjw386fyxb8n" path="res://src/enemies/forklift/Forklift.tscn" id="6_khnjj"]
 [ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="8_xm3lm"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_usgu4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2wv68"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -40,6 +41,33 @@ transform = Transform3D(-4.37114e-08, 0, 1.6, 0, 1, 0, -1, 0, -6.99382e-08, -24,
 [node name="MESH_Wall_Basic_1u2" parent="Geom" instance=ExtResource("3_m72ab")]
 transform = Transform3D(-4.37114e-08, 0, 1.428, 0, 1, 0, -1, 0, -6.24199e-08, 4.76837e-07, 0, -1.35505e-06)
 
+[node name="MESH_Wall_Basic_1u3" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 1, 0, 8.74228e-08, 0, -1.428, 4.76837e-07, 0, -14)
+
+[node name="MESH_Wall_Basic_1u4" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 1, 0, 8.74228e-08, 0, -1.428, 4.76837e-07, 0, -28)
+
+[node name="MESH_Wall_Basic_1u5" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 1, 0, 8.74228e-08, 0, -1.428, 4.76837e-07, 0, -42)
+
+[node name="MESH_Wall_Basic_1u6" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 1, 0, 1, 0, 1.8726e-07, -14, 0, -40)
+
+[node name="MESH_Wall_Basic_1u7" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 1, 0, 1, 0, 1.8726e-07, -28, 0, -40)
+
+[node name="MESH_Wall_Basic_1u8" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 1, 0, 1, 0, 1.8726e-07, -42, 0, -40)
+
+[node name="MESH_Wall_Basic_1u9" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1, 0, 2.4968e-07, 0, 1, 0, -1.74846e-07, 0, 1.428, -40, 0, -26)
+
+[node name="MESH_Wall_Basic_1u10" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1, 0, 2.4968e-07, 0, 1, 0, -1.74846e-07, 0, 1.428, -40, 0, -12)
+
+[node name="MESH_Wall_Basic_1u11" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1, 0, 2.4968e-07, 0, 1, 0, -1.74846e-07, 0, 1.428, -40, 0, 2)
+
 [node name="MESH_Bay_Door_1u" parent="Geom" instance=ExtResource("4_3b358")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 0, -4.76837e-07)
 
@@ -51,18 +79,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, -9)
 
 [node name="Enemies" type="Node3D" parent="."]
 
-[node name="Forklift" parent="Enemies" instance=ExtResource("6_khnjj")]
-transform = Transform3D(0.34641, 0, 0.2, 0, 0.4, 0, -0.2, 0, 0.34641, -21, 1.13353, -35.4392)
-
 [node name="ShelfEnemy" parent="Enemies" instance=ExtResource("5_up6t7")]
 transform = Transform3D(0.15, 0, -0.259808, 0, 0.3, 0, 0.259808, 0, 0.15, -31.0206, 4.76837e-07, -34.7404)
 
 [node name="ShelfEnemy2" parent="Enemies" instance=ExtResource("5_up6t7")]
 transform = Transform3D(-0.15, 0, -0.259808, 0, 0.3, 0, 0.259808, 0, -0.15, -6.50462, 4.76837e-07, -36.0775)
 
+[node name="ForkliftEnemy" parent="Enemies" instance=ExtResource("6_khnjj")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -29.5, 1.1, -30.9)
+
+[node name="Forklift" parent="Enemies/ForkliftEnemy/MeshPivot" index="0"]
+transform = Transform3D(1, -0.000323161, 0.00020078, 0.000323295, 0.999999, -0.000667046, -0.000200564, 0.00066711, 1, 0, 0, 0)
+
+[node name="WheelRFrontPivot" parent="Enemies/ForkliftEnemy/MeshPivot/Forklift" index="0"]
+transform = Transform3D(1, 8.05755e-12, -4.25147e-32, -8.05755e-12, 1, 0, 4.25147e-32, 3.41917e-43, 1, -3, -1.7, 3.3)
+
+[node name="WheelLFrontPivot" parent="Enemies/ForkliftEnemy/MeshPivot/Forklift" index="1"]
+transform = Transform3D(1, 8.05755e-12, -3.02327e-32, -8.05755e-12, 1, 0, 3.02327e-32, 2.43826e-43, 1, 3, -1.75105, 3.33744)
+
+[node name="WheelLBackPivot" parent="Enemies/ForkliftEnemy/MeshPivot/Forklift" index="2"]
+transform = Transform3D(1, 8.05755e-12, -2.0785e-32, -8.05755e-12, 1, 0, 2.0785e-32, 1.68156e-43, 1, 2.2, -1.81702, -2.66596)
+
+[node name="WheelRBackPivot" parent="Enemies/ForkliftEnemy/MeshPivot/Forklift" index="3"]
+transform = Transform3D(1, 8.05755e-12, -2.55088e-32, -8.05755e-12, 1, 0, 2.55088e-32, 2.05991e-43, 1, -2.2, -1.82251, -2.66997)
+
+[node name="Lift" parent="Enemies/ForkliftEnemy/MeshPivot/Forklift" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
 [node name="Player" parent="." instance=ExtResource("8_xm3lm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1, -25.7503)
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -14, 1, -26.7503)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.378764, 0.782896, -0.49357, 0.0364579, 0.545513, 0.837309, 0.924775, 0.299148, -0.235163, -21.8534, 35.8798, 0)
+transform = Transform3D(-0.533399, 0.738816, -0.41187, -0.154542, 0.393606, 0.906196, 0.831626, 0.547015, -0.0957711, -41.2541, 35.8798, -1.33134)
 light_energy = 3.068
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("9_usgu4")]
+offset_right = -859.0
+offset_bottom = -421.0
+initial_node_to_watch = NodePath("../../Enemies/ForkliftEnemy/StateChart")
+
+[editable path="Enemies/ForkliftEnemy"]

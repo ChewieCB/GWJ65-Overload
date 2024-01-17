@@ -19,8 +19,6 @@ var max_boxes = 3
 var boxes_held = 0
 
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	state_machine.start("idle")
 
