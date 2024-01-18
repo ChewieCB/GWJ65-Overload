@@ -5,6 +5,7 @@ class_name Box
 @onready var particles := $ParticlesPivot/CPUParticles3D
 @onready var mesh = $CardboardBox
 @onready var pickup_highlight = $PickupArea/PickupHighlight
+@onready var pickup_timer = $PickupTimer
 
 var player: Player
 
@@ -59,10 +60,13 @@ func fade_particle(time: float):
 
 
 func _on_pickup_area_body_entered(body):
+	if not pickup_timer.is_stopped():
+		return
+	
 	if body is Player:
 		if not player:
 			player = body
-		if player.shotgun.boxes_held < player.shotgun.max_boxes:
+		if player.shotgun.boxes_held <= player.shotgun.max_boxes:
 			can_pickup = true
 
 

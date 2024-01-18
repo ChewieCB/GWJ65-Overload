@@ -126,6 +126,8 @@ height = 4.0
 
 [node name="Box" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 7
 mass = 5.0
 script = ExtResource("1_gcru3")
 
@@ -181,6 +183,8 @@ shape = SubResource("BoxShape3D_f7gxs")
 [node name="PickupHighlight" type="MeshInstance3D" parent="PickupArea"]
 visible = false
 mesh = SubResource("SphereMesh_2d64a")
+
+[node name="PickupTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 [connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]

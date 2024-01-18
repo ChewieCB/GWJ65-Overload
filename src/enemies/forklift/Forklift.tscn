@@ -1795,7 +1795,7 @@ shape = SubResource("BoxShape3D_tpcuw")
 
 [node name="CrashArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.75)
-collision_mask = 7
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CrashArea"]
 shape = SubResource("BoxShape3D_o3hwa")

@@ -237,6 +237,7 @@ func launch_box():
 		box_instance.set_position(box_pos)
 		box_instance.apply_impulse(-direction.z * 20, Vector3.ZERO)
 		get_tree().get_root().add_child(box_instance)
+		box_instance.pickup_timer.start(1.0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -288,6 +288,7 @@ size = Vector3(1.39418, 1.96692, 1.28613)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_rlo0b")
 CAMERA_CONTROLLER = NodePath("CameraController/Camera3D")
 
