@@ -19,11 +19,6 @@ config/icon="res://icon.svg"
 
 TransitionManager="*res://src/utils/TransitionManager.gd"
 
-[display]
-
-window/size/mode=2
-window/stretch/mode="viewport"
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/qodot/plugin.cfg")

@@ -55,6 +55,9 @@ var is_1_handed: bool = false:
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	is_player_control_disabled = true
+	await get_tree().create_timer(0.8).timeout
+	is_player_control_disabled = false
 
 
 func _input(event: InputEvent):

@@ -36,43 +36,49 @@ environment = SubResource("Environment_2n33l")
 [node name="Geom" type="Node3D" parent="."]
 
 [node name="MESH_Floor_Basic_4u2" parent="Geom" instance=ExtResource("1_6i511")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+
+[node name="MESH_Floor_Basic_4u3" parent="Geom" instance=ExtResource("1_6i511")]
 
 [node name="MESH_Bay_Frame_1u" parent="Geom" instance=ExtResource("2_ykdyt")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.1, 0, -1)
 visible = false
 
 [node name="MESH_Wall_Basic_1u" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(-4.37114e-08, 0, 1.6, 0, 1, 0, -1, 0, -6.99382e-08, -24, 0, -3.0598e-07)
+transform = Transform3D(-4.37114e-08, 0, 1.6, 0, 2.079, 0, -1, 0, -6.99382e-08, -24, 0, 0)
+
+[node name="MESH_Wall_Basic_1u12" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-4.37114e-08, 0, 1.0368, 0, 1.0395, 0, -1, 0, -4.532e-08, -14, 10, 0)
 
 [node name="MESH_Wall_Basic_1u2" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(-4.37114e-08, 0, 1.428, 0, 1, 0, -1, 0, -6.24199e-08, 4.76837e-07, 0, -1.35505e-06)
+transform = Transform3D(-4.37114e-08, 0, 1.428, 0, 2.079, 0, -1, 0, -6.24199e-08, 0, 0, -1.90735e-06)
 
 [node name="MESH_Wall_Basic_1u3" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(-1, 0, -1.2484e-07, 0, 1, 0, 8.74228e-08, 0, -1.428, 4.76837e-07, 0, -14)
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 2.079, 0, 8.74228e-08, 0, -1.428, 0, 0, -14)
 
 [node name="MESH_Wall_Basic_1u4" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(-1, 0, -1.2484e-07, 0, 1, 0, 8.74228e-08, 0, -1.428, 4.76837e-07, 0, -28)
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 2.079, 0, 8.74228e-08, 0, -1.428, 0, 0, -28)
 
 [node name="MESH_Wall_Basic_1u5" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(-1, 0, -1.2484e-07, 0, 1, 0, 8.74228e-08, 0, -1.428, 4.76837e-07, 0, -42)
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 2.079, 0, 8.74228e-08, 0, -1.428, 0, 0, -42)
 
 [node name="MESH_Wall_Basic_1u6" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(1.31134e-07, 0, -1.428, 0, 1, 0, 1, 0, 1.8726e-07, -14, 0, -40)
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 2.079, 0, 1, 0, 1.8726e-07, -14, 0, -40)
 
 [node name="MESH_Wall_Basic_1u7" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(1.31134e-07, 0, -1.428, 0, 1, 0, 1, 0, 1.8726e-07, -28, 0, -40)
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 2.079, 0, 1, 0, 1.8726e-07, -28, 0, -40)
 
 [node name="MESH_Wall_Basic_1u8" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(1.31134e-07, 0, -1.428, 0, 1, 0, 1, 0, 1.8726e-07, -42, 0, -40)
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 2.079, 0, 1, 0, 1.8726e-07, -42, 0, -40)
 
 [node name="MESH_Wall_Basic_1u9" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(1, 0, 2.4968e-07, 0, 1, 0, -1.74846e-07, 0, 1.428, -40, 0, -26)
+transform = Transform3D(1, 0, 2.4968e-07, 0, 2.079, 0, -1.74846e-07, 0, 1.428, -40, 0, -26)
 
 [node name="MESH_Wall_Basic_1u10" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(1, 0, 2.4968e-07, 0, 1, 0, -1.74846e-07, 0, 1.428, -40, 0, -12)
+transform = Transform3D(1, 0, 2.4968e-07, 0, 2.079, 0, -1.74846e-07, 0, 1.428, -40, 0, -12)
 
 [node name="MESH_Wall_Basic_1u11" parent="Geom" instance=ExtResource("3_m72ab")]
-transform = Transform3D(1, 0, 2.4968e-07, 0, 1, 0, -1.74846e-07, 0, 1.428, -40, 0, 2)
+transform = Transform3D(1, 0, 2.4968e-07, 0, 2.079, 0, -1.74846e-07, 0, 1.428, -40, 0, 2)
 
 [node name="MESH_Bay_Door_1u" parent="Geom" instance=ExtResource("4_3b358")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 0, -4.76837e-07)
@@ -89,16 +95,16 @@ transform = Transform3D(0.15, 0, -0.259808, 0, 0.3, 0, 0.259808, 0, 0.15, -31.02
 transform = Transform3D(-0.15, 0, -0.259808, 0, 0.3, 0, 0.259808, 0, -0.15, -6.50462, 4.76837e-07, -36.0775)
 
 [node name="ForkliftEnemy" parent="Enemies" instance=ExtResource("6_khnjj")]
-transform = Transform3D(-0.122723, 0, -0.380709, 0, 0.4, 0, 0.380709, 0, -0.122723, -34.6889, 1.1, -32.3959)
+transform = Transform3D(-0.0965791, 0, -0.388166, 0, 0.4, 0, 0.388166, 0, -0.0965791, -34.6889, 1.1, -32.3959)
 
 [node name="ForkliftEnemy2" parent="Enemies" instance=ExtResource("6_khnjj")]
-transform = Transform3D(0.286297, 0, -0.279346, 0, 0.4, 0, 0.279346, 0, 0.286297, -33.3241, 1.1, -6.95108)
+transform = Transform3D(0.286297, 0, -0.279346, 0, 0.4, 0, 0.279346, 0, 0.286297, -28.3491, 1.1, -12.0499)
 
 [node name="ForkliftEnemy3" parent="Enemies" instance=ExtResource("6_khnjj")]
-transform = Transform3D(0.394415, 0, 0.0666111, 0, 0.4, 0, -0.0666111, 0, 0.394415, -10.7385, 1.1, -6.43987)
+transform = Transform3D(0.396337, 0, 0.0540095, 0, 0.4, 0, -0.0540095, 0, 0.396337, -10.7385, 1.1, -6.43987)
 
 [node name="Player" parent="." instance=ExtResource("8_xm3lm")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -14, 1, -26.7503)
+transform = Transform3D(-0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707107, -12.4339, 1, -28.3164)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.533399, 0.738816, -0.41187, -0.154542, 0.393606, 0.906196, 0.831626, 0.547015, -0.0957711, -41.2541, 35.8798, -1.33134)
@@ -123,7 +129,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17215, 0, -0.0834961)
 shape = SubResource("BoxShape3D_87knw")
 
 [node name="Boxes" type="Node3D" parent="."]
-
-[editable path="Player"]
-[editable path="Player/CameraController/Camera3D/Shotgun"]
-[editable path="Player/CameraController/Camera3D/Shotgun/Rig/Shotgun/Ammo"]

@@ -2988,38 +2988,47 @@ script = ExtResource("1_0kws1")
 [node name="RayCast3D" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D2" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D3" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D4" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D5" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D6" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D7" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D8" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="RayCast3D9" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
+collision_mask = 3
 
 [node name="Rig" type="Node3D" parent="."]
 transform = Transform3D(0.99366, 0, 0.112423, 0, 1, 0, -0.112423, 0, 0.99366, 0, 0, 0)
