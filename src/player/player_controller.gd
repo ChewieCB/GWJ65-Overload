@@ -59,13 +59,14 @@ func _unhandled_input(event: InputEvent):
 		if shotgun.state_machine.get_current_node() in [
 			"show_ammo", "switch_ammo_retrieve", 
 		]:
-			if shotgun.current_ammo_pools[shotgun.palmed_shell] < shotgun.max_ammo:
+			if shotgun._current_ammo < shotgun.max_ammo:
 				shotgun.reload()
 				await get_tree().create_timer(0.65).timeout
 				shotgun.shoot(is_1_handed)
 				return
 			else:
 				shotgun.state_machine.travel("cancel_ammo_change")
+				return
 		shotgun.shoot(is_1_handed)
 	elif event.is_action_pressed("secondary_fire"):
 		if is_1_handed:
