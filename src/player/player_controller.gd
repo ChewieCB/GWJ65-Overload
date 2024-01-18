@@ -41,12 +41,15 @@ var health: float = 100.0:
 
 var is_1_handed: bool = false:
 	set(value):
+		var previous_value = is_1_handed
 		is_1_handed = value
-		match is_1_handed:
-			true:
-				shotgun.state_machine.travel("idle_1_hand")
-			false:
-				shotgun.state_machine.travel("idle")
+		
+		if previous_value != is_1_handed:
+			match is_1_handed:
+				true:
+					shotgun.state_machine.travel("idle_1_hand")
+				false:
+					shotgun.state_machine.travel("idle")
 
 
 func _ready():
@@ -75,6 +78,7 @@ func _unhandled_input(event: InputEvent):
 		shotgun.add_box()
 	elif event.is_action_pressed("DEBUG_remove_box"):
 		shotgun.remove_box()
+	is_1_handed = shotgun.boxes_held > 0
 	
 	if event.is_action_pressed("primary_fire"):
 		if shotgun.state_machine.get_current_node() in [
@@ -97,7 +101,7 @@ func _unhandled_input(event: InputEvent):
 			shotgun.state_machine.travel("push")
 	elif event.is_action_released("reload"):
 		if is_1_handed:
-			pass
+			return
 		if shotgun.state_machine.get_current_node() in [
 			"show_ammo", "switch_ammo_retrieve", 
 		]:
