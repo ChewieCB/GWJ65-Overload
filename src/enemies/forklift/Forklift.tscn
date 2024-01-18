@@ -1474,12 +1474,12 @@ shape = SubResource("BoxShape3D_cwbkp")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Forklift" type="MeshInstance3D" parent="MeshPivot"]
-transform = Transform3D(1, -0.000323161, 0.00020078, 0.000323295, 1, -0.000667046, -0.000200564, 0.000667111, 1, 0, -0.132937, 0)
+transform = Transform3D(1, -0.000323161, 0.00020078, 0.000323295, 1, -0.000667046, -0.000200564, 0.000667111, 1, 0, -0.164043, 0)
 mesh = SubResource("ArrayMesh_wu8ip")
 skeleton = NodePath("")
 
 [node name="WheelRFrontPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(1, 4.47052e-12, 1.16529e-32, 2.20851e-12, -0.494016, 0.869453, 3.88691e-12, -0.869453, -0.494016, -3, -1.7, 3.3)
+transform = Transform3D(1, 6.94551e-12, -9.77698e-33, -1.85297e-12, 0.266787, -0.963755, -6.69377e-12, 0.963756, 0.266787, -3, -1.7, 3.3)
 
 [node name="Wheel_R_Front" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelRFrontPivot"]
 transform = Transform3D(1, -1.00044e-11, -4.22006e-10, -8.05755e-12, 1, 0, 0, 0, 1, 3, 1.7, -3.3)
@@ -1487,7 +1487,7 @@ mesh = SubResource("ArrayMesh_nmwcx")
 skeleton = NodePath("")
 
 [node name="WheelLFrontPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(1, 4.47052e-12, 8.28653e-33, 2.20851e-12, -0.494016, 0.869453, 3.88691e-12, -0.869453, -0.494016, 3, -1.75105, 3.33744)
+transform = Transform3D(1, 6.94551e-12, -6.95253e-33, -1.85297e-12, 0.266787, -0.963755, -6.69377e-12, 0.963755, 0.266787, 3, -1.75105, 3.33744)
 
 [node name="Wheel_L_Front" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelLFrontPivot"]
 transform = Transform3D(1, -9.97602e-12, -3.49246e-10, -8.05755e-12, 1, 0, 0, 0, 1, -3, 1.75105, -3.33744)
@@ -1495,7 +1495,7 @@ mesh = SubResource("ArrayMesh_45vmj")
 skeleton = NodePath("")
 
 [node name="WheelLBackPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(1, 4.47052e-12, 5.69699e-33, 2.20851e-12, -0.494016, 0.869453, 3.88691e-12, -0.869453, -0.494016, 2.2, -1.81702, -2.66596)
+transform = Transform3D(1, 6.94551e-12, -4.77987e-33, -1.85297e-12, 0.266787, -0.963755, -6.69377e-12, 0.963755, 0.266787, 2.2, -1.81702, -2.66596)
 
 [node name="Wheel_L_Back" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelLBackPivot"]
 transform = Transform3D(1, -9.87654e-12, -2.32831e-10, -8.05755e-12, 1, 0, 0, 0, 1, -2.2, 1.81702, 2.66596)
@@ -1503,7 +1503,7 @@ mesh = SubResource("ArrayMesh_12gfu")
 skeleton = NodePath("")
 
 [node name="WheelRBackPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(1, 4.47052e-12, 6.99175e-33, 2.20851e-12, -0.494016, 0.869453, 3.88691e-12, -0.869453, -0.494016, -2.2, -1.82251, -2.66997)
+transform = Transform3D(1, 6.94551e-12, -5.86619e-33, -1.85297e-12, 0.266787, -0.963755, -6.69377e-12, 0.963755, 0.266787, -2.2, -1.82251, -2.66997)
 
 [node name="Wheel_R_Back" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelRBackPivot"]
 transform = Transform3D(1, -9.9476e-12, -3.34694e-10, -8.05755e-12, 1, 0, 0, 0, 1, 2.2, 1.82251, 2.66997)

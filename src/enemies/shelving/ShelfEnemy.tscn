@@ -1,7 +1,14 @@
-[gd_scene load_steps=23 format=3 uid="uid://qljtbpamrc2e"]
+[gd_scene load_steps=28 format=3 uid="uid://qljtbpamrc2e"]
 
 [ext_resource type="PackedScene" uid="uid://bdcaoftpssotf" path="res://assets/warehouse/Meshes/MESH_Shelf_Warehouse_Simple.tscn" id="1_gfq56"]
+[ext_resource type="Script" path="res://src/enemies/shelving/shelf_enemy.gd" id="1_l0eg2"]
 [ext_resource type="PackedScene" uid="uid://bqcawdsl5hnwk" path="res://assets/warehouse/Meshes/MESH_CardboardBox_01.tscn" id="2_2sjdx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_6qo8y"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_gr7ru"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_e5kki"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g7khm"]
+size = Vector3(5.43268, 10.8233, 10.7932)
 
 [sub_resource type="Animation" id="Animation_66yqa"]
 resource_name = "die"
@@ -57,6 +64,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1.93187, 1, 1, 0.420448, 1.51572, 1.93187, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.507385), Vector3(0, 0, 0.441795), Vector3(0, 0, 0.507385), Vector3(0, 0, -0.28297), Vector3(0, 0, 0), Vector3(0, 0, 0.110549), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_box"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_lhax4"]
@@ -169,25 +190,53 @@ states/walk/position = Vector2(426, 186)
 transitions = ["Start", "static", SubResource("AnimationNodeStateMachineTransition_gtoag"), "static", "walk", SubResource("AnimationNodeStateMachineTransition_r1tr8"), "walk", "shoot", SubResource("AnimationNodeStateMachineTransition_c4pcw"), "shoot", "walk", SubResource("AnimationNodeStateMachineTransition_4dwbo"), "walk", "static", SubResource("AnimationNodeStateMachineTransition_0wu20"), "shoot", "static", SubResource("AnimationNodeStateMachineTransition_qoyr2"), "shoot", "die", SubResource("AnimationNodeStateMachineTransition_hje1e"), "walk", "die", SubResource("AnimationNodeStateMachineTransition_447xq"), "static", "die", SubResource("AnimationNodeStateMachineTransition_6qbbw"), "die", "End", SubResource("AnimationNodeStateMachineTransition_bgyu8")]
 graph_offset = Vector2(7, -13)
 
-[node name="ShelfEnemy" type="Node3D"]
+[node name="ShelfEnemy" type="CharacterBody3D"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("1_l0eg2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25628, 5.42078, -0.0699539)
+shape = SubResource("BoxShape3D_g7khm")
 
 [node name="Meshes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0751789, 0)
 
 [node name="ShelfMesh" parent="Meshes" instance=ExtResource("1_gfq56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.535187, 0, 0, 0)
 
-[node name="BoxMesh1" parent="Meshes" instance=ExtResource("2_2sjdx")]
-transform = Transform3D(1.69545, 0, -0.124327, 0, 1.7, 0, 0.124327, 0, 1.69545, -1.5814, 2.91292, 2.35492)
+[node name="BoxSpawn1" type="Marker3D" parent="Meshes"]
+transform = Transform3D(0.997314, 0, -0.0732382, 0, 1, 0, 0.0732382, 0, 0.997314, -1.581, 2.913, 2.355)
 
-[node name="BoxMesh2" parent="Meshes" instance=ExtResource("2_2sjdx")]
-transform = Transform3D(1.69676, 0, 0.104967, 0, 1.7, 0, -0.104967, 0, 1.69676, -1.5814, 2.91292, -1.38888)
+[node name="BoxMesh1" parent="Meshes/BoxSpawn1" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0)
 
-[node name="BoxMesh3" parent="Meshes" instance=ExtResource("2_2sjdx")]
-transform = Transform3D(-1.62956, 0, 0.484277, 0, 1.7, 0, -0.484277, 0, -1.62956, -1.5814, 7.27253, -2.34493)
+[node name="BoxSpawn2" type="Marker3D" parent="Meshes"]
+transform = Transform3D(0.998135, 0, 0.0610485, 0, 1, 0, -0.0610485, 0, 0.998135, -1.581, 2.913, -1.389)
 
-[node name="BoxMesh4" parent="Meshes" instance=ExtResource("2_2sjdx")]
-transform = Transform3D(-0.0845264, 0, -1.6979, 0, 1.7, 0, 1.6979, 0, -0.0845264, -1.5814, 7.27253, 2.84566)
+[node name="BoxMesh2" parent="Meshes/BoxSpawn2" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(1.7, 0, 0.0011865, 0, 1.7, 0, -0.0011865, 0, 1.7, -0.000406742, -8.01086e-05, 9.52482e-05)
+
+[node name="BoxSpawn3" type="Marker3D" parent="Meshes"]
+transform = Transform3D(-0.958322, 0, 0.285688, 0, 1, 0, -0.285688, 0, -0.958322, -1.581, 7.273, -2.345)
+
+[node name="BoxMesh3" parent="Meshes/BoxSpawn3" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(1.7, 0, 0.00145298, 0, 1.7, 0, -0.00145298, 0, 1.7, 0.000363588, -0.000469685, -0.000181556)
+
+[node name="BoxSpawn4" type="Marker3D" parent="Meshes"]
+transform = Transform3D(-0.0488497, 0, -0.998806, 0, 1, 0, 0.998806, 0, -0.0488497, -1.581, 7.273, 2.846)
+
+[node name="BoxMesh4" parent="Meshes/BoxSpawn4" instance=ExtResource("2_2sjdx")]
+transform = Transform3D(1.7, 0, -0.00148353, 0, 1.7, 0, 0.00148353, 0, 1.7, -0.000319958, -0.000469685, 0.000416279)
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_6qo8y")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("5_gr7ru")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_e5kki")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

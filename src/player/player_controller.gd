@@ -56,10 +56,12 @@ func _unhandled_input(event: InputEvent):
 		shotgun.remove_box()
 	
 	if event.is_action_pressed("primary_fire"):
-		if is_1_handed:
-			shotgun.state_machine.travel("shoot_1_hand")
+		if shotgun._current_ammo > 0:
+			shotgun.shoot(is_1_handed)
 		else:
-			shotgun.state_machine.travel("shoot")
+			print("Click")
+			# TODO - Play empty click
+			pass
 	elif event.is_action_pressed("secondary_fire"):
 		if is_1_handed:
 			shotgun.state_machine.travel("push_1_hand")
@@ -70,7 +72,7 @@ func _unhandled_input(event: InputEvent):
 		if is_1_handed:
 			pass
 		else:
-			shotgun.state_machine.travel("reload")
+			shotgun.reload()
 	elif event.is_action_released("switch_ammo_left"):
 		if shotgun.state_machine.get_current_node() in [
 			"show_ammo", "switch_ammo_retrieve", 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c86mbjpvbvqbx"]
+[gd_scene load_steps=7 format=3 uid="uid://c86mbjpvbvqbx"]
 
 [ext_resource type="Shader" path="res://src/levels/crt_blur.gdshader" id="1_7orwg"]
 [ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="1_x4tcl"]
 [ext_resource type="PackedScene" uid="uid://ccfpxpswug3xp" path="res://src/levels/test_level.tscn" id="2_e13b3"]
+[ext_resource type="PackedScene" uid="uid://dpji3mk4jyvyn" path="res://src/ui/player/ammo/AmmoUI.tscn" id="4_oqvco"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q64x3"]
 shader = ExtResource("1_7orwg")
@@ -66,3 +67,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="AmmoUI" parent="UI" instance=ExtResource("4_oqvco")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 139.0
+offset_top = -100.0
+offset_right = 139.0
+offset_bottom = -100.0
+grow_horizontal = 1
+grow_vertical = 0

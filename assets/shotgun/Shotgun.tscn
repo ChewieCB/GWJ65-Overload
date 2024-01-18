@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://dqaq5axwki75x"]
+[gd_scene load_steps=84 format=3 uid="uid://dqaq5axwki75x"]
 
 [ext_resource type="Script" path="res://assets/shotgun/shotgun.gd" id="1_0kws1"]
 [ext_resource type="Texture2D" uid="uid://bifxuau8mr147" path="res://assets/shotgun/Shotgun-c77a037ef8f366bf3dd4a93a935c9d03_Shotgun_Texture_2.png" id="1_jcjkl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://assets/shotgun/start_ik.gd" id="3_4wiq6"]
 [ext_resource type="PackedScene" uid="uid://c1tbros1jy7kr" path="res://assets/shotgun/Ammo.tscn" id="4_ve803"]
 [ext_resource type="Material" path="res://assets/warehouse/Materials/MAT_Cardboard_Boxes.tres" id="6_68gsj"]
+[ext_resource type="PackedScene" uid="uid://dpji3mk4jyvyn" path="res://src/ui/player/ammo/AmmoUI.tscn" id="7_njadv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4hk2"]
 resource_name = "Material.002"
@@ -2756,7 +2757,7 @@ states/switch_ammo_pocket/position = Vector2(694, 306)
 states/switch_ammo_retrieve/node = SubResource("AnimationNodeAnimation_2plsx")
 states/switch_ammo_retrieve/position = Vector2(919, 306)
 transitions = ["idle", "push", SubResource("AnimationNodeStateMachineTransition_nvr6w"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_ibk1e"), "idle", "reload", SubResource("AnimationNodeStateMachineTransition_eyc8o"), "reload", "push", SubResource("AnimationNodeStateMachineTransition_k0mts"), "reload", "shoot", SubResource("AnimationNodeStateMachineTransition_0jumu"), "shoot", "push", SubResource("AnimationNodeStateMachineTransition_df3j5"), "shoot", "End", SubResource("AnimationNodeStateMachineTransition_h8l4e"), "push", "End", SubResource("AnimationNodeStateMachineTransition_goxkv"), "reload", "End", SubResource("AnimationNodeStateMachineTransition_r1uwp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_pvc2j"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_oae8j"), "reload", "idle", SubResource("AnimationNodeStateMachineTransition_paicr"), "idle_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_xqd25"), "idle_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_msiin"), "shoot_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_y8i0l"), "push_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_re6hl"), "shoot_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_p7oo1"), "push_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_lun5w"), "push", "idle", SubResource("AnimationNodeStateMachineTransition_yxujk"), "idle_1_hand", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_kddnh"), "idle", "2h_to_1h", SubResource("AnimationNodeStateMachineTransition_xxpro"), "1h_to_2h", "idle", SubResource("AnimationNodeStateMachineTransition_jfv8s"), "2h_to_1h", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_yrko6"), "show_ammo", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_at1lf"), "hide_ammo", "show_ammo", SubResource("AnimationNodeStateMachineTransition_egfnj"), "idle", "show_ammo", SubResource("AnimationNodeStateMachineTransition_81fwp"), "hide_ammo", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_xmgus"), "1h_to_2h", "reload", SubResource("AnimationNodeStateMachineTransition_illoy"), "idle_1_hand", "show_ammo", SubResource("AnimationNodeStateMachineTransition_m06ik"), "hide_ammo", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_2ow8q"), "show_ammo", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_hq3de"), "switch_ammo_retrieve", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_gitva"), "switch_ammo_retrieve", "reload", SubResource("AnimationNodeStateMachineTransition_jnqft"), "switch_ammo_retrieve", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_qcsjg"), "switch_ammo_pocket", "switch_ammo_retrieve", SubResource("AnimationNodeStateMachineTransition_x1mj8"), "show_ammo", "reload", SubResource("AnimationNodeStateMachineTransition_yewlg")]
-graph_offset = Vector2(-200, 214)
+graph_offset = Vector2(58, 46)
 
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube.011"
@@ -2802,7 +2803,7 @@ skeleton = NodePath("")
 transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
 
 [node name="RHandTarget" type="Marker3D" parent="Rig/Shotgun"]
-transform = Transform3D(-0.196833, -0.00210631, 0.0353909, -0.00136329, 0.199948, 0.00431798, -0.0354273, 0.00400833, -0.196797, -0.0132962, -0.0460034, -0.0132669)
+transform = Transform3D(-0.196833, -0.00210631, 0.0353909, -0.00136329, 0.199948, 0.00431797, -0.0354273, 0.00400833, -0.196797, -0.0132962, -0.0460034, -0.0132669)
 
 [node name="Ammo" parent="Rig/Shotgun" instance=ExtResource("4_ve803")]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -3206,5 +3207,19 @@ skeleton = NodePath("")
 visible = false
 mesh = SubResource("BoxMesh_k33cj")
 skeleton = NodePath("../..")
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="AmmoUI" parent="UI" instance=ExtResource("7_njadv")]
+offset_left = -368.0
+offset_top = 232.0
+offset_right = -368.0
+offset_bottom = 232.0
 
 [editable path="Rig/Shotgun/Ammo"]
