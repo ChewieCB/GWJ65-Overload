@@ -55,7 +55,6 @@ var is_1_handed: bool = false:
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	TransitionManager.emit_signal("tv_on")
 
 
 func _input(event: InputEvent):

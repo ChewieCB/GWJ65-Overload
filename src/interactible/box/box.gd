@@ -1,10 +1,17 @@
 extends RigidBody3D
+class_name Box
 
 @onready var anim_player := $AnimationPlayer
-@onready var particles := $CPUParticles3D
+@onready var particles := $ParticlesPivot/CPUParticles3D
+@onready var mesh = $CardboardBox
+@onready var pickup_highlight = $PickupArea/PickupHighlight
 
 var player: Player
 
+var can_pickup: bool = false:
+	set(value):
+		can_pickup = value
+		pickup_highlight.visible = can_pickup
 
 var health: float = 15.0:
 	set(value):
@@ -17,6 +24,15 @@ var health: float = 15.0:
 func _ready():
 	var material = $ParticlesPivot/CPUParticles3D.mesh.get_material()
 	material.albedo_color = Color(1, 1, 1, 1)
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("pickup"):
+		if can_pickup:
+			if player.shotgun.add_box():
+				can_pickup = false
+				self.queue_free()
+
 
 func _physics_process(delta):
 	if player:
@@ -40,3 +56,16 @@ func fade_particle(time: float):
 		time
 	).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	
+
+
+func _on_pickup_area_body_entered(body):
+	if body is Player:
+		if not player:
+			player = body
+		if player.shotgun.boxes_held < player.shotgun.max_boxes:
+			can_pickup = true
+
+
+func _on_pickup_area_body_exited(body):
+	if body is Player:
+		can_pickup = false

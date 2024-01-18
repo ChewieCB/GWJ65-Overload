@@ -206,14 +206,15 @@ func next_ammo_type():
 	ammo_mesh.texture.albedo_texture = next_texture
 
 
-func add_box():
+func add_box() -> bool:
 	if boxes_held == max_boxes:
-		return
+		return false
 	box_slots[boxes_held].visible = true
 	boxes_held += 1
+	return true
 
 
-func remove_box():
+func remove_box() -> bool:
 	if boxes_held == 0:
 		return false
 	box_slots[boxes_held - 1].visible = false

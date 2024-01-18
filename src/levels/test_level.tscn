@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://ccfpxpswug3xp"]
+[gd_scene load_steps=16 format=3 uid="uid://ccfpxpswug3xp"]
 
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_4u2.tscn" id="1_6i511"]
+[ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_w22xs"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Frame_1u.tscn" id="2_ykdyt"]
 [ext_resource type="PackedScene" uid="uid://0ge3tvjfoo07" path="res://assets/warehouse/Meshes/MESH_Wall_Basic_1u_Green.tscn" id="3_m72ab"]
 [ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Door_1u.tscn" id="4_3b358"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ccjw386fyxb8n" path="res://src/enemies/forklift/Forklift.tscn" id="6_khnjj"]
 [ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="8_xm3lm"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_usgu4"]
+[ext_resource type="PackedScene" uid="uid://c0dbasn84bjap" path="res://src/interactible/box_depot/BoxDepot.tscn" id="10_daa8j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2wv68"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -22,7 +24,11 @@ background_mode = 2
 sky = SubResource("Sky_j7y77")
 tonemap_mode = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_87knw"]
+size = Vector3(30.9399, 1, 39.3721)
+
 [node name="TestLevel" type="Node3D"]
+script = ExtResource("1_w22xs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2n33l")
@@ -117,6 +123,18 @@ visible = false
 offset_right = -859.0
 offset_bottom = -421.0
 initial_node_to_watch = NodePath("../../Player/StateChart")
+
+[node name="BoxDepot" parent="." instance=ExtResource("10_daa8j")]
+transform = Transform3D(8.47394, 0, 0, 0, 8.02365, 0, 0, 0, 8.98247, -4.46301, 6.00615, -26.1218)
+
+[node name="BoxSpawnZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3823, 19.7725, -20.2491)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoxSpawnZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17215, 0, -0.0834961)
+shape = SubResource("BoxShape3D_87knw")
+
+[node name="Boxes" type="Node3D" parent="."]
 
 [editable path="Enemies/ForkliftEnemy"]
 [editable path="Player"]

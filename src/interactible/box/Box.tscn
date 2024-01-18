@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://yel0u8oa06op"]
+[gd_scene load_steps=15 format=3 uid="uid://yel0u8oa06op"]
 
 [ext_resource type="Material" path="res://assets/warehouse/Materials/MAT_Cardboard_Boxes.tres" id="1_36mqj"]
 [ext_resource type="Script" path="res://src/interactible/box/box.gd" id="1_gcru3"]
@@ -112,6 +112,18 @@ _data = {
 "smoke": SubResource("Animation_jmrww")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_f7gxs"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji30p"]
+transparency = 1
+albedo_color = Color(0.290196, 1, 0.619608, 0.196078)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2d64a"]
+material = SubResource("StandardMaterial3D_ji30p")
+radius = 2.0
+height = 4.0
+
 [node name="Box" type="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mass = 5.0
@@ -157,3 +169,18 @@ color_ramp = SubResource("Gradient_gstaf")
 libraries = {
 "": SubResource("AnimationLibrary_v3p6e")
 }
+
+[node name="PickupArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea"]
+transform = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, -0.202971, 0, 0)
+shape = SubResource("BoxShape3D_f7gxs")
+
+[node name="PickupHighlight" type="MeshInstance3D" parent="PickupArea"]
+visible = false
+mesh = SubResource("SphereMesh_2d64a")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
