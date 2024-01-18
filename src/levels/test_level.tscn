@@ -103,9 +103,6 @@ transform = Transform3D(1, 8.05755e-12, -2.0785e-32, -8.05755e-12, 1, 0, 2.0785e
 [node name="WheelRBackPivot" parent="Enemies/ForkliftEnemy/MeshPivot/Forklift" index="3"]
 transform = Transform3D(1, 8.05755e-12, -2.55088e-32, -8.05755e-12, 1, 0, 2.55088e-32, 2.05991e-43, 1, -2.2, -1.82251, -2.66997)
 
-[node name="Lift" parent="Enemies/ForkliftEnemy/MeshPivot/Forklift" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
 [node name="Player" parent="." instance=ExtResource("8_xm3lm")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -14, 1, -26.7503)
 

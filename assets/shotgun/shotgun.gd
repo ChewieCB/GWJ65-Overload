@@ -5,7 +5,8 @@ extends Node3D
 @onready var state_machine = anim_tree["parameters/playback"]
 
 # Shooting 
-var damage: int = 20
+# Damage per pellet
+var damage: int = 5
 var spread: int = 10
 @onready var ray_container = $Rays
 
@@ -97,6 +98,7 @@ func shoot(is_one_handed: bool = false):
 	if _current_ammo == 0:
 		print("Click")
 		# TODO - Play empty click
+		# TODO - Add auto reload 1 available shell when empty
 		return
 				
 	var next_shell_idx = loaded_ammo.pop_front()
@@ -110,32 +112,15 @@ func shoot(is_one_handed: bool = false):
 	
 	_current_ammo -= 1
 	
-	# TODO - add random spread raycasts for buckshot
-	var scene_root = get_tree().root.get_children()[0]
+	# 
 	for _ray in ray_container.get_children():
 		_ray.target_position.z = randi_range(spread, -spread)
 		_ray.target_position.y = randi_range(spread, -spread)
 		if _ray.is_colliding():
-			# Draw a debug sphere on impact
-			var debug_sphere = SphereMesh.new()
-			debug_sphere.radial_segments = 4
-			debug_sphere.rings = 4
-			debug_sphere.radius = 0.2
-			debug_sphere.height = 0.2 * 2
-			# Bright red material (unshaded).
-			var material = StandardMaterial3D.new()
-			material.albedo_color = Color(1, 0, 0)
-			material.flags_unshaded = true
-			debug_sphere.surface_set_material(0, material)
-			# Add to meshinstance in the right place.
-			var node = MeshInstance3D.new()
-			node.mesh = debug_sphere
-			node.global_transform.origin = _ray.get_collision_point()
-			scene_root.add_child(node)
-			
-			#if r.get_collider() is CharacterBody3D:
-				## TODO - add damage code here
-				#pass
+			_draw_debug_sphere(0.1, _ray.get_collision_point() )
+			var collider = _ray.get_collider()
+			if collider is CharacterBody3D:
+				collider.hit(damage)
 	
 	# UI updates
 	ammo_ui.spend_shell()
@@ -148,6 +133,26 @@ func shoot(is_one_handed: bool = false):
 	
 	state_machine.travel(_anim_state)
 	_shoot_timer.start(_time)
+
+
+func _draw_debug_sphere(size: float, location: Vector3) -> void:
+	var scene_root = get_tree().root.get_children()[0]
+	# Draw a debug sphere on impact
+	var debug_sphere = SphereMesh.new()
+	debug_sphere.radial_segments = 4
+	debug_sphere.rings = 4
+	debug_sphere.radius = size
+	debug_sphere.height = size * 2
+	# Bright red material (unshaded).
+	var material = StandardMaterial3D.new()
+	material.albedo_color = Color(1, 0, 0)
+	material.flags_unshaded = true
+	debug_sphere.surface_set_material(0, material)
+	# Add to meshinstance in the right place.
+	var node = MeshInstance3D.new()
+	node.mesh = debug_sphere
+	node.global_transform.origin = location
+	scene_root.add_child(node)
 
 
 func reload():

@@ -7,6 +7,11 @@ extends CharacterBody3D
 @onready var u_turn_ray = $UTurnRayCast
 
 @export var max_charge_time: float = 2.0
+@export var health: float = 100.0:
+	set(value):
+		health = clamp(value, 0, 100.0)
+		if health == 0:
+			state_chart.send_event("death")
 
 var target: CharacterBody3D
 
@@ -27,6 +32,11 @@ func _ready():
 func _physics_process(delta):
 	velocity.y -= gravity
 	move_and_slide()
+
+
+func hit(damage:float=0.0):
+	health -= damage
+	state_chart.send_event("hit")
 
 
 func start_charge():
@@ -136,3 +146,21 @@ func _on_reverse_state_exited():
 	for body in $DetectionArea.get_overlapping_bodies():
 		if body is Player:
 			state_chart.send_event("player_seen")
+
+
+func _on_hit_state_entered():
+	velocity = Vector3.ZERO
+	anim_state_machine.travel("hit")
+	await get_tree().create_timer(0.35).timeout
+	
+	for body in $DetectionArea.get_overlapping_bodies():
+		if body is Player:
+			state_chart.send_event("player_seen")
+			return
+	
+	state_chart.send_event("end_hit")
+
+
+func _on_dead_state_entered():
+	velocity = Vector3.ZERO
+	anim_state_machine.travel("die")

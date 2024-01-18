@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://iagu8djjtwxa"]
+
+[node name="SparkParticles" type="CPUParticles3D"]
