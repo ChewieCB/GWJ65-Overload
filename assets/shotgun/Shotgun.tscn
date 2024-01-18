@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://dqaq5axwki75x"]
+[gd_scene load_steps=88 format=3 uid="uid://dqaq5axwki75x"]
 
 [ext_resource type="Script" path="res://assets/shotgun/shotgun.gd" id="1_0kws1"]
 [ext_resource type="Texture2D" uid="uid://bifxuau8mr147" path="res://assets/shotgun/Shotgun-c77a037ef8f366bf3dd4a93a935c9d03_Shotgun_Texture_2.png" id="1_jcjkl"]
@@ -2564,10 +2564,196 @@ tracks/15/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_2i4o6"]
+resource_name = "cancel_ammo_change"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0341834, -0.201005, -0.168884)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(0.0894336, 2.78225, 0.129356)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/Shotgun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.68302),
+"update": 0,
+"values": [Vector3(0.0080123, 0, 0.199641), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/Shotgun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.68302),
+"update": 0,
+"values": [Vector3(-0.407974, -1.35691, 0.112658), Vector3(-1.5708, -1.5708, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/Shotgun/Shotgun-Detach:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(1.30385e-10, 0.0902296, 0.00478581)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rig/Shotgun/RHandTarget:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.683),
+"update": 0,
+"values": [Vector3(0.00787016, -0.0536307, -0.00892934), Vector3(-0.00473552, -0.0422647, -0.0171818)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rig/Shotgun/RHandTarget:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.683),
+"update": 0,
+"values": [Vector3(0.00200783, 2.85394, 0.0108199), Vector3(-0.0327559, 2.96536, -0.0692056)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rig/Arms/LForearmIKTarget:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(0.154305, -0.680631, -0.307095)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rig/Arms/LForearmIKTarget:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(0.873739, -0.0404391, -1.04761)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rig/Arms/LUpperarmTarget:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(-0.124738, -0.73619, -0.452758)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Rig/Arms/LUpperarmTarget:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(0.800032, -0.412191, -2.13223)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Rig/Shotgun/Ammo:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Rig/Shotgun/Ammo:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0503463, 0.0310479, -0.0312969)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Rig/Shotgun/Ammo:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.345469, 0.522955, 0.552008)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Rig/Shotgun/Ammo:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00400001, 0.00400001, 0.00400001)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rg30b"]
 _data = {
 "1h_to_2h": SubResource("Animation_rrufu"),
 "2h_to_1h": SubResource("Animation_3a5w3"),
+"cancel_ammo_change": SubResource("Animation_2i4o6"),
 "hide_ammo": SubResource("Animation_554bb"),
 "idle": SubResource("Animation_pe5b7"),
 "idle_1_hand": SubResource("Animation_qqtyn"),
@@ -2586,6 +2772,9 @@ animation = &"1h_to_2h"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vu1nh"]
 animation = &"2h_to_1h"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1aqj7"]
+animation = &"cancel_ammo_change"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4yo8i"]
 animation = &"hide_ammo"
@@ -2721,11 +2910,17 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qcsjg"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x1mj8"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yewlg"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_87520"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nuaws"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yewlg"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_54hf5"]
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fnbda"]
@@ -2734,6 +2929,8 @@ states/1h_to_2h/position = Vector2(400, 167)
 states/2h_to_1h/node = SubResource("AnimationNodeAnimation_vu1nh")
 states/2h_to_1h/position = Vector2(246, 216)
 states/End/position = Vector2(748, -46)
+states/cancel_ammo_change/node = SubResource("AnimationNodeAnimation_1aqj7")
+states/cancel_ammo_change/position = Vector2(588, 216)
 states/hide_ammo/node = SubResource("AnimationNodeAnimation_4yo8i")
 states/hide_ammo/position = Vector2(841, 189)
 states/idle/node = SubResource("AnimationNodeAnimation_i6qlu")
@@ -2756,8 +2953,8 @@ states/switch_ammo_pocket/node = SubResource("AnimationNodeAnimation_5au88")
 states/switch_ammo_pocket/position = Vector2(694, 306)
 states/switch_ammo_retrieve/node = SubResource("AnimationNodeAnimation_2plsx")
 states/switch_ammo_retrieve/position = Vector2(919, 306)
-transitions = ["idle", "push", SubResource("AnimationNodeStateMachineTransition_nvr6w"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_ibk1e"), "idle", "reload", SubResource("AnimationNodeStateMachineTransition_eyc8o"), "reload", "push", SubResource("AnimationNodeStateMachineTransition_k0mts"), "reload", "shoot", SubResource("AnimationNodeStateMachineTransition_0jumu"), "shoot", "push", SubResource("AnimationNodeStateMachineTransition_df3j5"), "shoot", "End", SubResource("AnimationNodeStateMachineTransition_h8l4e"), "push", "End", SubResource("AnimationNodeStateMachineTransition_goxkv"), "reload", "End", SubResource("AnimationNodeStateMachineTransition_r1uwp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_pvc2j"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_oae8j"), "reload", "idle", SubResource("AnimationNodeStateMachineTransition_paicr"), "idle_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_xqd25"), "idle_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_msiin"), "shoot_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_y8i0l"), "push_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_re6hl"), "shoot_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_p7oo1"), "push_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_lun5w"), "push", "idle", SubResource("AnimationNodeStateMachineTransition_yxujk"), "idle_1_hand", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_kddnh"), "idle", "2h_to_1h", SubResource("AnimationNodeStateMachineTransition_xxpro"), "1h_to_2h", "idle", SubResource("AnimationNodeStateMachineTransition_jfv8s"), "2h_to_1h", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_yrko6"), "show_ammo", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_at1lf"), "hide_ammo", "show_ammo", SubResource("AnimationNodeStateMachineTransition_egfnj"), "idle", "show_ammo", SubResource("AnimationNodeStateMachineTransition_81fwp"), "hide_ammo", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_xmgus"), "1h_to_2h", "reload", SubResource("AnimationNodeStateMachineTransition_illoy"), "idle_1_hand", "show_ammo", SubResource("AnimationNodeStateMachineTransition_m06ik"), "hide_ammo", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_2ow8q"), "show_ammo", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_hq3de"), "switch_ammo_retrieve", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_gitva"), "switch_ammo_retrieve", "reload", SubResource("AnimationNodeStateMachineTransition_jnqft"), "switch_ammo_retrieve", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_qcsjg"), "switch_ammo_pocket", "switch_ammo_retrieve", SubResource("AnimationNodeStateMachineTransition_x1mj8"), "show_ammo", "reload", SubResource("AnimationNodeStateMachineTransition_yewlg")]
-graph_offset = Vector2(58, 46)
+transitions = ["idle", "push", SubResource("AnimationNodeStateMachineTransition_nvr6w"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_ibk1e"), "idle", "reload", SubResource("AnimationNodeStateMachineTransition_eyc8o"), "reload", "push", SubResource("AnimationNodeStateMachineTransition_k0mts"), "reload", "shoot", SubResource("AnimationNodeStateMachineTransition_0jumu"), "shoot", "push", SubResource("AnimationNodeStateMachineTransition_df3j5"), "shoot", "End", SubResource("AnimationNodeStateMachineTransition_h8l4e"), "push", "End", SubResource("AnimationNodeStateMachineTransition_goxkv"), "reload", "End", SubResource("AnimationNodeStateMachineTransition_r1uwp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_pvc2j"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_oae8j"), "reload", "idle", SubResource("AnimationNodeStateMachineTransition_paicr"), "idle_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_xqd25"), "idle_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_msiin"), "shoot_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_y8i0l"), "push_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_re6hl"), "shoot_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_p7oo1"), "push_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_lun5w"), "push", "idle", SubResource("AnimationNodeStateMachineTransition_yxujk"), "idle_1_hand", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_kddnh"), "idle", "2h_to_1h", SubResource("AnimationNodeStateMachineTransition_xxpro"), "1h_to_2h", "idle", SubResource("AnimationNodeStateMachineTransition_jfv8s"), "2h_to_1h", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_yrko6"), "show_ammo", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_at1lf"), "hide_ammo", "show_ammo", SubResource("AnimationNodeStateMachineTransition_egfnj"), "idle", "show_ammo", SubResource("AnimationNodeStateMachineTransition_81fwp"), "hide_ammo", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_xmgus"), "1h_to_2h", "reload", SubResource("AnimationNodeStateMachineTransition_illoy"), "idle_1_hand", "show_ammo", SubResource("AnimationNodeStateMachineTransition_m06ik"), "hide_ammo", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_2ow8q"), "show_ammo", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_hq3de"), "switch_ammo_retrieve", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_gitva"), "switch_ammo_retrieve", "reload", SubResource("AnimationNodeStateMachineTransition_jnqft"), "switch_ammo_retrieve", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_qcsjg"), "show_ammo", "reload", SubResource("AnimationNodeStateMachineTransition_yewlg"), "switch_ammo_pocket", "switch_ammo_retrieve", SubResource("AnimationNodeStateMachineTransition_87520"), "cancel_ammo_change", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_nuaws"), "switch_ammo_pocket", "cancel_ammo_change", SubResource("AnimationNodeStateMachineTransition_54hf5")]
+graph_offset = Vector2(38, 5)
 
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube.011"

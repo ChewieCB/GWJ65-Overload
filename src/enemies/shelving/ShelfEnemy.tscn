@@ -199,7 +199,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25628, 5.42078, -0.0699539
 shape = SubResource("BoxShape3D_g7khm")
 
 [node name="Meshes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0751789, 0)
 
 [node name="ShelfMesh" parent="Meshes" instance=ExtResource("1_gfq56")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.535187, 0, 0, 0)

@@ -5,24 +5,38 @@ extends Node3D
 @onready var state_machine = anim_tree["parameters/playback"]
 
 # Ammo
-@onready var ammo_mesh = $Rig/Shotgun/Ammo
-@onready var ammo_red_tex = load("res://assets/shotgun/Ammo_Textures/Ammo.png")
-@onready var ammo_yellow_tex = load("res://assets/shotgun/Ammo_Textures/ammo_yellow.png")
-@onready var ammo_blue_tex = load("res://assets/shotgun/Ammo_Textures/ammo_blue.png")
-@onready var ammo_textures = [ammo_red_tex, ammo_yellow_tex, ammo_blue_tex]
-
-@onready var ammo_ui = $UI/AmmoUI
-
-var current_tex_idx = 0
-
-var max_ammo: int = 5
-var _current_ammo: int = max_ammo
-var reserve_ammo: int = 30
 enum AMMO_TYPE {
 	BUCKSHOT,
 	BLUE,
 	YELLOW
 }
+
+@onready var ammo_mesh = $Rig/Shotgun/Ammo
+@onready var ammo_red_tex = load("res://assets/shotgun/Ammo_Textures/Ammo.png")
+@onready var ammo_yellow_tex = load("res://assets/shotgun/Ammo_Textures/ammo_yellow.png")
+@onready var ammo_blue_tex = load("res://assets/shotgun/Ammo_Textures/ammo_blue.png")
+@onready var ammo_textures = [ammo_red_tex, ammo_blue_tex, ammo_yellow_tex]
+
+@onready var ammo_ui = $UI/AmmoUI
+
+var current_tex_idx = 0
+# The type/colour of shell currently held, to be loaded on next reload
+var palmed_shell_idx = 0
+var palmed_shell = AMMO_TYPE.BUCKSHOT
+
+var max_ammo: int = 5
+#
+var _current_ammo: int = 5
+var current_ammo_1: int = 0
+var current_ammo_2: int = 0
+var current_ammo_3: int = 0
+var current_ammo_pools = [current_ammo_1, current_ammo_2, current_ammo_3]
+#
+var reserve_ammo_1: int = 30
+var reserve_ammo_2: int = 30
+var reserve_ammo_3: int = 30
+var reserve_ammo_pools = [reserve_ammo_1, reserve_ammo_2, reserve_ammo_3]
+#
 var current_ammo_type: AMMO_TYPE = AMMO_TYPE.BUCKSHOT
 var loaded_ammo = []
 
@@ -49,6 +63,24 @@ func _ready():
 	# Load the initial ammo into the UI
 	for _shell in range(max_ammo):
 		ammo_ui.load_shell(AMMO_TYPE.BUCKSHOT)
+		loaded_ammo.push_back(AMMO_TYPE.BUCKSHOT)
+		current_ammo_1 += 1
+
+
+func cycle_shell(backwards:bool=false):
+	if backwards:
+		palmed_shell_idx -= 1
+	else:
+		palmed_shell_idx += 1
+	# Cycle the index through the ammo types
+	var _new_shell_idx = palmed_shell_idx % AMMO_TYPE.size()
+	palmed_shell = _new_shell_idx
+
+
+func reset_shell():
+	# Set the shell to whatever the last 
+	palmed_shell_idx = loaded_ammo.back()
+	palmed_shell = palmed_shell_idx
 
 
 func shoot(is_one_handed: bool = false):
@@ -56,9 +88,24 @@ func shoot(is_one_handed: bool = false):
 	if not _shoot_timer.is_stopped():
 		return
 	
+	if _current_ammo == 0:
+		print("Click")
+		# TODO - Play empty click
+		return
+				
+	var next_shell_idx = loaded_ammo.pop_front()
+	match next_shell_idx:
+		0:
+			current_ammo_1 -= 1
+		1:
+			current_ammo_2 -= 1
+		2:
+			current_ammo_3 -= 1
+	
 	_current_ammo -= 1
 	
 	# TODO - add random spread raycasts for buckshot
+	#
 	
 	# UI updates
 	ammo_ui.spend_shell()
@@ -71,36 +118,51 @@ func shoot(is_one_handed: bool = false):
 	
 	state_machine.travel(_anim_state)
 	_shoot_timer.start(_time)
-	
-	loaded_ammo.pop_front()
 
 
-func reload(ammo_type: AMMO_TYPE = AMMO_TYPE.BUCKSHOT):
+func reload():
 	if not _reload_timer.is_stopped():
 		return
 	
-	if reserve_ammo > 0 and _current_ammo < max_ammo:
-		_current_ammo += 1
-		reserve_ammo -= 1
+	match palmed_shell:
+		AMMO_TYPE.BUCKSHOT:
+			if reserve_ammo_1 > 0 and _current_ammo < max_ammo:
+				current_ammo_1 += 1
+				reserve_ammo_1 -= 1
+			else:
+				return
+		AMMO_TYPE.BLUE:
+			if reserve_ammo_2 > 0 and _current_ammo < max_ammo:
+				current_ammo_2 += 1
+				reserve_ammo_2 -= 1
+			else:
+				return
+		AMMO_TYPE.YELLOW:
+			if reserve_ammo_3 > 0 and _current_ammo < max_ammo:
+				current_ammo_3 += 1
+				reserve_ammo_3 -= 1
+			else:
+				return
+		_:
+			return
+	
+	_current_ammo += 1
 		
-		var _anim_state = "reload"
-		var _time = _2h_reload_time
-		
-		state_machine.travel(_anim_state)
-		_reload_timer.start(_time)
-		
-		loaded_ammo.push_back(ammo_type)
-		
-		# UI updates
-		ammo_ui.load_shell(ammo_type)
-		ammo_ui.change_max_ammo(ammo_type, reserve_ammo)
+	var _anim_state = "reload"
+	var _time = _2h_reload_time
+	
+	state_machine.travel(_anim_state)
+	_reload_timer.start(_time)
+	
+	loaded_ammo.push_back(palmed_shell)
+	
+	# UI updates
+	ammo_ui.load_shell(palmed_shell)
+	ammo_ui.change_max_ammo(palmed_shell, [reserve_ammo_1, reserve_ammo_2, reserve_ammo_3][palmed_shell])
 
 
 func next_ammo_type():
-	current_tex_idx += 1
-	if current_tex_idx > ammo_textures.size() - 1:
-		current_tex_idx = 0
-	var next_texture = ammo_textures[current_tex_idx]
+	var next_texture = ammo_textures[palmed_shell]
 	ammo_mesh.texture.albedo_texture = next_texture
 
 

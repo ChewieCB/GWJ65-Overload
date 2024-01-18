@@ -56,12 +56,17 @@ func _unhandled_input(event: InputEvent):
 		shotgun.remove_box()
 	
 	if event.is_action_pressed("primary_fire"):
-		if shotgun._current_ammo > 0:
-			shotgun.shoot(is_1_handed)
-		else:
-			print("Click")
-			# TODO - Play empty click
-			pass
+		if shotgun.state_machine.get_current_node() in [
+			"show_ammo", "switch_ammo_retrieve", 
+		]:
+			if shotgun.current_ammo_pools[shotgun.palmed_shell] < shotgun.max_ammo:
+				shotgun.reload()
+				await get_tree().create_timer(0.65).timeout
+				shotgun.shoot(is_1_handed)
+				return
+			else:
+				shotgun.state_machine.travel("cancel_ammo_change")
+		shotgun.shoot(is_1_handed)
 	elif event.is_action_pressed("secondary_fire"):
 		if is_1_handed:
 			shotgun.state_machine.travel("push_1_hand")
@@ -71,6 +76,14 @@ func _unhandled_input(event: InputEvent):
 	elif event.is_action_released("reload"):
 		if is_1_handed:
 			pass
+		if shotgun.state_machine.get_current_node() in [
+			"show_ammo", "switch_ammo_retrieve", 
+		]:
+			if shotgun.current_ammo_pools[shotgun.palmed_shell] < shotgun.max_ammo:
+				shotgun.reload()
+				return
+			else:
+				shotgun.state_machine.travel("cancel_ammo_change")
 		else:
 			shotgun.reload()
 	elif event.is_action_released("switch_ammo_left"):
@@ -81,6 +94,9 @@ func _unhandled_input(event: InputEvent):
 				pass
 			else:
 				shotgun.state_machine.travel("switch_ammo_pocket")
+				shotgun.cycle_shell(true)
+				await get_tree().create_timer(0.3).timeout
+				shotgun.state_machine.travel("switch_ammo_retrieve")
 		else:
 			if is_1_handed:
 				pass
@@ -94,6 +110,9 @@ func _unhandled_input(event: InputEvent):
 				pass
 			else:
 				shotgun.state_machine.travel("switch_ammo_pocket")
+				shotgun.cycle_shell()
+				await get_tree().create_timer(0.3).timeout
+				shotgun.state_machine.travel("switch_ammo_retrieve")
 		else:
 			if is_1_handed:
 				pass
