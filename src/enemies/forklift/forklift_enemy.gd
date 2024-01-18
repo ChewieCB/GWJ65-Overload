@@ -59,6 +59,18 @@ func _on_detection_area_body_exited(body):
 	#state_chart.send_event("player_lost")
 
 func _on_crash_area_body_entered(body):
+	if body is RigidBody3D:
+		if body.mass < 50:
+			var direction = self.global_transform.basis
+			# Rotate it away
+			var rotation_z = PI/4
+			var rotation_y = PI/8
+			if body.position.x < 0:
+				rotation_z = -PI/4
+			direction = direction.rotated(Vector3.RIGHT, rotation_z)
+			direction = direction.rotated(Vector3.FORWARD, rotation_y)
+			body.apply_impulse(-direction.z * 200, Vector3.ZERO)
+			return
 	state_chart.send_event("crash")
 
 

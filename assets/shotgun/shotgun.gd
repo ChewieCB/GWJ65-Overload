@@ -119,7 +119,7 @@ func shoot(is_one_handed: bool = false):
 		if _ray.is_colliding():
 			_draw_debug_sphere(0.1, _ray.get_collision_point() )
 			var collider = _ray.get_collider()
-			if collider is CharacterBody3D:
+			if collider is CharacterBody3D or collider is RigidBody3D:
 				collider.hit(damage)
 	
 	# UI updates
@@ -220,13 +220,17 @@ func launch_box():
 	if remove_box():
 		var box_instance = load("res://src/interactible/box/Box.tscn").instantiate()
 		var spawn_node = get_parent().get_node("BoxSpawn")
+		var player = get_parent().get_parent().get_parent()
+		box_instance.player = player
+		
 		var box_pos = spawn_node.global_transform.origin
 		var box_rot = spawn_node.global_transform.basis
+		var direction = box_rot.rotated(Vector3(1, 0, 0), PI/10)
+		
 		box_instance.transform.basis = box_rot
 		box_instance.set_position(box_pos)
-		box_instance.apply_impulse(Vector3(0.0, 0.0, 10.0), Vector3.ZERO)
+		box_instance.apply_impulse(-direction.z * 20, Vector3.ZERO)
 		get_tree().get_root().add_child(box_instance)
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

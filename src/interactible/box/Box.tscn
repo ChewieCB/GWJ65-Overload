@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://yel0u8oa06op"]
+[gd_scene load_steps=12 format=3 uid="uid://yel0u8oa06op"]
 
 [ext_resource type="Material" path="res://assets/warehouse/Materials/MAT_Cardboard_Boxes.tres" id="1_36mqj"]
+[ext_resource type="Script" path="res://src/interactible/box/box.gd" id="1_gcru3"]
+[ext_resource type="Texture2D" uid="uid://bhxjnamriy0w0" path="res://assets/particles/white_puff/whitePuff00.png" id="3_1ro5i"]
 
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube.011"
@@ -19,10 +21,101 @@ _surfaces = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_syarn"]
-size = Vector3(0.294922, 0.299866, 0.30249)
+size = Vector3(1.02954, 1.03542, 1.0351)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ggbb"]
+transparency = 1
+albedo_texture = ExtResource("3_1ro5i")
+billboard_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j5erj"]
+material = SubResource("StandardMaterial3D_5ggbb")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="Gradient" id="Gradient_gstaf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_jmrww"]
+resource_name = "smoke"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardboardBox:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.267943, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesPivot/CPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.3],
+"method": &"fade_particle"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_88n1p"]
+resource_name = "default"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardboardBox:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.267943),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticlesPivot/CPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v3p6e"]
+_data = {
+"default": SubResource("Animation_88n1p"),
+"smoke": SubResource("Animation_jmrww")
+}
 
 [node name="Box" type="RigidBody3D"]
-mass = 15.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mass = 5.0
+script = ExtResource("1_gcru3")
 
 [node name="CardboardBox" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -30,5 +123,37 @@ mesh = SubResource("1")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000976562, -0.000396729, -0.000366211)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00134276, -0.00305939, -0.00296021)
 shape = SubResource("BoxShape3D_syarn")
+
+[node name="ParticlesPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="ParticlesPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.63798e-10, 0.0152075, -1.01863e-10)
+emitting = false
+amount = 12
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+mesh = SubResource("PlaneMesh_j5erj")
+emission_shape = 3
+emission_box_extents = Vector3(0.7, 0.5, 0.5)
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 24.41
+gravity = Vector3(0, 10, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+angular_velocity_min = 10.0
+angular_velocity_max = 14.0
+angle_min = -30.0
+angle_max = 50.0
+scale_amount_min = 0.6
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_gstaf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v3p6e")
+}

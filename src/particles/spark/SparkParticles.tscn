@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://iagu8djjtwxa"]
+[gd_scene load_steps=2 format=3 uid="uid://iagu8djjtwxa"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ees1m"]
 
 [node name="SparkParticles" type="CPUParticles3D"]
+mesh = SubResource("QuadMesh_ees1m")
