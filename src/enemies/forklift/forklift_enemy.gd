@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var u_turn_ray = $UTurnRayCast
 
 @export var max_charge_time: float = 2.0
+@onready var charge_timer: Timer = $ChargeTimer
+@export var charge_damage: float = 40.0
 @export var health: float = 100.0:
 	set(value):
 		health = clamp(value, 0, 100.0)
@@ -45,8 +47,9 @@ func start_charge():
 
 func _on_detection_area_body_entered(body):
 	if body is Player:
-		target = body
-		state_chart.send_event("player_seen")
+		if not body.is_dead:
+			target = body
+			state_chart.send_event("player_seen")
 
 
 func _on_detection_area_body_exited(body):
@@ -63,7 +66,7 @@ func _on_idle_state_entered():
 	anim_state_machine.travel("idle")
 	velocity = Vector3.ZERO
 	for body in $DetectionArea.get_overlapping_bodies():
-		if body is Player:
+		if body == target:
 			state_chart.send_event("reverse")
 
 func _on_idle_state_physics_processing(delta):
@@ -87,29 +90,37 @@ func _on_chase_buildup_state_physics_processing(delta):
 func _on_chasing_state_entered():
 	anim_state_machine.travel("charging")
 	# If we don't hit anything within the max_charge_time window, go back to Idle
-	await get_tree().create_timer(max_charge_time).timeout
+	charge_timer.start(max_charge_time)
+	await charge_timer.timeout
 	state_chart.send_event("charge_ended")
-	
 
 func _on_chasing_state_physics_processing(delta):
 	velocity = -global_transform.basis.z * SPEED
 	move_and_slide()
 
+func _on_chasing_state_exited():
+	charge_timer.stop()
+
 
 func _on_crashing_state_entered():
 	anim_state_machine.travel("crash")
+	for body in $CrashArea.get_overlapping_bodies():
+		if body == target:
+			body.hurt(charge_damage)
+			if body.is_dead:
+				target = null
 	await get_tree().create_timer(0.2).timeout
 	state_chart.send_event("crash_finished")
 
 func _on_crashing_state_physics_processing(delta):
-	velocity = global_transform.basis.z * 5.0
+	velocity = global_transform.basis.z * 8.0
 	move_and_slide()
 
 func _on_crashing_state_exited():
 	# Check if we need to U-Turn
 	# Check if player still in detection area
 	for body in $DetectionArea.get_overlapping_bodies():
-		if body is Player:
+		if body == target:
 			state_chart.send_event("reverse")
 	state_chart.send_event("u_turn")
 	
@@ -149,7 +160,7 @@ func _on_reverse_state_exited():
 
 
 func _on_hit_state_entered():
-	velocity = Vector3.ZERO
+	#velocity = Vector3.ZERO
 	anim_state_machine.travel("hit")
 	await get_tree().create_timer(0.35).timeout
 	
@@ -164,3 +175,4 @@ func _on_hit_state_entered():
 func _on_dead_state_entered():
 	velocity = Vector3.ZERO
 	anim_state_machine.travel("die")
+

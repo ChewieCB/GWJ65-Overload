@@ -1,7 +1,10 @@
 extends CharacterBody3D
 class_name Player
 
+var is_player_control_disabled: bool = false
+var is_dead: bool = false
 
+# Movement vars
 const SPEED = 10.0
 const JUMP_VELOCITY = 5.5
 
@@ -9,6 +12,9 @@ const JUMP_VELOCITY = 5.5
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var CAMERA_CONTROLLER : Camera3D
+
+@onready var state_chart = $StateChart
+@onready var anim_player = $AnimationPlayer
 
 @onready var shotgun = $CameraController/Camera3D/Shotgun
 
@@ -22,6 +28,17 @@ var _camera_rotation: Vector3
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+# Health
+var health: float = 100.0:
+	set(value):
+		health = clamp(value, 0.0, 100.0)
+		if health == 0.0:
+			state_chart.send_event("death")
+		else:
+			state_chart.send_event("hurt")
+
+# Gun handling
+
 var is_1_handed: bool = false:
 	set(value):
 		is_1_handed = value
@@ -34,6 +51,7 @@ var is_1_handed: bool = false:
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	TransitionManager.emit_signal("tv_on")
 
 
 func _input(event: InputEvent):
@@ -44,6 +62,9 @@ func _input(event: InputEvent):
 
 
 func _unhandled_input(event: InputEvent):
+	if is_player_control_disabled:
+		return
+	
 	_mouse_input = event is InputEventMouseMotion and \
 	Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	if _mouse_input:
@@ -146,19 +167,43 @@ func _physics_process(delta: float) -> void:
 	
 	_update_camera(delta)
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if not is_player_control_disabled:
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func hurt(damage:float=0.0):
+	health -= damage
+
+
+func _on_hurt_state_entered():
+	anim_player.play("hurt")
+	await get_tree().create_timer(0.6).timeout
+	state_chart.send_event("hurt_finish")
+
+
+func _on_dead_state_entered():
+	is_dead = true
+	anim_player.play("dead")
+	# Disable controls
+	is_player_control_disabled = true
+	# Show game over UI
+	await get_tree().create_timer(2.0).timeout
+	TransitionManager.emit_signal("exit_scene")

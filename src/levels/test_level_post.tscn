@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c86mbjpvbvqbx"]
+[gd_scene load_steps=11 format=3 uid="uid://c86mbjpvbvqbx"]
 
 [ext_resource type="Shader" path="res://src/levels/crt_blur.gdshader" id="1_7orwg"]
+[ext_resource type="Script" path="res://src/levels/post_processing.gd" id="1_l5jk5"]
 [ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="1_x4tcl"]
 [ext_resource type="PackedScene" uid="uid://ccfpxpswug3xp" path="res://src/levels/test_level.tscn" id="2_e13b3"]
 [ext_resource type="PackedScene" uid="uid://dpji3mk4jyvyn" path="res://src/ui/player/ammo/AmmoUI.tscn" id="4_oqvco"]
@@ -38,10 +39,89 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.244
 
+[sub_resource type="Animation" id="Animation_hxesf"]
+resource_name = "tv_off"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.55),
+"transitions": PackedFloat32Array(2.63902, 0.297302, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CRT/ColorRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.55),
+"transitions": PackedFloat32Array(2.63, 0.297, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_143vo"]
+resource_name = "tv_on"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(2.21914, 0.31864, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CRT/ColorRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(2.21914, 0.31864, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6uv4"]
+_data = {
+"tv_off": SubResource("Animation_hxesf"),
+"tv_on": SubResource("Animation_143vo")
+}
+
 [node name="TestLevelPost" type="Node2D"]
+script = ExtResource("1_l5jk5")
+
+[node name="BlackBackdrop" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="BlackBackdrop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_q64x3")
+clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -49,6 +129,9 @@ offset_right = 1152.0
 offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(576, 324)
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
@@ -57,15 +140,17 @@ render_target_update_mode = 4
 
 [node name="TestLevel" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_e13b3")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CRT" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CRT"]
 material = SubResource("ShaderMaterial_8lgov")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(576, 324)
 mouse_filter = 2
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -81,3 +166,8 @@ offset_right = 139.0
 offset_bottom = -100.0
 grow_horizontal = 1
 grow_vertical = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n6uv4")
+}

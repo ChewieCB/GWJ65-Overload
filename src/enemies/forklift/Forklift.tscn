@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ccjw386fyxb8n"]
+[gd_scene load_steps=88 format=3 uid="uid://ccjw386fyxb8n"]
 
 [ext_resource type="Texture2D" uid="uid://suwhxvbhehba" path="res://assets/forklift/Texture/Forklift.png" id="1_rsyf5"]
 [ext_resource type="Script" path="res://src/enemies/forklift/forklift_enemy.gd" id="1_sesgg"]
@@ -293,7 +293,15 @@ radius = 35.0
 size = Vector3(6, 8, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o3hwa"]
-size = Vector3(8, 6.69287, 13.3165)
+size = Vector3(8, 7.5, 13.316)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ek5hp"]
+transparency = 1
+albedo_color = Color(0.639216, 0.00784314, 0.00784314, 0.313726)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kelyv"]
+material = SubResource("StandardMaterial3D_ek5hp")
+size = Vector3(8, 7.5, 13.316)
 
 [sub_resource type="Animation" id="Animation_4qeaj"]
 resource_name = "charge_release"
@@ -888,6 +896,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector3(0, -2.55088e-32, -8.05755e-12)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshPivot/Forklift/Lift:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_3iyi8"]
 resource_name = "lower_lift"
@@ -1363,7 +1383,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1375,7 +1395,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -1387,7 +1407,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1399,7 +1419,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1411,22 +1431,10 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/path = NodePath("MeshPivot/Forklift/Lift:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("MeshPivot/Forklift/Lift:rotation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "update": 0,
@@ -1725,12 +1733,12 @@ shape = SubResource("BoxShape3D_cwbkp")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Forklift" type="MeshInstance3D" parent="MeshPivot"]
-transform = Transform3D(0.999876, 0.00024672, 0.0157054, 0, 0.999877, -0.0157073, -0.0157073, 0.0157054, 0.999753, 0, -0.521561, 0)
+transform = Transform3D(1, -0.000323161, 0.00020078, 0.000323295, 1, -0.000667046, -0.000200564, 0.000667111, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_wu8ip")
 skeleton = NodePath("")
 
 [node name="WheelRFrontPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -3, -1.7, 3.3)
+transform = Transform3D(1, 8.05755e-12, -4.25147e-32, -8.05755e-12, 1, 0, 4.25147e-32, 3.41917e-43, 1, -3, -1.7, 3.3)
 
 [node name="Wheel_R_Front" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelRFrontPivot"]
 transform = Transform3D(1, -1.00044e-11, -4.22006e-10, -8.05755e-12, 1, 0, 0, 0, 1, 3, 1.7, -3.3)
@@ -1738,7 +1746,7 @@ mesh = SubResource("ArrayMesh_nmwcx")
 skeleton = NodePath("")
 
 [node name="WheelLFrontPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(-4.37114e-08, 0.999999, 0, -1, -4.37114e-08, 0, 0, 0, 0.999999, 3, -1.75105, 3.33744)
+transform = Transform3D(1, 8.05755e-12, -3.02327e-32, -8.05755e-12, 0.999999, 0, 3.02327e-32, 2.43826e-43, 0.999999, 3, -1.75105, 3.33744)
 
 [node name="Wheel_L_Front" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelLFrontPivot"]
 transform = Transform3D(1, -9.97602e-12, -3.49246e-10, -8.05755e-12, 1, 0, 0, 0, 1, -3, 1.75105, -3.33744)
@@ -1746,7 +1754,7 @@ mesh = SubResource("ArrayMesh_45vmj")
 skeleton = NodePath("")
 
 [node name="WheelLBackPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(-4.37114e-08, 0.999999, 0, -1, -4.37114e-08, 0, 0, 0, 1, 2.2, -1.81702, -2.66596)
+transform = Transform3D(1, 8.05755e-12, -2.0785e-32, -8.05755e-12, 0.999999, 0, 2.0785e-32, 1.68156e-43, 1, 2.2, -1.81702, -2.66596)
 
 [node name="Wheel_L_Back" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelLBackPivot"]
 transform = Transform3D(1, -9.87654e-12, -2.32831e-10, -8.05755e-12, 1, 0, 0, 0, 1, -2.2, 1.81702, 2.66596)
@@ -1754,7 +1762,7 @@ mesh = SubResource("ArrayMesh_12gfu")
 skeleton = NodePath("")
 
 [node name="WheelRBackPivot" type="Node3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(-4.37114e-08, -0.999999, 0, 1, -4.37114e-08, 0, 0, 0, 0.999999, -2.2, -1.82251, -2.66997)
+transform = Transform3D(1, 8.05755e-12, -2.55088e-32, -8.05755e-12, 0.999999, 0, 2.55088e-32, 2.05991e-43, 0.999999, -2.2, -1.82251, -2.66997)
 
 [node name="Wheel_R_Back" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelRBackPivot"]
 transform = Transform3D(1, -9.9476e-12, -3.34694e-10, -8.05755e-12, 1, 0, 0, 0, 1, 2.2, 1.82251, 2.66997)
@@ -1762,8 +1770,6 @@ mesh = SubResource("ArrayMesh_71p8n")
 skeleton = NodePath("")
 
 [node name="Lift" type="MeshInstance3D" parent="MeshPivot/Forklift"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
-visible = false
 mesh = SubResource("ArrayMesh_anipj")
 skeleton = NodePath("")
 
@@ -1788,12 +1794,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 29.25)
 shape = SubResource("BoxShape3D_tpcuw")
 
 [node name="CrashArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68434e-14, 0, -5.67039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, -2.75)
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CrashArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.90356, 3.00823)
 shape = SubResource("BoxShape3D_o3hwa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CrashArea"]
+visible = false
+mesh = SubResource("BoxMesh_kelyv")
 
 [node name="UTurnRayCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91091e-05, 0.876651, -10.9406)
@@ -1926,14 +1935,16 @@ script = ExtResource("5_cfxo0")
 libraries = {
 "": SubResource("AnimationLibrary_7u8wg")
 }
+autoplay = "idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_7u8wg")
 }
 tree_root = SubResource("AnimationNodeStateMachine_hro35")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="ChargeTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
@@ -1943,6 +1954,7 @@ anim_player = NodePath("../AnimationPlayer")
 [connection signal="state_entered" from="StateChart/Root/ChaseBuildup" to="." method="_on_chase_buildup_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/ChaseBuildup" to="." method="_on_chase_buildup_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Crashing" to="." method="_on_crashing_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Crashing" to="." method="_on_crashing_state_exited"]
