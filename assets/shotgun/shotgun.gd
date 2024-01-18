@@ -117,10 +117,15 @@ func shoot(is_one_handed: bool = false):
 		_ray.target_position.z = randi_range(spread, -spread)
 		_ray.target_position.y = randi_range(spread, -spread)
 		if _ray.is_colliding():
-			_draw_debug_sphere(0.1, _ray.get_collision_point() )
+			#_draw_debug_sphere(0.1, _ray.get_collision_point())
 			var collider = _ray.get_collider()
 			if collider is CharacterBody3D or collider is RigidBody3D:
 				collider.hit(damage)
+			# Draw spark
+			if collider is CharacterBody3D:
+				var spark_instance = load("res://src/particles/spark/SparkParticles.tscn").instantiate()
+				spark_instance.set_position(_ray.get_collision_point())
+				get_tree().get_root().add_child(spark_instance)
 	
 	# UI updates
 	ammo_ui.spend_shell()

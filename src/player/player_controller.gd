@@ -5,7 +5,7 @@ var is_player_control_disabled: bool = false
 var is_dead: bool = false
 
 # Movement vars
-const SPEED = 10.0
+var SPEED = 10.0
 const JUMP_VELOCITY = 5.5
 
 @export var MOUSE_SENSITIVITY: float = 0.5
@@ -17,6 +17,7 @@ const JUMP_VELOCITY = 5.5
 @onready var anim_player = $AnimationPlayer
 
 @onready var shotgun = $CameraController/Camera3D/Shotgun
+@onready var melee_area = $MeleeArea
 
 var _mouse_input: bool = false
 var _mouse_rotation: Vector3
@@ -99,6 +100,7 @@ func _unhandled_input(event: InputEvent):
 			shotgun.launch_box()
 		else:
 			shotgun.state_machine.travel("push")
+		shove()
 	elif event.is_action_released("reload"):
 		if is_1_handed:
 			return
@@ -175,6 +177,18 @@ func _physics_process(delta: float) -> void:
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
+		
+		# Number of boxes carried affects move speed
+		if shotgun.boxes_held > 0:
+			match shotgun.boxes_held:
+				0:
+					SPEED = 17.0
+				1:
+					SPEED = 12.0
+				2:
+					SPEED = 8.0
+				3:
+					SPEED = 4.0
 
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
@@ -193,13 +207,20 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
+func shove():
+	for body in melee_area.get_overlapping_bodies():
+		if body is RigidBody3D:
+			var direction = self.global_transform.basis.rotated(Vector3.LEFT, PI/4)
+			body.apply_impulse(-direction.z * 100, Vector3.ZERO)
+
+
 func hurt(damage:float=0.0):
 	health -= damage
 
 
 func _on_hurt_state_entered():
 	anim_player.play("hurt")
-	await get_tree().create_timer(0.6).timeout
+	await get_tree().create_timer(1.0).timeout
 	state_chart.send_event("hurt_finish")
 
 

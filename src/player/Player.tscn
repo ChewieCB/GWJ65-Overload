@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c14qaqos0v1hu"]
+[gd_scene load_steps=23 format=3 uid="uid://c14qaqos0v1hu"]
 
 [ext_resource type="PackedScene" uid="uid://dqaq5axwki75x" path="res://assets/shotgun/Shotgun.tscn" id="1_hbrti"]
 [ext_resource type="Script" path="res://src/player/player_controller.gd" id="1_rlo0b"]
@@ -36,7 +36,6 @@ shader_parameter/outer_radius = 1.0
 
 [sub_resource type="Animation" id="Animation_vjim8"]
 resource_name = "hurt"
-length = 0.6
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -45,7 +44,7 @@ tracks/0/path = NodePath("CameraController/Camera3D/HurtOverlay/HurtBlur:modulat
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6),
+"times": PackedFloat32Array(0, 0.1, 1),
 "transitions": PackedFloat32Array(0.341, 2.14355, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -57,7 +56,7 @@ tracks/1/path = NodePath("CameraController/Camera3D/HurtOverlay/HurtVignette:mod
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6),
+"times": PackedFloat32Array(0, 0.1, 1),
 "transitions": PackedFloat32Array(0.341, 1.62, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -69,7 +68,7 @@ tracks/2/path = NodePath("CameraController/Camera3D/HurtOverlay/BloodSplatter:mo
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6),
+"times": PackedFloat32Array(0, 0.1, 1),
 "transitions": PackedFloat32Array(0.341, 1.93187, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -284,6 +283,9 @@ _data = {
 "hurt": SubResource("Animation_vjim8")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5c2h3"]
+size = Vector3(1.39418, 1.96692, 1.28613)
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
 collision_layer = 4
 script = ExtResource("1_rlo0b")
@@ -466,6 +468,14 @@ libraries = {
 "": SubResource("AnimationLibrary_1jl0l")
 }
 autoplay = "default"
+
+[node name="MeleeArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206852, -0.715242)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeleeArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00388336, -0.2099, 0.104004)
+shape = SubResource("BoxShape3D_5c2h3")
 
 [connection signal="state_entered" from="StateChart/Root/Health/Hurt" to="." method="_on_hurt_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Health/Dead" to="." method="_on_dead_state_entered"]
