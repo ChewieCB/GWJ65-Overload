@@ -4,13 +4,18 @@ extends Node3D
 @onready var anim_tree = $AnimationTree
 @onready var state_machine = anim_tree["parameters/playback"]
 
+# Shooting 
+var damage: int = 20
+var spread: int = 10
+@onready var ray_container = $Rays
+
 # Ammo
 enum AMMO_TYPE {
 	BUCKSHOT,
 	BLUE,
 	YELLOW
 }
-
+# Ammo - meshes/textures
 @onready var ammo_mesh = $Rig/Shotgun/Ammo
 @onready var ammo_red_tex = load("res://assets/shotgun/Ammo_Textures/Ammo.png")
 @onready var ammo_yellow_tex = load("res://assets/shotgun/Ammo_Textures/ammo_yellow.png")
@@ -25,13 +30,11 @@ var palmed_shell_idx = 0
 var palmed_shell = AMMO_TYPE.BUCKSHOT
 
 var max_ammo: int = 5
-#
 var _current_ammo: int = 5
 var current_ammo_1: int = 0
 var current_ammo_2: int = 0
 var current_ammo_3: int = 0
 var current_ammo_pools = [current_ammo_1, current_ammo_2, current_ammo_3]
-#
 var reserve_ammo_1: int = 30
 var reserve_ammo_2: int = 30
 var reserve_ammo_3: int = 30
@@ -56,9 +59,12 @@ var max_boxes = 3
 var boxes_held = 0
 
 
-
-
 func _ready():
+	randomize()
+	for _ray in ray_container.get_children():
+		_ray.target_position.z = randi_range(spread, -spread)
+		_ray.target_position.y = randi_range(spread, -spread)
+	
 	state_machine.start("idle")
 	# Load the initial ammo into the UI
 	for _shell in range(max_ammo):
@@ -105,7 +111,31 @@ func shoot(is_one_handed: bool = false):
 	_current_ammo -= 1
 	
 	# TODO - add random spread raycasts for buckshot
-	#
+	var scene_root = get_tree().root.get_children()[0]
+	for _ray in ray_container.get_children():
+		_ray.target_position.z = randi_range(spread, -spread)
+		_ray.target_position.y = randi_range(spread, -spread)
+		if _ray.is_colliding():
+			# Draw a debug sphere on impact
+			var debug_sphere = SphereMesh.new()
+			debug_sphere.radial_segments = 4
+			debug_sphere.rings = 4
+			debug_sphere.radius = 0.2
+			debug_sphere.height = 0.2 * 2
+			# Bright red material (unshaded).
+			var material = StandardMaterial3D.new()
+			material.albedo_color = Color(1, 0, 0)
+			material.flags_unshaded = true
+			debug_sphere.surface_set_material(0, material)
+			# Add to meshinstance in the right place.
+			var node = MeshInstance3D.new()
+			node.mesh = debug_sphere
+			node.global_transform.origin = _ray.get_collision_point()
+			scene_root.add_child(node)
+			
+			#if r.get_collider() is CharacterBody3D:
+				## TODO - add damage code here
+				#pass
 	
 	# UI updates
 	ammo_ui.spend_shell()
