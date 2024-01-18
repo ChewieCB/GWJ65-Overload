@@ -95,7 +95,7 @@ transform = Transform3D(-0.122723, 0, -0.380709, 0, 0.4, 0, 0.380709, 0, -0.1227
 transform = Transform3D(0.286297, 0, -0.279346, 0, 0.4, 0, 0.279346, 0, 0.286297, -33.3241, 1.1, -6.95108)
 
 [node name="ForkliftEnemy3" parent="Enemies" instance=ExtResource("6_khnjj")]
-transform = Transform3D(0.257281, 0, 0.306279, 0, 0.4, 0, -0.306279, 0, 0.257281, -10.7385, 1.1, -6.43987)
+transform = Transform3D(0.394415, 0, 0.0666111, 0, 0.4, 0, -0.0666111, 0, 0.394415, -10.7385, 1.1, -6.43987)
 
 [node name="Player" parent="." instance=ExtResource("8_xm3lm")]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -14, 1, -26.7503)

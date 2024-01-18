@@ -185,6 +185,7 @@ visible = false
 mesh = SubResource("SphereMesh_2d64a")
 
 [node name="PickupTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 [connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]

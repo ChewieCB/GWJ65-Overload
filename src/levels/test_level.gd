@@ -9,6 +9,9 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for _old_box in box_node.get_children():
+		_old_box.queue_free()
+		box_node.remove_child(_old_box)
 	randomize()
 	var box_scene = load("res://src/interactible/box/Box.tscn")
 	for _box in box_count:
