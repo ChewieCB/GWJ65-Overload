@@ -79,7 +79,7 @@ func reload(ammo_type: AMMO_TYPE = AMMO_TYPE.BUCKSHOT):
 	if not _reload_timer.is_stopped():
 		return
 	
-	if reserve_ammo > 0:
+	if reserve_ammo > 0 and _current_ammo < max_ammo:
 		_current_ammo += 1
 		reserve_ammo -= 1
 		
