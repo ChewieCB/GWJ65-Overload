@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c14qaqos0v1hu"]
+[gd_scene load_steps=25 format=3 uid="uid://c14qaqos0v1hu"]
 
 [ext_resource type="PackedScene" uid="uid://dqaq5axwki75x" path="res://assets/shotgun/Shotgun.tscn" id="1_hbrti"]
 [ext_resource type="Script" path="res://src/player/player_controller.gd" id="1_rlo0b"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_okglq"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_546a1"]
 [ext_resource type="Texture2D" uid="uid://bcam3ekfkj7n1" path="res://assets/screen_overlays/debris2 Blood Overlay.png" id="7_pd28o"]
+[ext_resource type="FontFile" uid="uid://c08o42rbgvfq4" path="res://assets/fonts/Aki Lines Regular/Aki Lines Regular.otf" id="8_uykmh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8l20t"]
 
@@ -235,6 +236,18 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0.0820305, 0, 0)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("UI/Overlay:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_vjim8"]
 resource_name = "hurt"
@@ -276,8 +289,73 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_hy1pi"]
+resource_name = "citation"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Overlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Overlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1.8025, 1, 1.46409, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Overlay/CenterContainer/MarkerText:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.325, 0.4),
+"transitions": PackedFloat32Array(1.8025, 0.554785, 1.46409, 1),
+"update": 0,
+"values": [Vector2(0, 424), Vector2(20, 20), Vector2(20, -28), Vector2(20, 20)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/Overlay/CenterContainer/MarkerText:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [-6.28319, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/Overlay/CenterContainer/MarkerText:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1jl0l"]
 _data = {
+"citation": SubResource("Animation_hy1pi"),
 "dead": SubResource("Animation_wlnyn"),
 "default": SubResource("Animation_gr2ea"),
 "hurt": SubResource("Animation_vjim8")
@@ -308,20 +386,8 @@ current = true
 [node name="Shotgun" parent="CameraController/Camera3D" instance=ExtResource("1_hbrti")]
 transform = Transform3D(-4.37114e-08, 0, 1, -0.0819385, 0.996637, -3.58165e-09, -0.996637, -0.0819385, -4.35644e-08, 0.254, -0.184835, -0.280585)
 
-[node name="Shotgun" parent="CameraController/Camera3D/Shotgun/Rig" index="0"]
-transform = Transform3D(-1.81003e-05, 5.00009, 1.81001e-05, 0, -1.81003e-05, 5.00004, 5.00011, 1.81003e-05, 6.55222e-11, 0, 0, 0)
-
 [node name="LHandTarget" parent="CameraController/Camera3D/Shotgun/Rig/Shotgun/Shotgun-Detach" index="0"]
 transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
-
-[node name="RHandTarget" parent="CameraController/Camera3D/Shotgun/Rig/Shotgun" index="1"]
-transform = Transform3D(-0.196833, -0.00210631, 0.0353909, -0.00136329, 0.199948, 0.00431798, -0.0354273, 0.00400833, -0.196797, -0.0132962, -0.0460034, -0.0132669)
-
-[node name="LForearmIKTarget" parent="CameraController/Camera3D/Shotgun/Rig/Arms" index="1"]
-transform = Transform3D(0.484721, 0.872672, -0.0592391, -0.829401, 0.437066, -0.347976, -0.277773, 0.217801, 0.935644, 0.284119, -0.303066, -0.0658725)
-
-[node name="LUpperarmTarget" parent="CameraController/Camera3D/Shotgun/Rig/Arms" index="2"]
-transform = Transform3D(-0.288354, 0.906216, -0.309263, -0.877879, -0.37917, -0.292532, -0.382357, 0.187141, 0.904876, 0.000297248, -0.407556, -0.169296)
 
 [node name="BoxSpawn" type="Marker3D" parent="CameraController/Camera3D"]
 transform = Transform3D(0.999702, 0.0244322, 0, -0.024432, 0.999698, -0.00349072, -8.52842e-05, 0.00348956, 0.999995, -0.395515, 0.024056, -0.961386)
@@ -436,6 +502,67 @@ rotation = 3.14159
 points = PackedVector2Array(-12, -8, -12, -12.5347, -7.78201, -16, -4, -16)
 width = 2.0
 
+[node name="Overlay" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarkerText" type="Node2D" parent="UI/Overlay/CenterContainer"]
+position = Vector2(20, 20)
+
+[node name="Label" type="Label" parent="UI/Overlay/CenterContainer/MarkerText"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -493.0
+offset_top = -91.0
+offset_right = 493.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92549, 0, 0.00392157, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.556863, 0.0156863, 0.0196078, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("8_uykmh")
+theme_override_font_sizes/font_size = 128
+text = "Citation!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2D2" type="Line2D" parent="UI/Overlay/CenterContainer/MarkerText"]
+position = Vector2(-313, -89)
+points = PackedVector2Array(620.5, 167, 12.5, 167)
+width = 8.0
+default_color = Color(0, 0, 0, 0.792157)
+
+[node name="Line2D" type="Line2D" parent="UI/Overlay/CenterContainer/MarkerText/Line2D2"]
+position = Vector2(3, -2)
+points = PackedVector2Array(620.5, 167, 12.5, 167)
+width = 8.0
+default_color = Color(0.713726, 0, 0.00392157, 1)
+
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("3_mvctb")
 
@@ -476,6 +603,12 @@ event = &"death"
 script = ExtResource("6_okglq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1jl0l")
+}
+autoplay = "default"
+
+[node name="AnimationPlayerText" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1jl0l")
 }

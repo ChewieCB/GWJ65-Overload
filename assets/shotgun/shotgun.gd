@@ -23,7 +23,9 @@ enum AMMO_TYPE {
 @onready var ammo_blue_tex = load("res://assets/shotgun/Ammo_Textures/ammo_blue.png")
 @onready var ammo_textures = [ammo_red_tex, ammo_blue_tex, ammo_yellow_tex]
 
+# FIXME - these should be on the player class not here, move them
 @onready var ammo_ui = $UI/AmmoUI
+@onready var health_ui = $UI/HealthUI
 
 var current_tex_idx = 0
 # The type/colour of shell currently held, to be loaded on next reload

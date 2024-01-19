@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://dqaq5axwki75x"]
+[gd_scene load_steps=89 format=3 uid="uid://dqaq5axwki75x"]
 
 [ext_resource type="Script" path="res://assets/shotgun/shotgun.gd" id="1_0kws1"]
 [ext_resource type="Texture2D" uid="uid://bifxuau8mr147" path="res://assets/shotgun/Shotgun-c77a037ef8f366bf3dd4a93a935c9d03_Shotgun_Texture_2.png" id="1_jcjkl"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c1tbros1jy7kr" path="res://assets/shotgun/Ammo.tscn" id="4_ve803"]
 [ext_resource type="Material" path="res://assets/warehouse/Materials/MAT_Cardboard_Boxes.tres" id="6_68gsj"]
 [ext_resource type="PackedScene" uid="uid://dpji3mk4jyvyn" path="res://src/ui/player/ammo/AmmoUI.tscn" id="7_njadv"]
+[ext_resource type="PackedScene" uid="uid://csftck78kw7g0" path="res://src/ui/player/health/HealthUI.tscn" id="8_fo8w0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4hk2"]
 resource_name = "Material.002"
@@ -3459,11 +3460,19 @@ one_shot = true
 one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
 
 [node name="AmmoUI" parent="UI" instance=ExtResource("7_njadv")]
 offset_left = -368.0
 offset_top = 232.0
 offset_right = -368.0
 offset_bottom = 232.0
+
+[node name="HealthUI" parent="UI" instance=ExtResource("8_fo8w0")]
+offset_left = 432.0
+offset_top = -224.0
+offset_right = 432.0
+offset_bottom = -224.0
 
 [editable path="Rig/Shotgun/Ammo"]

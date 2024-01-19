@@ -15,6 +15,8 @@ const JUMP_VELOCITY = 5.5
 
 @onready var state_chart = $StateChart
 @onready var anim_player = $AnimationPlayer
+@onready var anim_player_text = $AnimationPlayerText
+@onready var overlay_label = $UI/Overlay/CenterContainer/MarkerText/Label
 
 @onready var shotgun = $CameraController/Camera3D/Shotgun
 @onready var melee_area = $MeleeArea
@@ -30,11 +32,22 @@ var _camera_rotation: Vector3
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Health
-var health: float = 100.0:
+var max_health: float = 100.0
+var health: float = max_health:
 	set(value):
-		health = clamp(value, 0.0, 100.0)
+		health = clamp(value, 0.0, max_health)
+		shotgun.health_ui.update_health_bar(int(health))
 		if health == 0.0:
-			state_chart.send_event("death")
+			if shotgun.health_ui.lose_health_tick():
+				health = max_health
+				shotgun.health_ui.update_health_bar(int(health))
+				state_chart.send_event("hurt")
+				#
+				if shotgun.health_ui.citations_left == 0:
+					overlay_label.text = "Final Warning!"
+				anim_player_text.play("citation")
+			else:
+				state_chart.send_event("death")
 		else:
 			state_chart.send_event("hurt")
 
@@ -78,10 +91,6 @@ func _unhandled_input(event: InputEvent):
 		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
 	
-	if event.is_action_pressed("DEBUG_add_box"):
-		shotgun.add_box()
-	elif event.is_action_pressed("DEBUG_remove_box"):
-		shotgun.remove_box()
 	is_1_handed = shotgun.boxes_held > 0
 	
 	if event.is_action_pressed("primary_fire"):
@@ -219,6 +228,7 @@ func shove():
 
 func hurt(damage:float=0.0):
 	health -= damage
+
 
 
 func _on_hurt_state_entered():
