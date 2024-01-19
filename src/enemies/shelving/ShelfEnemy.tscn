@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://qljtbpamrc2e"]
+[gd_scene load_steps=29 format=3 uid="uid://qljtbpamrc2e"]
 
 [ext_resource type="PackedScene" uid="uid://bdcaoftpssotf" path="res://assets/warehouse/Meshes/MESH_Shelf_Warehouse_Simple.tscn" id="1_gfq56"]
 [ext_resource type="Script" path="res://src/enemies/shelving/shelf_enemy.gd" id="1_l0eg2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_6qo8y"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_gr7ru"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_e5kki"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_uary8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g7khm"]
 size = Vector3(5.43268, 10.8233, 10.7932)
@@ -235,6 +236,65 @@ script = ExtResource("5_gr7ru")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_e5kki")
+
+[node name="ToWalking" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Walking")
+
+[node name="ToAiming" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Aiming")
+
+[node name="ToHit" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Hit")
+
+[node name="Walking" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_e5kki")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Walking"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Idle")
+
+[node name="ToHit" type="Node" parent="StateChart/Root/Walking"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Hit")
+
+[node name="ToAiming" type="Node" parent="StateChart/Root/Walking"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Aiming")
+
+[node name="Aiming" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_e5kki")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Aiming"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Idle")
+
+[node name="ToHit" type="Node" parent="StateChart/Root/Aiming"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Hit")
+
+[node name="Shooting" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_e5kki")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Shooting"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Idle")
+
+[node name="ToHit" type="Node" parent="StateChart/Root/Shooting"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Hit")
+
+[node name="Hit" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_e5kki")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Hit"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Idle")
+
+[node name="Dead" type="Node" parent="StateChart/Root"]
 script = ExtResource("6_e5kki")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
