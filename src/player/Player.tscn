@@ -34,8 +34,9 @@ shader_parameter/alpha = 0.405
 shader_parameter/inner_radius = 0.74
 shader_parameter/outer_radius = 1.0
 
-[sub_resource type="Animation" id="Animation_vjim8"]
-resource_name = "hurt"
+[sub_resource type="Animation" id="Animation_wlnyn"]
+resource_name = "dead"
+length = 0.7
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,10 +45,10 @@ tracks/0/path = NodePath("CameraController/Camera3D/HurtOverlay/HurtBlur:modulat
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 1),
-"transitions": PackedFloat32Array(0.341, 2.14355, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.341, 2.14355),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -56,10 +57,10 @@ tracks/1/path = NodePath("CameraController/Camera3D/HurtOverlay/HurtVignette:mod
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 1),
-"transitions": PackedFloat32Array(0.341, 1.62, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.341, 1.62),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -68,10 +69,70 @@ tracks/2/path = NodePath("CameraController/Camera3D/HurtOverlay/BloodSplatter:mo
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 1),
-"transitions": PackedFloat32Array(0.341, 1.93187, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.341, 1.93187),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CameraController/Camera3D/HurtOverlay/BloodDead1:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1.79453, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CameraController/Camera3D/HurtOverlay/BloodDead2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(3.36358, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CameraController:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.55, 0.7),
+"transitions": PackedFloat32Array(0.196146, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0635, 0.361223, 0.331287), Vector3(-0.064, -0.36, 0.391), Vector3(-0.064, -0.36, 0.391)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CameraController:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.55, 0.7),
+"transitions": PackedFloat32Array(0.196146, 1, 1),
+"update": 0,
+"values": [Vector3(0.0820305, 0, 0), Vector3(0.280998, -0.5044, -0.675442), Vector3(0.280998, -0.5044, -0.675442)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CameraController/Camera3D/Shotgun:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_gr2ea"]
@@ -175,9 +236,8 @@ tracks/7/keys = {
 "values": [Vector3(0.0820305, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_wlnyn"]
-resource_name = "dead"
-length = 0.7
+[sub_resource type="Animation" id="Animation_vjim8"]
+resource_name = "hurt"
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -186,10 +246,10 @@ tracks/0/path = NodePath("CameraController/Camera3D/HurtOverlay/HurtBlur:modulat
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.341, 2.14355),
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(0.341, 2.14355, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -198,10 +258,10 @@ tracks/1/path = NodePath("CameraController/Camera3D/HurtOverlay/HurtVignette:mod
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.341, 1.62),
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(0.341, 1.62, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -210,70 +270,10 @@ tracks/2/path = NodePath("CameraController/Camera3D/HurtOverlay/BloodSplatter:mo
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.341, 1.93187),
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(0.341, 1.93187, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CameraController/Camera3D/HurtOverlay/BloodDead1:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1.79453, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CameraController/Camera3D/HurtOverlay/BloodDead2:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(3.36358, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("CameraController:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.55, 0.7),
-"transitions": PackedFloat32Array(0.196146, 1, 1),
-"update": 0,
-"values": [Vector3(-0.0635, 0.361223, 0.331287), Vector3(-0.064, -0.36, 0.391), Vector3(-0.064, -0.36, 0.391)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("CameraController:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.55, 0.7),
-"transitions": PackedFloat32Array(0.196146, 1, 1),
-"update": 0,
-"values": [Vector3(0.0820305, 0, 0), Vector3(0.280998, -0.5044, -0.675442), Vector3(0.280998, -0.5044, -0.675442)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("CameraController/Camera3D/Shotgun:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1jl0l"]
@@ -303,14 +303,25 @@ shape = SubResource("CapsuleShape3D_00n12")
 transform = Transform3D(1, 0, 0, 0, 0.996637, -0.0819385, 0, 0.0819385, 0.996637, -0.0635, 0.361223, 0.331287)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 current = true
 
 [node name="Shotgun" parent="CameraController/Camera3D" instance=ExtResource("1_hbrti")]
 transform = Transform3D(-4.37114e-08, 0, 1, -0.0819385, 0.996637, -3.58165e-09, -0.996637, -0.0819385, -4.35644e-08, 0.254, -0.184835, -0.280585)
 
+[node name="Shotgun" parent="CameraController/Camera3D/Shotgun/Rig" index="0"]
+transform = Transform3D(-1.81003e-05, 5.00009, 1.81001e-05, 0, -1.81003e-05, 5.00004, 5.00011, 1.81003e-05, 6.55222e-11, 0, 0, 0)
+
 [node name="LHandTarget" parent="CameraController/Camera3D/Shotgun/Rig/Shotgun/Shotgun-Detach" index="0"]
 transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
+
+[node name="RHandTarget" parent="CameraController/Camera3D/Shotgun/Rig/Shotgun" index="1"]
+transform = Transform3D(-0.196833, -0.00210631, 0.0353909, -0.00136329, 0.199948, 0.00431798, -0.0354273, 0.00400833, -0.196797, -0.0132962, -0.0460034, -0.0132669)
+
+[node name="LForearmIKTarget" parent="CameraController/Camera3D/Shotgun/Rig/Arms" index="1"]
+transform = Transform3D(0.484721, 0.872672, -0.0592391, -0.829401, 0.437066, -0.347976, -0.277773, 0.217801, 0.935644, 0.284119, -0.303066, -0.0658725)
+
+[node name="LUpperarmTarget" parent="CameraController/Camera3D/Shotgun/Rig/Arms" index="2"]
+transform = Transform3D(-0.288354, 0.906216, -0.309263, -0.877879, -0.37917, -0.292532, -0.382357, 0.187141, 0.904876, 0.000297248, -0.407556, -0.169296)
 
 [node name="BoxSpawn" type="Marker3D" parent="CameraController/Camera3D"]
 transform = Transform3D(0.999702, 0.0244322, 0, -0.024432, 0.999698, -0.00349072, -8.52842e-05, 0.00348956, 0.999995, -0.395515, 0.024056, -0.961386)
