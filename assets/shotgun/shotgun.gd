@@ -60,6 +60,17 @@ var _2h_reload_time: float = 0.65
 @onready var box_slots = [box_slot_1, box_slot_2, box_slot_3]
 var max_boxes = 3
 var boxes_held = 0
+var held_box_colours = []
+
+@onready var red_mat = load("res://src/interactible/box/red_box_mat.tres")
+@onready var blue_mat = load("res://src/interactible/box/blue_box_mat.tres")
+@onready var yellow_mat = load("res://src/interactible/box/yellow_box_mat.tres")
+@onready var colour_mats = [
+	null,
+	red_mat,
+	blue_mat,
+	yellow_mat
+]
 
 
 func _ready():
@@ -104,6 +115,7 @@ func shoot(is_one_handed: bool = false):
 		return
 				
 	var next_shell_idx = loaded_ammo.pop_front()
+	ammo_mesh.texture.albedo_texture = ammo_textures[next_shell_idx]
 	match next_shell_idx:
 		0:
 			current_ammo_1 -= 1
@@ -122,7 +134,7 @@ func shoot(is_one_handed: bool = false):
 			#_draw_debug_sphere(0.1, _ray.get_collision_point())
 			var collider = _ray.get_collider()
 			if collider is CharacterBody3D or collider is RigidBody3D:
-				collider.hit(damage)
+				collider.hit(damage, next_shell_idx)
 			# Draw spark
 			if collider is CharacterBody3D:
 				var spark_instance = load("res://src/particles/spark/SparkParticles.tscn").instantiate()
@@ -208,9 +220,14 @@ func next_ammo_type():
 	ammo_mesh.texture.albedo_texture = next_texture
 
 
-func add_box() -> bool:
+func add_box(colour_idx: Box.BOX_COLOR=Box.BOX_COLOR.BLANK) -> bool:
 	if boxes_held == max_boxes:
 		return false
+	
+	var box_texture = colour_mats[colour_idx]
+	box_slots[boxes_held].get_child(0).set_surface_override_material(0, box_texture)
+	held_box_colours.append(colour_idx)
+	
 	box_slots[boxes_held].visible = true
 	boxes_held += 1
 	return true
@@ -229,16 +246,17 @@ func launch_box():
 		var box_instance = load("res://src/interactible/box/Box.tscn").instantiate()
 		var spawn_node = get_parent().get_node("BoxSpawn")
 		var player = get_parent().get_parent().get_parent()
-		box_instance.player = player
 		
 		var box_pos = spawn_node.global_transform.origin
 		var box_rot = spawn_node.global_transform.basis
 		var direction = box_rot.rotated(Vector3(1, 0, 0), PI/10)
 		
+		box_instance.player = player
 		box_instance.transform.basis = box_rot
 		box_instance.set_position(box_pos)
 		box_instance.apply_impulse(-direction.z * 20, Vector3.ZERO)
 		get_tree().get_root().add_child(box_instance)
+		box_instance.current_box_colour = held_box_colours.pop_back()
 		box_instance.pickup_timer.start(1.0)
 
 

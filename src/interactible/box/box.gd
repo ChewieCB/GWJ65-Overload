@@ -7,6 +7,19 @@ class_name Box
 @onready var pickup_highlight = $PickupArea/PickupHighlight
 @onready var pickup_timer = $PickupTimer
 
+enum BOX_COLOR {
+	BLANK,
+	RED,
+	BLUE,
+	YELLOW
+}
+@onready var colour_mats = [
+	null,
+	preload("res://src/interactible/box/red_box_mat.tres"),
+	preload("res://src/interactible/box/blue_box_mat.tres"),
+	preload("res://src/interactible/box/yellow_box_mat.tres")
+]
+
 var player: Player
 
 var can_pickup: bool = false:
@@ -25,6 +38,17 @@ var health: float = 15.0:
 # For shelves throwing boxes at the player, we want that first impact only to hurt 
 var one_off_damage: float = 0.0
 
+@export var current_box_colour: BOX_COLOR = BOX_COLOR.BLANK:
+	set(value):
+		# Update mesh colour
+		if value != current_box_colour:
+			if value == 0:
+				mesh.set_surface_override_material(0, null)
+			else:
+				var new_mat = colour_mats[value]
+				mesh.set_surface_override_material(0, new_mat)
+		current_box_colour = value
+
 func _ready():
 	var material = $ParticlesPivot/CPUParticles3D.mesh.get_material()
 	material.albedo_color = Color(1, 1, 1, 1)
@@ -33,7 +57,7 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed("pickup"):
 		if can_pickup:
-			if player.shotgun.add_box():
+			if player.shotgun.add_box(current_box_colour):
 				can_pickup = false
 				self.queue_free()
 
@@ -47,8 +71,15 @@ func _physics_process(delta):
 			pass
 
 
-func hit(damage:float=0.0):
-	health -= damage
+func hit(damage:float=0.0, ammo_type:int=-1):
+	if ammo_type >= 0:
+		var new_colour = clamp(ammo_type + 1, 0, colour_mats.size())
+		if not new_colour == current_box_colour:
+			current_box_colour = new_colour
+			# Hacky timer here to stop pellets from the same shot destroying a box
+			#await get_tree().create_timer(0.7).timeout
+			#return
+	#health -= damage
 
 
 func fade_particle(time: float):

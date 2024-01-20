@@ -36,7 +36,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func hit(damage:float=0.0):
+func hit(damage:float=0.0, ammo_type:int=-1):
 	health -= damage
 	state_chart.send_event("hit")
 

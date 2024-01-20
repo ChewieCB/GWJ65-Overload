@@ -101,7 +101,7 @@ func populate_boxes_on_death():
 			box_instance.pickup_timer.start(0.0)
 
 
-func hit(damage:float=0.0):
+func hit(damage:float=0.0, ammo_type:int=-1):
 	health -= damage
 	state_chart.send_event("hurt")
 
