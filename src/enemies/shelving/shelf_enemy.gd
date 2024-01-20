@@ -84,6 +84,7 @@ func _on_aiming_state_physics_processing(delta):
 func _on_aiming_state_exited():
 	aim_timer.stop()
 	locked_shot_position = null
+	anim_state_machine.travel("aim")
 
 
 func _on_shooting_state_entered():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://2j7355lkklfq"]
+[gd_scene load_steps=52 format=3 uid="uid://2j7355lkklfq"]
 
 [ext_resource type="Script" path="res://src/enemies/shelving/shelf_enemy.gd" id="1_l0eg2"]
 [ext_resource type="Material" path="res://assets/warehouse/Materials/MAT_Metal_Corroded.tres" id="2_c8y5g"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_uary8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6erqv"]
-size = Vector3(1.46582, 3.3, 3.25791)
+size = Vector3(1.46582, 3.25833, 3.23512)
 
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube.018"
@@ -106,7 +106,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1.56917, 0.535886),
 "update": 0,
-"values": [Vector3(0, 0, 0.507385), Vector3(0, 0, 0.441795)]
+"values": [Vector3(0.507891, 0, 0), Vector3(0.441568, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vlobt"]
@@ -123,7 +123,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25),
 "transitions": PackedFloat32Array(1.93187, 2.14, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0.0395816, 0), Vector3(0, 0.704551, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0395816, 0), Vector3(0, 0.984373, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -135,7 +135,31 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25, 0.35, 0.45, 0.55),
 "transitions": PackedFloat32Array(1.93187, 2.14355, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.0698132), Vector3(0, 0, 1.53381), Vector3(0, 0, 1.5708), Vector3(0, 0, 1.53381), Vector3(0, 0, 1.5708)]
+"values": [Vector3(0, 0, 0), Vector3(-0.0698132, 0, 0), Vector3(1.53414, 0, 0), Vector3(1.5708, 0, 0), Vector3(1.53414, 0, 0), Vector3(1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Collider:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1.93, 1),
+"update": 1,
+"values": [Vector3(0, 1.5708, 0), Vector3(-8.74228e-08, 1.5708, 1.5708)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Collider:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1.93, 1),
+"update": 1,
+"values": [Vector3(0.484235, 1.63644, 0.222211), Vector3(0.484235, 0.736034, 1.63778)]
 }
 
 [sub_resource type="Animation" id="Animation_qe1sg"]
@@ -163,7 +187,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(2.14126, 1.93187),
 "update": 0,
-"values": [Vector3(0, 0, 0.507385), Vector3(0, 0, 0)]
+"values": [Vector3(0.507891, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1gulu"]
@@ -191,7 +215,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(0.353577, 1.7411, 1.932),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-5.10893e-09, -2.99588e-10, 0.227102), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.226893, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_k66n4"]
@@ -247,7 +271,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(0.42, 1.51, 1.93187, 1, 1.932),
 "update": 0,
-"values": [Vector3(0, 0, 0.507385), Vector3(0, 0, -0.28297), Vector3(0, 0, 0), Vector3(0, 0, 0.110549), Vector3(0, 0, 0)]
+"values": [Vector3(0.507891, 0, 0), Vector3(-0.282743, 0, 0), Vector3(0, 0, 0), Vector3(0.109956, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -289,7 +313,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1.93187, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.507385)]
+"values": [Vector3(0, 0, 0), Vector3(0.507891, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_62iik"]
@@ -318,7 +342,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(0.450625, 1.6245, 0.45, 1.62),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.312414, 0.403171, -0.109956), Vector3(0.00698132, -0.0575959, -0.0191986), Vector3(-0.312414, -0.403171, 0.109956)]
+"values": [Vector3(0, 0, 0), Vector3(-0.109956, 0.403171, 0.312414), Vector3(-0.0191986, -0.0575959, 0.00698132), Vector3(0.109956, -0.403171, -0.312414)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s8o74"]
@@ -378,19 +402,12 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_883oa"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3jfi4"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qowxq"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ddy2"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fqlvy"]
+priority = 2
 switch_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fcmgp"]
@@ -399,36 +416,47 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7dpqc"]
 switch_mode = 1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_058dp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dfkk1"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ij67w"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5nel3"]
 states/aim/node = SubResource("AnimationNodeAnimation_yrwuv")
 states/aim/position = Vector2(528, 252)
 states/die/node = SubResource("AnimationNodeAnimation_l7xnt")
 states/die/position = Vector2(794, -3)
 states/end_aim/node = SubResource("AnimationNodeAnimation_28f7j")
-states/end_aim/position = Vector2(645, 252)
+states/end_aim/position = Vector2(644, 315)
 states/hurt/node = SubResource("AnimationNodeAnimation_rye5v")
 states/hurt/position = Vector2(693, 3)
 states/idle/node = SubResource("AnimationNodeAnimation_vbehl")
-states/idle/position = Vector2(308, 100)
+states/idle/position = Vector2(305, 100)
 states/shoot/node = SubResource("AnimationNodeAnimation_8bv20")
 states/shoot/position = Vector2(578, 100)
 states/start_aim/node = SubResource("AnimationNodeAnimation_r758a")
 states/start_aim/position = Vector2(417, 252)
 states/walk/node = SubResource("AnimationNodeAnimation_3vdmu")
-states/walk/position = Vector2(433, 3)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ewmti"), "idle", "start_aim", SubResource("AnimationNodeStateMachineTransition_0bayl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_3np8t"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_6p73e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_vy6iq"), "start_aim", "aim", SubResource("AnimationNodeStateMachineTransition_nb1nh"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_cne6i"), "die", "End", SubResource("AnimationNodeStateMachineTransition_ggtso"), "aim", "shoot", SubResource("AnimationNodeStateMachineTransition_883oa"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_3jfi4"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_qowxq"), "end_aim", "idle", SubResource("AnimationNodeStateMachineTransition_4ddy2"), "aim", "end_aim", SubResource("AnimationNodeStateMachineTransition_fqlvy"), "hurt", "walk", SubResource("AnimationNodeStateMachineTransition_fcmgp"), "walk", "hurt", SubResource("AnimationNodeStateMachineTransition_7dpqc")]
-graph_offset = Vector2(54, -63)
+states/walk/position = Vector2(452, 3)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ewmti"), "idle", "start_aim", SubResource("AnimationNodeStateMachineTransition_0bayl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_3np8t"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_6p73e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_vy6iq"), "start_aim", "aim", SubResource("AnimationNodeStateMachineTransition_nb1nh"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_cne6i"), "die", "End", SubResource("AnimationNodeStateMachineTransition_ggtso"), "aim", "shoot", SubResource("AnimationNodeStateMachineTransition_883oa"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_qowxq"), "aim", "end_aim", SubResource("AnimationNodeStateMachineTransition_fqlvy"), "hurt", "walk", SubResource("AnimationNodeStateMachineTransition_fcmgp"), "walk", "hurt", SubResource("AnimationNodeStateMachineTransition_7dpqc"), "end_aim", "start_aim", SubResource("AnimationNodeStateMachineTransition_058dp"), "end_aim", "idle", SubResource("AnimationNodeStateMachineTransition_dfkk1"), "shoot", "start_aim", SubResource("AnimationNodeStateMachineTransition_ij67w")]
+graph_offset = Vector2(148, -42)
 
 [node name="ShelfEnemy" type="CharacterBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_l0eg2")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0670898, 1.65, -0.00996065)
+transform = Transform3D(-8.74228e-08, -7.54979e-08, 1, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 7.54979e-08, 0.484235, 0.736034, 1.63778)
 shape = SubResource("BoxShape3D_6erqv")
 
 [node name="Meshes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37113e-08, -1, 0, 0.999999, -4.37114e-08, 0, 0.984373, 0)
 
 [node name="ShelfMesh" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(-1.31134e-08, 0, -0.161, 0, 0.3, 0, 0.3, 0, -7.03753e-09, -1.13442, 0, 0.980712)

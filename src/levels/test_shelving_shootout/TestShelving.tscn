@@ -175,7 +175,10 @@ shape = SubResource("ConcavePolygonShape3D_2bigg")
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="ShelfEnemy" parent="Enemies" instance=ExtResource("2_h8cip")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 12.0208, 0, -13.435)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 12.0208, 1.4176, -13.435)
+
+[node name="Meshes" parent="Enemies/ShelfEnemy" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_6onv1")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15.9113, 2, 14.577)
