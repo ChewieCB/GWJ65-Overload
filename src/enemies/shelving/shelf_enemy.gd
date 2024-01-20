@@ -7,6 +7,15 @@ extends CharacterBody3D
 
 @onready var aim_timer = $AimingTimer
 
+@onready var meshes = $Meshes
+@onready var box_spawns = [
+	$Meshes/BoxSpawn1,
+	$Meshes/BoxSpawn2,
+	$Meshes/BoxSpawn3,
+	$Meshes/BoxSpawn4
+	
+]
+
 @export var shot_damage: float = 20.0
 @export var health: float = 100.0:
 	set(value):
@@ -37,8 +46,38 @@ func _physics_process(delta):
 	move_and_slide()
 
 
+func remove_box() -> bool:
+	if box_spawns.size() > 0:
+		return true
+	return false
+
+
 func shoot_box():
-	pass
+	if remove_box():
+		# Determine target direction
+		var spawn_marker = box_spawns.pop_front()
+		var box_pos = spawn_marker.global_transform.origin
+		spawn_marker.look_at(locked_shot_position, Vector3.UP)
+		var box_rot = spawn_marker.global_transform.basis
+		var direction = box_rot#.rotated(Vector3(1, 0, 0), PI/10)
+		
+		# Spawn box and throw
+		var box_instance = load("res://src/interactible/box/Box.tscn").instantiate()
+		box_instance.transform.basis = box_rot
+		box_instance.player = target
+		box_instance.set_position(box_pos)
+		box_instance.apply_impulse(-direction.z * 40, Vector3.ZERO)
+		get_tree().get_root().add_child(box_instance)
+		box_instance.pickup_timer.start(1.0)
+		
+		# Remove spawn
+		spawn_marker.queue_free()
+		meshes.remove_child(spawn_marker)
+		
+		# If we have no boxes left to shoot, the shelf dies
+		if not remove_box():
+			hit(100.0)
+			return
 
 
 func hit(damage:float=0.0):
@@ -70,7 +109,7 @@ func _on_aiming_state_entered():
 	aim_timer.start(aiming_time)
 	await aim_timer.timeout
 	# Lock aim
-	locked_shot_position = target.transform.origin
+	locked_shot_position = target.global_transform.origin
 	self.look_at(locked_shot_position, Vector3.UP)
 	# Shoot
 	state_chart.send_event("shoot")
@@ -83,13 +122,13 @@ func _on_aiming_state_physics_processing(delta):
 
 func _on_aiming_state_exited():
 	aim_timer.stop()
-	locked_shot_position = null
 	anim_state_machine.travel("aim")
 
 
 func _on_shooting_state_entered():
 	anim_state_machine.travel("shoot")
 	await get_tree().create_timer(0.7).timeout
+	locked_shot_position = null
 	var is_detected: bool = false
 	var is_in_range: bool = false
 	for body in $DetectionArea.get_overlapping_bodies():

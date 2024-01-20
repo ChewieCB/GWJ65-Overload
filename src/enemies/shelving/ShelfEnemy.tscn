@@ -452,11 +452,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_l0eg2")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(-8.74228e-08, -7.54979e-08, 1, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 7.54979e-08, 0.484235, 0.736034, 1.63778)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.484235, 1.63644, 0.222211)
 shape = SubResource("BoxShape3D_6erqv")
 
 [node name="Meshes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37113e-08, -1, 0, 0.999999, -4.37114e-08, 0, 0.984373, 0)
+transform = Transform3D(1, 0, 0, 0, 0.960293, 0.278991, 0, -0.278991, 0.960294, 0, 0.230756, 0)
 
 [node name="ShelfMesh" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(-1.31134e-08, 0, -0.161, 0, 0.3, 0, 0.3, 0, -7.03753e-09, -1.13442, 0, 0.980712)
@@ -592,6 +592,11 @@ event = &"in_range"
 script = ExtResource("7_uary8")
 to = NodePath("../../Walking")
 event = &"left_range"
+
+[node name="ToDead" type="Node" parent="StateChart/Root/Shooting"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Dead")
+event = &"death"
 
 [node name="Hurt" type="Node" parent="StateChart/Root"]
 script = ExtResource("6_e5kki")
