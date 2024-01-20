@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://2j7355lkklfq"]
+[gd_scene load_steps=53 format=3 uid="uid://2j7355lkklfq"]
 
 [ext_resource type="Script" path="res://src/enemies/shelving/shelf_enemy.gd" id="1_l0eg2"]
 [ext_resource type="Material" path="res://assets/warehouse/Materials/MAT_Metal_Corroded.tres" id="2_c8y5g"]
@@ -447,16 +447,19 @@ states/walk/position = Vector2(452, 3)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ewmti"), "idle", "start_aim", SubResource("AnimationNodeStateMachineTransition_0bayl"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_3np8t"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_6p73e"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_vy6iq"), "start_aim", "aim", SubResource("AnimationNodeStateMachineTransition_nb1nh"), "hurt", "die", SubResource("AnimationNodeStateMachineTransition_cne6i"), "die", "End", SubResource("AnimationNodeStateMachineTransition_ggtso"), "aim", "shoot", SubResource("AnimationNodeStateMachineTransition_883oa"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_qowxq"), "aim", "end_aim", SubResource("AnimationNodeStateMachineTransition_fqlvy"), "hurt", "walk", SubResource("AnimationNodeStateMachineTransition_fcmgp"), "walk", "hurt", SubResource("AnimationNodeStateMachineTransition_7dpqc"), "end_aim", "start_aim", SubResource("AnimationNodeStateMachineTransition_058dp"), "end_aim", "idle", SubResource("AnimationNodeStateMachineTransition_dfkk1"), "shoot", "start_aim", SubResource("AnimationNodeStateMachineTransition_ij67w")]
 graph_offset = Vector2(148, -42)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_63e0c"]
+size = Vector3(4.09912, 3.63083, 1.84692)
+
 [node name="ShelfEnemy" type="CharacterBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_l0eg2")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
-transform = Transform3D(-8.74228e-08, -7.54979e-08, 1, 1, -4.37114e-08, 8.74228e-08, 4.37114e-08, 1, 7.54979e-08, 0.484235, 0.736034, 1.63778)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.484235, 1.63644, 0.222211)
 shape = SubResource("BoxShape3D_6erqv")
 
 [node name="Meshes" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37113e-08, -1, 0, 0.999999, -4.37114e-08, 0, 0.984373, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="ShelfMesh" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(-1.31134e-08, 0, -0.161, 0, 0.3, 0, 0.3, 0, -7.03753e-09, -1.13442, 0, 0.980712)
@@ -502,6 +505,7 @@ collision_mask = 4
 shape = SubResource("SphereShape3D_6ew77")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DetectionArea"]
+visible = false
 mesh = SubResource("SphereMesh_v4iqm")
 
 [node name="ShootingArea" type="Area3D" parent="."]
@@ -511,6 +515,7 @@ collision_mask = 4
 shape = SubResource("SphereShape3D_7k8jx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShootingArea"]
+visible = false
 mesh = SubResource("SphereMesh_0l2lf")
 
 [node name="StateChart" type="Node" parent="."]
@@ -638,6 +643,12 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="AimingTimer" type="Timer" parent="."]
 
+[node name="BoxDeflectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoxDeflectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.512207, 1.72356, 0.22644)
+shape = SubResource("BoxShape3D_63e0c")
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="ShootingArea" to="." method="_on_shooting_area_body_entered"]
@@ -652,3 +663,4 @@ anim_player = NodePath("../AnimationPlayer")
 [connection signal="state_physics_processing" from="StateChart/Root/Shooting" to="." method="_on_shooting_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Hurt" to="." method="_on_hurt_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Dead" to="." method="_on_dead_state_entered"]
+[connection signal="body_entered" from="BoxDeflectionArea" to="." method="_on_box_deflection_area_body_entered"]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0sq3sqmumo0t"]
+[gd_scene load_steps=13 format=3 uid="uid://c0sq3sqmumo0t"]
 
 [ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_i8xxy"]
 [ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="2_6onv1"]
 [ext_resource type="PackedScene" uid="uid://2j7355lkklfq" path="res://src/enemies/shelving/ShelfEnemy.tscn" id="2_h8cip"]
 [ext_resource type="PackedScene" uid="uid://c0dbasn84bjap" path="res://src/interactible/box_depot/BoxDepot.tscn" id="3_aek03"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="5_nxc0d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gf6gi"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -175,10 +174,13 @@ shape = SubResource("ConcavePolygonShape3D_2bigg")
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="ShelfEnemy" parent="Enemies" instance=ExtResource("2_h8cip")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 12.0208, 1.1176, -13.435)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 3.9838, 1.1176, -10.7267)
 
-[node name="Meshes" parent="Enemies/ShelfEnemy" index="1"]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
+[node name="ShelfEnemy2" parent="Enemies" instance=ExtResource("2_h8cip")]
+transform = Transform3D(-0.0871557, 0, -0.996195, 0, 1, 0, 0.996195, 0, -0.0871557, 14.2443, 1.1176, 9.67736)
+
+[node name="ShelfEnemy3" parent="Enemies" instance=ExtResource("2_h8cip")]
+transform = Transform3D(0.906308, 3.78552e-08, 0.422619, -6.20183e-08, 1, 4.34257e-08, -0.422619, -6.55671e-08, 0.906308, -18.0885, 1.1176, -2.05129)
 
 [node name="Player" parent="." instance=ExtResource("2_6onv1")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15.9113, 2, 14.577)
@@ -198,12 +200,3 @@ shape = SubResource("BoxShape3D_apg7c")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.945275, -0.0619158, 0.320345, -0.28925, 0.295249, 0.910584, -0.150961, -0.953412, 0.261182, -30.434, 28.6739, 13.2144)
 shadow_enabled = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("5_nxc0d")]
-offset_right = -851.0
-offset_bottom = -410.0
-initial_node_to_watch = NodePath("../../Enemies/ShelfEnemy/StateChart")
-
-[editable path="Enemies/ShelfEnemy"]

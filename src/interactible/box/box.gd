@@ -22,6 +22,9 @@ var health: float = 15.0:
 			await get_tree().create_timer(0.3).timeout
 			self.queue_free()
 
+# For shelves throwing boxes at the player, we want that first impact only to hurt 
+var one_off_damage: float = 0.0
+
 func _ready():
 	var material = $ParticlesPivot/CPUParticles3D.mesh.get_material()
 	material.albedo_color = Color(1, 1, 1, 1)

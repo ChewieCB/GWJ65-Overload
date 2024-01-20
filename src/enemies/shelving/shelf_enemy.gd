@@ -22,7 +22,7 @@ extends CharacterBody3D
 		health = clamp(value, 0, 100.0)
 		if health == 0:
 			state_chart.send_event("death")
-@export var aiming_time: float = 2.0
+@export var aiming_time: float = 0.8
 
 var target: CharacterBody3D
 var locked_shot_position
@@ -66,6 +66,7 @@ func shoot_box():
 		box_instance.transform.basis = box_rot
 		box_instance.player = target
 		box_instance.set_position(box_pos)
+		box_instance.one_off_damage = 10.0
 		box_instance.apply_impulse(-direction.z * 40, Vector3.ZERO)
 		get_tree().get_root().add_child(box_instance)
 		box_instance.pickup_timer.start(1.0)
@@ -73,6 +74,10 @@ func shoot_box():
 		# Remove spawn
 		spawn_marker.queue_free()
 		meshes.remove_child(spawn_marker)
+		# Remove the damage after we can expect it to have missed the player
+		await get_tree().create_timer(1.0).timeout
+		if is_instance_valid(box_instance):
+			box_instance.one_off_damage = 0.0
 		
 		# If we have no boxes left to shoot, the shelf dies
 		if not remove_box():
@@ -225,3 +230,16 @@ func _on_shooting_area_body_entered(body):
 func _on_shooting_area_body_exited(body):
 	state_chart.send_event("out_of_range")
 
+
+func _on_box_deflection_area_body_entered(body):
+	if body is RigidBody3D:
+		if body.mass < 50:
+			var direction = self.global_transform.basis
+			# Rotate it away
+			var rotation_z = PI/4
+			var rotation_y = PI/8
+			if body.position.x < 0:
+				rotation_z = -PI/4
+			direction = direction.rotated(Vector3.RIGHT, rotation_z)
+			direction = direction.rotated(Vector3.FORWARD, rotation_y)
+			body.apply_impulse(-direction.z * 200, Vector3.ZERO)

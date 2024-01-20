@@ -245,3 +245,9 @@ func _on_dead_state_entered():
 	# Show game over UI
 	await get_tree().create_timer(2.0).timeout
 	TransitionManager.emit_signal("exit_scene")
+
+
+func _on_projectile_detection_aera_body_entered(body):
+	if body is RigidBody3D:
+		if body.one_off_damage > 0:
+			health -= body.one_off_damage
