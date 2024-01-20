@@ -24,9 +24,15 @@ shape = SubResource("BoxShape3D_skvhe")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 mesh = SubResource("BoxMesh_mad08")
 
-[node name="Label3D" type="Label3D" parent="."]
+[node name="ColourLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173165, 0)
 billboard = 2
 text = "ANY"
 font_size = 64
+
+[node name="CountLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.070998, 0)
+billboard = 2
+text = "(000)"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

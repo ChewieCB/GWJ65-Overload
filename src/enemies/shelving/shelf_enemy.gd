@@ -227,9 +227,7 @@ func _on_dead_state_entered():
 
 func _on_detection_area_body_entered(body):
 	if body is Player:
-		print("Player detected")
 		target = body
-		print("Target = ", target.name)
 		state_chart.send_event("player_seen")
 
 

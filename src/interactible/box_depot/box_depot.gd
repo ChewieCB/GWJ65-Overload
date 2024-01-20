@@ -7,29 +7,40 @@ enum BOX_COLOR {
 	YELLOW
 }
 
+@onready var colour_label = $ColourLabel
+@onready var count_label = $CountLabel
+@onready var mesh = $Area3D/MeshInstance3D
+
 @export var is_colour_specific: bool = false
 @export var accepts_colour: BOX_COLOR = BOX_COLOR.BLANK
-
-@onready var label = $Label3D
-@onready var mesh = $Area3D/MeshInstance3D
+@export var boxes_required: int = 100:
+	set(value):
+		boxes_required = value
+		count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
+var boxes_held: int = 0:
+	set(value):
+		boxes_held = value
+		count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
+		
 
 func _ready():
 	var mat = mesh.get_active_material(0)
 	match accepts_colour:
 		BOX_COLOR.BLANK:
-			label.text = "ANY"
+			colour_label.text = "ANY"
 			mat.albedo_color = Color("#23d513")
 		BOX_COLOR.RED:
-			label.text = "RED"
+			colour_label.text = "RED"
 			mat.albedo_color = Color("#ff2153")
 		BOX_COLOR.BLUE:
-			label.text = "BLUE"
+			colour_label.text = "BLUE"
 			mat.albedo_color = Color("#3a67cc")
 		BOX_COLOR.YELLOW:
-			label.text = "YELLOW"
+			colour_label.text = "YELLOW"
 			mat.albedo_color = Color("#65d1f8")
 	mat.albedo_color.a = 0.5
 	mesh.set_surface_override_material(0, mat)
+	count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
 
 
 func _on_area_3d_body_entered(body):
@@ -38,6 +49,7 @@ func _on_area_3d_body_entered(body):
 			if body.current_box_colour == accepts_colour:
 				await get_tree().create_timer(0.2).timeout
 				body.health = 0
+				boxes_held += 1
 				# TODO - Add score
 				#
 				# TODO - Update UI
@@ -52,3 +64,4 @@ func _on_area_3d_body_entered(body):
 		else:
 			await get_tree().create_timer(0.2).timeout
 			body.health = 0
+			boxes_held += 1
