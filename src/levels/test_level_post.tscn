@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/levels/post_processing.gd" id="1_l5jk5"]
 [ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="1_x4tcl"]
-[ext_resource type="PackedScene" uid="uid://ccfpxpswug3xp" path="res://src/levels/test_level.tscn" id="2_e13b3"]
+[ext_resource type="PackedScene" uid="uid://ccfpxpswug3xp" path="res://src/levels/test_forklift_frenzy/TestForklift.tscn" id="2_e13b3"]
 [ext_resource type="FontFile" uid="uid://d2mkho4ufeiw2" path="res://assets/fonts/Franklin Gothic ITALIC/Franklin Gothic ITALIC.ttf" id="4_wvlfj"]
 
 [sub_resource type="Gradient" id="Gradient_qoilb"]
@@ -38,6 +38,39 @@ shader_parameter/warp_amount = 0.195
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.244
+
+[sub_resource type="Animation" id="Animation_y3n02"]
+resource_name = "hide_feed"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TVContent/Viewport/ViewportTexture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3.605, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lmlwv"]
+resource_name = "show_feed"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TVContent/Viewport/ViewportTexture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.482968, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_7gnf6"]
 resource_name = "slide_zoom_in_quarter"
@@ -201,39 +234,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(16.496, 0.317, 1),
 "update": 0,
 "values": [Vector2(1, 0), Vector2(1, 0.1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_lmlwv"]
-resource_name = "show_feed"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TVContent/Viewport/ViewportTexture:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(0.482968, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_y3n02"]
-resource_name = "hide_feed"
-length = 0.5
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TVContent/Viewport/ViewportTexture:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(3.605, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n6uv4"]

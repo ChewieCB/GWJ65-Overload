@@ -9,24 +9,25 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for _old_box in box_node.get_children():
-		_old_box.queue_free()
-		box_node.remove_child(_old_box)
-	randomize()
-	var box_scene = load("res://src/interactible/box/Box.tscn")
-	for _box in box_count:
-		var box_instance = box_scene.instantiate()
-		var box_pos = gen_random_pos()
-		box_instance.set_position(box_pos)
-		box_instance.rotation = Vector3(
-			randf_range(0, TAU),
-			randf_range(0, TAU),
-			randf_range(0, TAU),
-		)
-		box_instance.apply_impulse(
-			Vector3(0, -20, 0), Vector3.ZERO
-		)
-		box_node.add_child(box_instance)
+	pass
+	#for _old_box in box_node.get_children():
+		#_old_box.queue_free()
+		#box_node.remove_child(_old_box)
+	#randomize()
+	#var box_scene = load("res://src/interactible/box/Box.tscn")
+	#for _box in box_count:
+		#var box_instance = box_scene.instantiate()
+		#var box_pos = gen_random_pos()
+		#box_instance.set_position(box_pos)
+		#box_instance.rotation = Vector3(
+			#randf_range(0, TAU),
+			#randf_range(0, TAU),
+			#randf_range(0, TAU),
+		#)
+		#box_instance.apply_impulse(
+			#Vector3(0, -20, 0), Vector3.ZERO
+		#)
+		#box_node.add_child(box_instance)
 
 
 func gen_random_pos():

@@ -35,6 +35,70 @@ shader_parameter/alpha = 0.405
 shader_parameter/inner_radius = 0.74
 shader_parameter/outer_radius = 1.0
 
+[sub_resource type="Animation" id="Animation_hy1pi"]
+resource_name = "citation"
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Overlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Overlay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1.8025, 1, 1.46409, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Overlay/CenterContainer/MarkerText:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.325, 0.4),
+"transitions": PackedFloat32Array(1.8025, 0.554785, 1.46409, 1),
+"update": 0,
+"values": [Vector2(0, 424), Vector2(20, 20), Vector2(20, -28), Vector2(20, 20)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/Overlay/CenterContainer/MarkerText:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [-6.28319, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/Overlay/CenterContainer/MarkerText:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_wlnyn"]
 resource_name = "dead"
 length = 0.7
@@ -289,70 +353,6 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_hy1pi"]
-resource_name = "citation"
-step = 0.025
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UI/Overlay:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UI/Overlay:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1.8025, 1, 1.46409, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("UI/Overlay/CenterContainer/MarkerText:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.325, 0.4),
-"transitions": PackedFloat32Array(1.8025, 0.554785, 1.46409, 1),
-"update": 0,
-"values": [Vector2(0, 424), Vector2(20, 20), Vector2(20, -28), Vector2(20, 20)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("UI/Overlay/CenterContainer/MarkerText:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1.8025, 1),
-"update": 0,
-"values": [-6.28319, 0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("UI/Overlay/CenterContainer/MarkerText:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1.8025, 1),
-"update": 0,
-"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1jl0l"]
 _data = {
 "citation": SubResource("Animation_hy1pi"),
@@ -385,9 +385,6 @@ current = true
 
 [node name="Shotgun" parent="CameraController/Camera3D" instance=ExtResource("1_hbrti")]
 transform = Transform3D(-4.37114e-08, 0, 1, -0.0819385, 0.996637, -3.58165e-09, -0.996637, -0.0819385, -4.35644e-08, 0.254, -0.184835, -0.280585)
-
-[node name="LHandTarget" parent="CameraController/Camera3D/Shotgun/Rig/Shotgun/Shotgun-Detach" index="0"]
-transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
 
 [node name="BoxSpawn" type="Marker3D" parent="CameraController/Camera3D"]
 transform = Transform3D(0.999702, 0.0244322, 0, -0.024432, 0.999698, -0.00349072, -8.52842e-05, 0.00348956, 0.999995, -0.395515, 0.024056, -0.961386)

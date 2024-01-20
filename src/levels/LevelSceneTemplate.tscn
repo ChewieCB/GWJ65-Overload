@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cijsfim6hrnqs"]
+
+[ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_q3hv7"]
+[ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="2_5j0k8"]
+[ext_resource type="PackedScene" uid="uid://c0dbasn84bjap" path="res://src/interactible/box_depot/BoxDepot.tscn" id="3_bxyk5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gf6gi"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7fnvd"]
+sky_material = SubResource("ProceduralSkyMaterial_gf6gi")
+
+[sub_resource type="Environment" id="Environment_waevu"]
+background_mode = 2
+sky = SubResource("Sky_7fnvd")
+tonemap_mode = 2
+
+[node name="LevelTemplate" type="Node3D"]
+script = ExtResource("1_q3hv7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_waevu")
+
+[node name="Geom" type="Node3D" parent="."]
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_5j0k8")]
+
+[node name="BoxSpawnZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoxSpawnZone"]
+
+[node name="Boxes" type="Node3D" parent="."]
+
+[node name="BoxDepot" parent="." instance=ExtResource("3_bxyk5")]
