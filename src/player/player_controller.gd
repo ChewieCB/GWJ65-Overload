@@ -6,7 +6,7 @@ var is_dead: bool = false
 
 # Movement vars
 var SPEED = 10.0
-const JUMP_VELOCITY = 5.5
+const JUMP_VELOCITY = 6.5
 
 @export var MOUSE_SENSITIVITY: float = 0.5
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)

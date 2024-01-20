@@ -7,7 +7,7 @@ extends Node3D
 @onready var spawn_area = box_spawn.shape.extents
 @onready var spawn_origin = box_spawn.global_position - spawn_area
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	for _old_box in box_node.get_children():
 		_old_box.queue_free()
