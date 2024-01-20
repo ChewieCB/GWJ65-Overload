@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/levels/post_processing.gd" id="1_l5jk5"]
 [ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="1_x4tcl"]
-[ext_resource type="PackedScene" uid="uid://ccfpxpswug3xp" path="res://src/levels/test_forklift_frenzy/TestForklift.tscn" id="2_e13b3"]
+[ext_resource type="PackedScene" uid="uid://c0sq3sqmumo0t" path="res://src/levels/test_shelving_shootout/TestShelving.tscn" id="3_dg7sp"]
 [ext_resource type="FontFile" uid="uid://d2mkho4ufeiw2" path="res://assets/fonts/Franklin Gothic ITALIC/Franklin Gothic ITALIC.ttf" id="4_wvlfj"]
 
 [sub_resource type="Gradient" id="Gradient_qoilb"]
@@ -338,7 +338,7 @@ size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="TestLevel" parent="SubViewport" instance=ExtResource("2_e13b3")]
+[node name="TestShelving" parent="SubViewport" instance=ExtResource("3_dg7sp")]
 
 [node name="CRT" type="CanvasLayer" parent="."]
 layer = 3

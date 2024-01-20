@@ -80,6 +80,22 @@ func shoot_box():
 			return
 
 
+func populate_boxes_on_death():
+	if box_spawns.size() > 0:
+		for spawn in box_spawns:
+			var box_pos = spawn.global_transform.origin
+			var box_rot = spawn.global_transform.basis
+			var box_instance = load("res://src/interactible/box/Box.tscn").instantiate()
+			box_instance.transform.basis = box_rot
+			if target:
+				box_instance.player = target
+			box_instance.set_position(box_pos)
+			box_instance.apply_impulse(Vector3.UP * 10, Vector3.ZERO)
+			spawn.queue_free()
+			get_tree().get_root().add_child(box_instance)
+			box_instance.pickup_timer.start(0.0)
+
+
 func hit(damage:float=0.0):
 	health -= damage
 	state_chart.send_event("hurt")
@@ -184,6 +200,8 @@ func _on_hurt_state_entered():
 func _on_dead_state_entered():
 	velocity = Vector3.ZERO
 	anim_state_machine.travel("die")
+	await get_tree().create_timer(0.55).timeout
+	populate_boxes_on_death()
 
 
 func _on_detection_area_body_entered(body):
