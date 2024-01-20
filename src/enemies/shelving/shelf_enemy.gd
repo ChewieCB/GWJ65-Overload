@@ -15,6 +15,16 @@ extends CharacterBody3D
 	$Meshes/BoxSpawn4
 	
 ]
+@onready var red_mat = load("res://src/interactible/box/red_box_mat.tres")
+@onready var blue_mat = load("res://src/interactible/box/blue_box_mat.tres")
+@onready var yellow_mat = load("res://src/interactible/box/yellow_box_mat.tres")
+@onready var colour_mats = [
+	null,
+	red_mat,
+	blue_mat,
+	yellow_mat
+]
+var held_box_colours = []
 
 @export var shot_damage: float = 20.0
 @export var health: float = 100.0:
@@ -39,6 +49,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	anim_state_machine.start("idle")
+	# Randomize box colours
+	for _spawn in box_spawns:
+		var box_colour = randi_range(0, colour_mats.size() -1)
+		_spawn.get_child(0).set_surface_override_material(0, colour_mats[box_colour])
+		held_box_colours.append(box_colour)
 
 
 func _physics_process(delta):
@@ -69,6 +84,7 @@ func shoot_box():
 		box_instance.one_off_damage = 10.0
 		box_instance.apply_impulse(-direction.z * 40, Vector3.ZERO)
 		get_tree().get_root().add_child(box_instance)
+		box_instance.current_box_colour = held_box_colours.pop_front()
 		box_instance.pickup_timer.start(1.0)
 		
 		# Remove spawn

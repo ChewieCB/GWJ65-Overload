@@ -58,3 +58,5 @@ shape = SubResource("BoxShape3D_4bxu8")
 
 [node name="BoxDepot" parent="." instance=ExtResource("3_cabdk")]
 transform = Transform3D(18.3, 0, 0, 0, 9.024, 0, 0, 0, 11.56, 0.00752869, 3.512, -14.7404)
+is_colour_specific = true
+accepts_colour = 2
