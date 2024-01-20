@@ -155,6 +155,23 @@ func _on_hurt_state_entered():
 	anim_state_machine.travel("hurt")
 	await get_tree().create_timer(0.2).timeout
 	
+	var is_detected: bool = false
+	var is_in_range: bool = false
+	for body in $DetectionArea.get_overlapping_bodies():
+		if body is Player:
+			is_detected = true
+			break
+	for body in $ShootingArea.get_overlapping_bodies():
+		if body is Player:
+			is_in_range = true
+	if is_detected:
+		if is_in_range:
+			state_chart.send_event("in_range")
+		else:
+			state_chart.send_event("player_seen")
+	else:
+		state_chart.send_event("to_idle")
+	
 	for body in $DetectionArea.get_overlapping_bodies():
 		if body is Player:
 			target = body

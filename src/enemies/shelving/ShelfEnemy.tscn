@@ -611,6 +611,11 @@ script = ExtResource("7_uary8")
 to = NodePath("../../Walking")
 event = &"player_seen"
 
+[node name="ToAiming" type="Node" parent="StateChart/Root/Hurt"]
+script = ExtResource("7_uary8")
+to = NodePath("../../Aiming")
+event = &"in_range"
+
 [node name="ToDead" type="Node" parent="StateChart/Root/Hurt"]
 script = ExtResource("7_uary8")
 to = NodePath("../../Dead")
