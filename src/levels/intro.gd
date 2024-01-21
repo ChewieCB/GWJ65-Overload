@@ -6,20 +6,28 @@ extends Node2D
 @onready var game_viewport: SubViewport = $SubViewport
 @onready var vhs_bg: TextureRect = $TVContent/VideoSlidesFrame/Control/TextureRect
 
-@export var skip_intro: bool = false
+@export var skip_intro: bool = true
 
 func _ready():
 	if skip_intro:
-		start_game()
+		anim_state_machine.travel("level_select_in_skip")
 	else:
 		anim_state_machine.travel("intro_0_welcome")
+	TransitionManager.level_select.connect(_select_level)
 
 
 #func _input(event):
 	#game_viewport.push_input(event)
 
 func start_game():
-	get_tree().change_scene_to_file("res://src/levels/MainScenePostProcessing.tscn")
+	pass
+	#get_tree().change_scene_to_file("res://src/levels/MainScenePostProcessing.tscn")
+
+
+func _select_level(level: String):
+	anim_state_machine.travel("level_select_out")
+	await get_tree().create_timer(0.9).timeout
+	get_tree().change_scene_to_file(level)
 
 
 func _change_bg_texture(new_texture: GradientTexture1D):
@@ -41,5 +49,3 @@ func _release_mouse():
 
 func _capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-

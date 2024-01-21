@@ -1,11 +1,16 @@
-[gd_scene load_steps=37 format=3 uid="uid://fbl5h7iuaosc"]
+[gd_scene load_steps=52 format=3 uid="uid://fbl5h7iuaosc"]
 
 [ext_resource type="Script" path="res://src/levels/intro.gd" id="1_vcq25"]
 [ext_resource type="Texture2D" uid="uid://bak5fv1f5v454" path="res://assets/ui_bh/blue_vhs_bg.tres" id="2_j20b5"]
 [ext_resource type="FontFile" uid="uid://d2mkho4ufeiw2" path="res://assets/fonts/Franklin Gothic ITALIC/Franklin Gothic ITALIC.ttf" id="3_qeyw3"]
 [ext_resource type="FontFile" uid="uid://bemj1o1l3q7sj" path="res://assets/fonts/UtopiaBold/Utopia-Italic.otf" id="4_v25o1"]
+[ext_resource type="Script" path="res://src/levels/level_select_button.gd" id="5_0dba1"]
+[ext_resource type="Texture2D" uid="uid://dulp60in7xs20" path="res://src/levels/level_select/level_1_icon.png" id="5_f72cx"]
 [ext_resource type="PackedScene" uid="uid://dlb80tidiwhsq" path="res://src/levels/test_qwazy_qodot/TestQodot.tscn" id="5_keppy"]
 [ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="6_i22po"]
+[ext_resource type="FontFile" uid="uid://t6sj6fc3oyan" path="res://assets/fonts/UtopiaBold/Utopia-Titling.otf" id="6_ppagb"]
+[ext_resource type="Texture2D" uid="uid://dc58kfb1gm3x6" path="res://src/levels/level_select/Clock.png" id="7_q6cng"]
+[ext_resource type="FontFile" uid="uid://bshbbvy5po8nx" path="res://assets/fonts/Ultravision/OTF/Ultravision-Heavy.otf" id="8_3g8a0"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fcmok"]
 viewport_path = NodePath("SubViewport")
@@ -97,6 +102,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_y3n02"]
@@ -379,6 +396,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_huoea"]
 resource_name = "game_over"
@@ -498,6 +539,18 @@ tracks/4/keys = {
 "method": &"_pause_gameplay"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_kxqh6"]
 resource_name = "intro_1_internal"
@@ -535,6 +588,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_pxls1"]
@@ -634,6 +699,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_lev0o"]
 resource_name = "intro_end"
@@ -698,6 +775,304 @@ tracks/4/keys = {
 "method": &"start_game"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_snclh"]
+resource_name = "level_select_in"
+length = 1.2
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/ViewportEffects:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1.36604, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_release_mouse"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1erv3"]
+resource_name = "level_select_out"
+length = 0.9
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/ViewportEffects:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.31864, 1.36604),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.9),
+"transitions": PackedFloat32Array(1, 0.307786, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_agud2"]
+resource_name = "level_select_in_skip"
+length = 1.2
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("tv_on"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/ViewportEffects:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1.36604, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_release_mouse"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dgayn"]
 _data = {
@@ -706,7 +1081,10 @@ _data = {
 "into_0_welcome": SubResource("Animation_ckwdh"),
 "intro_1_internal": SubResource("Animation_kxqh6"),
 "intro_2_viewports": SubResource("Animation_pxls1"),
-"intro_end": SubResource("Animation_lev0o")
+"intro_end": SubResource("Animation_lev0o"),
+"level_select_in": SubResource("Animation_snclh"),
+"level_select_in_skip": SubResource("Animation_agud2"),
+"level_select_out": SubResource("Animation_1erv3")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jbhwm"]
@@ -723,6 +1101,15 @@ animation = &"intro_2_viewports"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_piq81"]
 animation = &"intro_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rr51w"]
+animation = &"level_select_in"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xacgj"]
+animation = &"level_select_in_skip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tlgdp"]
+animation = &"level_select_out"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7fuog"]
 switch_mode = 2
@@ -744,21 +1131,41 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cfdc4"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_br743"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bqxxj"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wytrf"]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bhwkf"]
-states/End/position = Vector2(1086, 93)
+states/End/position = Vector2(1146, 187)
 states/Start/position = Vector2(93, 100)
 states/default/node = SubResource("AnimationNodeAnimation_jbhwm")
 states/default/position = Vector2(209, 100)
-states/into_0_welcome/node = SubResource("AnimationNodeAnimation_hu1ul")
-states/into_0_welcome/position = Vector2(349, 100)
+states/intro_0_welcome/node = SubResource("AnimationNodeAnimation_hu1ul")
+states/intro_0_welcome/position = Vector2(349, 100)
 states/intro_1_internal/node = SubResource("AnimationNodeAnimation_q30k0")
 states/intro_1_internal/position = Vector2(554, 100)
 states/intro_2_viewports/node = SubResource("AnimationNodeAnimation_pn5wm")
 states/intro_2_viewports/position = Vector2(759, 100)
 states/intro_end/node = SubResource("AnimationNodeAnimation_piq81")
 states/intro_end/position = Vector2(952, 100)
-transitions = ["into_0_welcome", "intro_1_internal", SubResource("AnimationNodeStateMachineTransition_7fuog"), "intro_1_internal", "intro_2_viewports", SubResource("AnimationNodeStateMachineTransition_e7rnr"), "Start", "default", SubResource("AnimationNodeStateMachineTransition_dwe14"), "default", "into_0_welcome", SubResource("AnimationNodeStateMachineTransition_nnj0o"), "intro_2_viewports", "intro_end", SubResource("AnimationNodeStateMachineTransition_qr2ct")]
-graph_offset = Vector2(169, 16)
+states/level_select_in/node = SubResource("AnimationNodeAnimation_rr51w")
+states/level_select_in/position = Vector2(1110, 100)
+states/level_select_in_skip/node = SubResource("AnimationNodeAnimation_xacgj")
+states/level_select_in_skip/position = Vector2(645, 225)
+states/level_select_out/node = SubResource("AnimationNodeAnimation_tlgdp")
+states/level_select_out/position = Vector2(873, 225)
+transitions = ["intro_0_welcome", "intro_1_internal", SubResource("AnimationNodeStateMachineTransition_7fuog"), "intro_1_internal", "intro_2_viewports", SubResource("AnimationNodeStateMachineTransition_e7rnr"), "Start", "default", SubResource("AnimationNodeStateMachineTransition_dwe14"), "default", "intro_0_welcome", SubResource("AnimationNodeStateMachineTransition_nnj0o"), "intro_2_viewports", "intro_end", SubResource("AnimationNodeStateMachineTransition_qr2ct"), "intro_end", "level_select_in", SubResource("AnimationNodeStateMachineTransition_cfdc4"), "Start", "level_select_in_skip", SubResource("AnimationNodeStateMachineTransition_br743"), "level_select_in_skip", "level_select_out", SubResource("AnimationNodeStateMachineTransition_bqxxj"), "level_select_in", "level_select_out", SubResource("AnimationNodeStateMachineTransition_wytrf")]
+graph_offset = Vector2(264, 68)
 
 [node name="TestLevelPost" type="Node2D"]
 script = ExtResource("1_vcq25")
@@ -973,6 +1380,347 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
+[node name="LevelSelect" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1056.0
+offset_right = 1032.0
+offset_bottom = 1544.0
+rotation = -1.5708
+
+[node name="Title" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Title"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.74902, 0.701961, 0.486275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_qeyw3")
+theme_override_font_sizes/font_size = 48
+text = "Chapter Select"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Levels" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect"]
+layout_mode = 2
+theme_override_constants/margin_top = 64
+
+[node name="GridContainer" type="GridContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels"]
+layout_mode = 2
+columns = 3
+
+[node name="LevelIcon1" type="VBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer"]
+layout_mode = 2
+theme_override_constants/separation = -32
+script = ExtResource("5_0dba1")
+level = "res://src/levels/MainScenePostProcessing.tscn"
+
+[node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 48
+
+[node name="ColorRect" type="ColorRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.701961, 0.729412, 0.509804, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_f72cx")
+expand_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer/CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.909804, 0.831373, 0.717647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("6_ppagb")
+theme_override_font_sizes/font_size = 24
+text = "Cardboard 101"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer"]
+layout_mode = 2
+flat = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_q6cng")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_3g8a0")
+text = "0:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelIcon2" type="VBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer"]
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
+layout_mode = 2
+theme_override_constants/separation = -32
+script = ExtResource("5_0dba1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 48
+
+[node name="ColorRect" type="ColorRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.701961, 0.729412, 0.509804, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_f72cx")
+expand_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer/CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.909804, 0.831373, 0.717647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("6_ppagb")
+theme_override_font_sizes/font_size = 24
+text = "Shelving
+and You"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer"]
+layout_mode = 2
+disabled = true
+flat = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_q6cng")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_3g8a0")
+text = "0:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelIcon3" type="VBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer"]
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -32
+script = ExtResource("5_0dba1")
+
+[node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 48
+
+[node name="ColorRect" type="ColorRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+color = Color(0.701961, 0.729412, 0.509804, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("5_f72cx")
+expand_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer/CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.909804, 0.831373, 0.717647, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("6_ppagb")
+theme_override_font_sizes/font_size = 24
+text = "Forklift
+Certification"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer"]
+layout_mode = 2
+disabled = true
+flat = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_q6cng")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("8_3g8a0")
+text = "0:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 48
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/MarginContainer2"]
+layout_mode = 2
+color = Color(0.701961, 0.729412, 0.509804, 1)
+
+[node name="MarginContainer3" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 48
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/MarginContainer3"]
+layout_mode = 2
+color = Color(0.701961, 0.729412, 0.509804, 1)
+
+[node name="MarginContainer4" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 48
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/MarginContainer4"]
+layout_mode = 2
+color = Color(0.701961, 0.729412, 0.509804, 1)
+
 [node name="Button" type="Button" parent="TVContent/VideoSlidesFrame/Control"]
 layout_mode = 0
 offset_right = 8.0
@@ -1096,3 +1844,6 @@ tree_root = SubResource("AnimationNodeStateMachine_bhwkf")
 anim_player = NodePath("../SceneAnims")
 
 [connection signal="pressed" from="TVContent/VideoSlidesFrame/Control/TextureRect/RestartButtonContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="button_down" from="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1/MarginContainer/Button" to="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1" method="_on_select_button_down"]
+[connection signal="button_down" from="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2/MarginContainer/Button" to="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2" method="_on_select_button_down"]
+[connection signal="button_down" from="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3/MarginContainer/Button" to="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon3" method="_on_select_button_down"]

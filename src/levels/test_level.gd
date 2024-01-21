@@ -1,11 +1,6 @@
 extends Node3D
 
-@export var box_count: int = 50
-
 @onready var box_node = $Boxes
-@onready var box_spawn = $BoxSpawnZone/CollisionShape3D
-@onready var spawn_area = box_spawn.shape.extents
-@onready var spawn_origin = box_spawn.global_position - spawn_area
 
 
 func _ready():
@@ -23,3 +18,8 @@ func _resume():
 
 func _retry_level():
 	get_tree().reload_current_scene()
+
+
+func _on_end_level_trigger_body_entered(body):
+	if body is Player:
+		TransitionManager.complete_level(self)

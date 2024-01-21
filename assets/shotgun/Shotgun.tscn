@@ -85,13 +85,13 @@ shadow_mesh = SubResource("ArrayMesh_63l5u")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ic3"]
 resource_name = "Arm_Right"
 albedo_texture = ExtResource("2_lwddk")
-metallic = 0.4
+metallic_specular = 0.0
 roughness = 0.272166
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a637e"]
 resource_name = "Arm_Left"
 albedo_texture = ExtResource("2_lwddk")
-metallic = 0.4
+metallic_specular = 0.0
 roughness = 0.272166
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_amexg"]

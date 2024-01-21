@@ -1,4 +1,4 @@
-[gd_scene load_steps=466 format=3 uid="uid://dlb80tidiwhsq"]
+[gd_scene load_steps=469 format=3 uid="uid://dlb80tidiwhsq"]
 
 [ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_xma8h"]
 [ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="2_8drrl"]
@@ -1585,9 +1585,19 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_ugtly"]
 size = Vector3(6.6, 7, 5.6)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjeun"]
+size = Vector3(5, 5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iv81k"]
+transparency = 1
+albedo_color = Color(0.501961, 1, 0.290196, 0.278431)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jnfpm"]
+material = SubResource("StandardMaterial3D_iv81k")
+size = Vector3(5, 5, 5)
+
 [node name="LevelTemplate" type="Node3D"]
 script = ExtResource("1_xma8h")
-box_count = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_waevu")
@@ -3242,6 +3252,19 @@ box_count = 15
 shape = SubResource("BoxShape3D_ugtly")
 
 [node name="Boxes" type="Node3D" parent="BoxSpawners/BoxSpawnZone4"]
+
+[node name="EndLevelTrigger" type="Area3D" parent="."]
+transform = Transform3D(1.9, 0, 0, 0, 1.45, 0, 0, 0, 2.125, 21.44, 7.3, 23.64)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndLevelTrigger"]
+shape = SubResource("BoxShape3D_jjeun")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EndLevelTrigger"]
+mesh = SubResource("BoxMesh_jnfpm")
+
+[connection signal="body_entered" from="EndLevelTrigger" to="." method="_on_end_level_trigger_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/CameraController/Camera3D/Shotgun"]
