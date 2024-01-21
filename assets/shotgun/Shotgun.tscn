@@ -3475,4 +3475,6 @@ offset_top = -224.0
 offset_right = 432.0
 offset_bottom = -224.0
 
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+
 [editable path="Rig/Shotgun/Ammo"]

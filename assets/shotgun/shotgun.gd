@@ -277,3 +277,8 @@ func launch_box():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_reload_timer_timeout():
+	if Input.is_action_pressed("reload"):
+		reload()

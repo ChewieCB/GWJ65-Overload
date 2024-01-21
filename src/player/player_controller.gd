@@ -113,7 +113,7 @@ func _unhandled_input(event: InputEvent):
 		else:
 			shotgun.state_machine.travel("push")
 		shove()
-	elif event.is_action_released("reload"):
+	elif event.is_action_pressed("reload"):
 		if is_1_handed:
 			return
 		if shotgun.state_machine.get_current_node() in [
