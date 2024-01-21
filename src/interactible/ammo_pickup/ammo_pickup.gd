@@ -24,12 +24,15 @@ enum AMMO_TYPE {
 @export var ammo_type: AMMO_TYPE = AMMO_TYPE.RED:
 	set(value):
 		ammo_type = value
-		for _mesh in ammo_meshes:
-			_mesh.texture.albedo_texture = ammo_textures[ammo_type]
+		if ammo_meshes:
+			for _mesh in ammo_meshes:
+				_mesh.texture.albedo_texture = ammo_textures[ammo_type]
 
 
 func _ready():
 	counter_label.text = str(ammo_amount)
+	for _mesh in ammo_meshes:
+		_mesh.get_active_material(0).albedo_texture = ammo_textures[ammo_type]
 
 
 func _physics_process(delta):

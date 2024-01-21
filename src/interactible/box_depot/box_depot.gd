@@ -11,7 +11,11 @@ enum BOX_COLOR {
 
 @onready var colour_label = $ColourLabel
 @onready var count_label = $CountLabel
-@onready var mesh = $Area3D/MeshInstance3D
+@onready var mesh_any = $Area3D/MeshAny
+@onready var mesh_red = $Area3D/MeshRed
+@onready var mesh_blue = $Area3D/MeshBlue
+@onready var mesh_yellow = $Area3D/MeshYellow
+@onready var meshes = [mesh_any, mesh_red, mesh_blue, mesh_yellow]
 
 @export var is_colour_specific: bool = false
 @export var accepts_colour: BOX_COLOR = BOX_COLOR.BLANK
@@ -38,22 +42,31 @@ var depot_activated: bool = false:
 func _ready():
 	count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
 	count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
-	var mat = mesh.get_active_material(0)
 	match accepts_colour:
 		BOX_COLOR.BLANK:
 			colour_label.text = "ANY"
-			mat.albedo_color = Color("#23d513")
+			mesh_any.visible = true
+			mesh_red.visible = false
+			mesh_blue.visible = false
+			mesh_yellow.visible = false
 		BOX_COLOR.RED:
 			colour_label.text = "RED"
-			mat.albedo_color = Color("#ff2153")
+			mesh_any.visible = false
+			mesh_red.visible = true
+			mesh_blue.visible = false
+			mesh_yellow.visible = false
 		BOX_COLOR.BLUE:
 			colour_label.text = "BLUE"
-			mat.albedo_color = Color("#3a67cc")
+			mesh_any.visible = false
+			mesh_red.visible = false
+			mesh_blue.visible = true
+			mesh_yellow.visible = false
 		BOX_COLOR.YELLOW:
 			colour_label.text = "YELLOW"
-			mat.albedo_color = Color("#65d1f8")
-	mat.albedo_color.a = 0.5
-	mesh.set_surface_override_material(0, mat)
+			mesh_any.visible = false
+			mesh_red.visible = false
+			mesh_blue.visible = false
+			mesh_yellow.visible = true
 	count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
 
 

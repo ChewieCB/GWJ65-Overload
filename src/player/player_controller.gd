@@ -21,6 +21,12 @@ const JUMP_VELOCITY = 6.5
 @onready var shotgun = $CameraController/Camera3D/Shotgun
 @onready var melee_area = $MeleeArea
 
+@onready var coyote_timer = $CoyoteTimer
+@export var coyote_time: float = 0.7
+var coyote = false
+var last_floor = false
+var is_jumping = false
+
 var _mouse_input: bool = false
 var _mouse_rotation: Vector3
 var _rotation_input: float
@@ -179,16 +185,12 @@ func _update_camera(delta: float):
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	
 	_update_camera(delta)
 
 	if not is_player_control_disabled:
 		# Handle jump.
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
+			state_chart.send_event("jump")
 		
 		# Number of boxes carried affects move speed
 		if shotgun.boxes_held > 0:
@@ -200,7 +202,7 @@ func _physics_process(delta: float) -> void:
 				2:
 					SPEED = 8.0
 				3:
-					SPEED = 4.0
+					SPEED = 6.0
 
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
@@ -215,8 +217,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	# Add the gravity.
+	if not is_on_floor():
+		if last_floor and not is_jumping:
+			coyote = true
+			coyote_timer.start(coyote_time)
+		velocity.y -= gravity * delta
+	else:
+		if is_jumping:
+			state_chart.send_event("land")
 
 	move_and_slide()
+	last_floor = is_on_floor()
 
 
 func shove():
@@ -229,6 +242,14 @@ func shove():
 func hurt(damage:float=0.0):
 	health -= damage
 
+
+func _on_jumping_state_entered():
+	velocity.y = JUMP_VELOCITY
+	is_jumping = true
+
+
+func _on_jumping_state_exited():
+	is_jumping = false
 
 
 func _on_hurt_state_entered():
@@ -250,3 +271,7 @@ func _on_projectile_detection_aera_body_entered(body):
 	if body is RigidBody3D:
 		if body.one_off_damage > 0:
 			health -= body.one_off_damage
+
+
+func _on_coyote_timer_timeout():
+	coyote = false
