@@ -4,6 +4,7 @@ class_name Box
 @onready var anim_player := $AnimationPlayer
 @onready var particles := $ParticlesPivot/CPUParticles3D
 @onready var mesh = $CardboardBox
+@onready var collider = $CollisionShape3D
 @onready var pickup_highlight = $PickupArea/PickupHighlight
 @onready var pickup_timer = $PickupTimer
 

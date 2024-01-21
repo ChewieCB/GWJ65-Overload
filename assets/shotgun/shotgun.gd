@@ -33,14 +33,24 @@ var palmed_shell_idx = 0
 var palmed_shell = AMMO_TYPE.BUCKSHOT
 
 var max_ammo: int = 5
-var _current_ammo: int = 5
+@export var starting_ammo: int = 0
+var _current_ammo: int = starting_ammo
 var current_ammo_1: int = 0
 var current_ammo_2: int = 0
 var current_ammo_3: int = 0
 var current_ammo_pools = [current_ammo_1, current_ammo_2, current_ammo_3]
-var reserve_ammo_1: int = 30
-var reserve_ammo_2: int = 30
-var reserve_ammo_3: int = 30
+var reserve_ammo_1: int = 0:
+	set(value):
+		reserve_ammo_1 = value
+		ammo_ui.change_max_ammo(0, reserve_ammo_1)
+var reserve_ammo_2: int = 0:
+	set(value):
+		reserve_ammo_2 = value
+		ammo_ui.change_max_ammo(1, reserve_ammo_2)
+var reserve_ammo_3: int = 0:
+	set(value):
+		reserve_ammo_3 = value
+		ammo_ui.change_max_ammo(2, reserve_ammo_3)
 var reserve_ammo_pools = [reserve_ammo_1, reserve_ammo_2, reserve_ammo_3]
 #
 var current_ammo_type: AMMO_TYPE = AMMO_TYPE.BUCKSHOT
@@ -81,10 +91,14 @@ func _ready():
 	
 	state_machine.start("idle")
 	# Load the initial ammo into the UI
-	for _shell in range(max_ammo):
+	for _shell in range(_current_ammo):
 		ammo_ui.load_shell(AMMO_TYPE.BUCKSHOT)
 		loaded_ammo.push_back(AMMO_TYPE.BUCKSHOT)
 		current_ammo_1 += 1
+	# Update the max ammo counts
+	for idx in range(reserve_ammo_pools.size()):
+		ammo_ui.change_max_ammo(idx, reserve_ammo_pools[idx])
+	
 
 
 func cycle_shell(backwards:bool=false):

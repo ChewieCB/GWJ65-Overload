@@ -1,5 +1,7 @@
 extends Node3D
 
+signal activated
+
 enum BOX_COLOR {
 	BLANK,
 	RED,
@@ -16,14 +18,26 @@ enum BOX_COLOR {
 @export var boxes_required: int = 100:
 	set(value):
 		boxes_required = value
-		count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
+		if count_label:
+			count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
 var boxes_held: int = 0:
 	set(value):
-		boxes_held = value
-		count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
+		boxes_held = clamp(value, 0, boxes_required)
+		if count_label:
+			count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
+		if boxes_held == boxes_required:
+			depot_activated = true
+
+var depot_activated: bool = false:
+	set(value):
+		depot_activated = value
+		if depot_activated:
+			emit_signal("activated")
 		
 
 func _ready():
+	count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
+	count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
 	var mat = mesh.get_active_material(0)
 	match accepts_colour:
 		BOX_COLOR.BLANK:
