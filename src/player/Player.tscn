@@ -390,11 +390,20 @@ current = true
 [node name="Shotgun" parent="CameraController/Camera3D" instance=ExtResource("1_hbrti")]
 transform = Transform3D(-4.37114e-08, 0, 1, -0.0819385, 0.996637, -3.58165e-09, -0.996637, -0.0819385, -4.35644e-08, 0.254, -0.184835, -0.280585)
 
+[node name="Shotgun" parent="CameraController/Camera3D/Shotgun/Rig" index="0"]
+transform = Transform3D(-1.81003e-05, 5.00009, 1.81001e-05, 0, -1.81003e-05, 5.00004, 5.00011, 1.81003e-05, 6.55222e-11, 0, 0, 0)
+
 [node name="LHandTarget" parent="CameraController/Camera3D/Shotgun/Rig/Shotgun/Shotgun-Detach" index="0"]
 transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
 
+[node name="RHandTarget" parent="CameraController/Camera3D/Shotgun/Rig/Shotgun" index="1"]
+transform = Transform3D(-0.196833, -0.00210631, 0.0353909, -0.00136329, 0.199948, 0.00431798, -0.0354273, 0.00400833, -0.196797, -0.0132962, -0.0460034, -0.0132669)
+
 [node name="LForearmIKTarget" parent="CameraController/Camera3D/Shotgun/Rig/Arms" index="1"]
 transform = Transform3D(0.484721, 0.872672, -0.0592391, -0.829401, 0.437066, -0.347976, -0.277773, 0.217801, 0.935644, 0.284119, -0.303066, -0.0658725)
+
+[node name="LUpperarmTarget" parent="CameraController/Camera3D/Shotgun/Rig/Arms" index="2"]
+transform = Transform3D(-0.288354, 0.906216, -0.309263, -0.877879, -0.37917, -0.292532, -0.382357, 0.187141, 0.904876, 0.000297248, -0.407556, -0.169296)
 
 [node name="BoxSpawn" type="Marker3D" parent="CameraController/Camera3D"]
 transform = Transform3D(0.999702, 0.0244322, 0, -0.024432, 0.999698, -0.00349072, -8.52842e-05, 0.00348956, 0.999995, -0.395515, 0.024056, -0.961386)

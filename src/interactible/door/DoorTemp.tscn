@@ -52,6 +52,22 @@ _surfaces = [{
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yyccs"]
 points = PackedVector3Array(-0.5, 2.5, -2.5, -0.5, -2.5, -2.5, 0.5, -2.5, -2.5, 0.5, 2.5, -2.5, -0.5, 2.5, 2.5, -0.5, -2.5, 2.5, 0.5, -2.5, 2.5, 0.5, 2.5, 2.5)
 
+[sub_resource type="Animation" id="Animation_ygf4b"]
+resource_name = "close"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2.37841, 0.189464),
+"update": 0,
+"values": [Vector3(0, 4.32746, 0), Vector3(0, -1.33333, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_3i1vw"]
 resource_name = "default"
 tracks/0/type = "value"
@@ -93,22 +109,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.189464, 1),
 "update": 0,
 "values": [Vector3(0, -1.33333, 0), Vector3(0, 4.32746, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ygf4b"]
-resource_name = "close"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Door:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(2.37841, 0.189464),
-"update": 0,
-"values": [Vector3(0, 4.32746, 0), Vector3(0, -1.33333, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pm1ui"]

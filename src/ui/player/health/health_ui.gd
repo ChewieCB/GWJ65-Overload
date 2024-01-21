@@ -11,7 +11,13 @@ extends Control
 @onready var red_shell_tex = load("res://src/ui/player/ammo/icon_ammo_red_32.png")
 @onready var empty_shell_tex = load("res://src/ui/player/ammo/icon_shell_empty_32.png")
 
-var citations_left: int = 4
+var citations_left: int = 0
+
+func _ready():
+	var reversed_ticks = health_ticks
+	reversed_ticks.reverse()
+	for idx in range(citations_left):
+		reversed_ticks[idx].texture = red_shell_tex
 
 
 func lose_health_tick() -> bool:

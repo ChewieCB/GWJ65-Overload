@@ -1,4 +1,4 @@
-[gd_scene load_steps=221 format=3 uid="uid://dlb80tidiwhsq"]
+[gd_scene load_steps=222 format=3 uid="uid://dlb80tidiwhsq"]
 
 [ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_xma8h"]
 [ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="2_8drrl"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://knyqyt0pil1x" path="res://textures/light.png" id="5_nljmk"]
 [ext_resource type="Texture2D" uid="uid://chgj35rjd8d67" path="res://textures/red.png" id="6_sbdhu"]
 [ext_resource type="Shader" path="res://src/levels/test_qwazy_qodot/glass.gdshader" id="7_2fpnq"]
+[ext_resource type="PackedScene" uid="uid://ccjw386fyxb8n" path="res://src/enemies/forklift/Forklift.tscn" id="8_snwxt"]
 [ext_resource type="Script" path="res://src/levels/test_qwazy_qodot/repeating_box_spawner.gd" id="9_jpvm6"]
 [ext_resource type="PackedScene" uid="uid://u22g8s5ni22" path="res://src/interactible/door/DoorTemp.tscn" id="10_cpgi7"]
 [ext_resource type="PackedScene" uid="uid://ckdj3b77iwqrg" path="res://src/interactible/ammo_pickup/AmmoPickup.tscn" id="11_cop4e"]
@@ -1413,11 +1414,17 @@ shape = SubResource("ConcavePolygonShape3D_f5fgu")
 
 [node name="Enemies" type="Node3D" parent="."]
 
+[node name="ForkliftEnemy" parent="Enemies" instance=ExtResource("8_snwxt")]
+transform = Transform3D(0.103528, 0, -0.38637, 0, 0.4, 0, 0.38637, 0, 0.103528, -6.4, 0, 5.1)
+
 [node name="Player" parent="." instance=ExtResource("2_8drrl")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.0149, 0.252997, 1.21362)
 
 [node name="LHandTarget" parent="Player/CameraController/Camera3D/Shotgun/Rig/Shotgun/Shotgun-Detach" index="0"]
 transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
+
+[node name="LForearmIKTarget" parent="Player/CameraController/Camera3D/Shotgun/Rig/Arms" index="1"]
+transform = Transform3D(0.484721, 0.872672, -0.0592391, -0.829401, 0.437066, -0.347976, -0.277773, 0.217801, 0.935644, 0.284119, -0.303066, -0.0658725)
 
 [node name="Boxes" type="Node3D" parent="."]
 

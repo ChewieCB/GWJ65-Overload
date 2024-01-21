@@ -1,0 +1,1098 @@
+[gd_scene load_steps=37 format=3 uid="uid://fbl5h7iuaosc"]
+
+[ext_resource type="Script" path="res://src/levels/intro.gd" id="1_vcq25"]
+[ext_resource type="Texture2D" uid="uid://bak5fv1f5v454" path="res://assets/ui_bh/blue_vhs_bg.tres" id="2_j20b5"]
+[ext_resource type="FontFile" uid="uid://d2mkho4ufeiw2" path="res://assets/fonts/Franklin Gothic ITALIC/Franklin Gothic ITALIC.ttf" id="3_qeyw3"]
+[ext_resource type="FontFile" uid="uid://bemj1o1l3q7sj" path="res://assets/fonts/UtopiaBold/Utopia-Italic.otf" id="4_v25o1"]
+[ext_resource type="PackedScene" uid="uid://dlb80tidiwhsq" path="res://src/levels/test_qwazy_qodot/TestQodot.tscn" id="5_keppy"]
+[ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="6_i22po"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fcmok"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8lgov"]
+shader = ExtResource("6_i22po")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.038
+shader_parameter/scanlines_width = 0.101
+shader_parameter/grille_opacity = 0.022
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.13
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.015
+shader_parameter/noise_opacity = 0.078
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.121
+shader_parameter/aberration = 0.02
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.195
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.244
+
+[sub_resource type="Animation" id="Animation_v6gh8"]
+resource_name = "default"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CRT/ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2.21914),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2.21),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/RestartButtonContainer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y3n02"]
+resource_name = "hide_feed"
+length = 0.5
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_lmlwv"]
+resource_name = "show_feed"
+length = 0.6
+
+[sub_resource type="Animation" id="Animation_r5nk3"]
+resource_name = "slide_zoom_in_half"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1.86607, 1.6245),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1.86, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7gnf6"]
+resource_name = "slide_zoom_in_quarter"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1.86607, 1.6245),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qk3cw"]
+resource_name = "slide_zoom_out_half"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1.62, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0mg6n"]
+resource_name = "slide_zoom_out_quarter"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1.6245, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hxesf"]
+resource_name = "tv_off"
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CRT/ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 0.85),
+"transitions": PackedFloat32Array(2.63, 2.63, 0.297, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 0.85),
+"transitions": PackedFloat32Array(2.63, 2.63, 0.296, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.1, 1), Vector2(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_143vo"]
+resource_name = "tv_on"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CRT/ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(2.21914, 0.31864, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(2.21, 0.318, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0.1, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6uv4"]
+_data = {
+"default": SubResource("Animation_v6gh8"),
+"hide_feed": SubResource("Animation_y3n02"),
+"show_feed": SubResource("Animation_lmlwv"),
+"slide_zoom_in_half": SubResource("Animation_r5nk3"),
+"slide_zoom_in_quarter": SubResource("Animation_7gnf6"),
+"slide_zoom_out_half": SubResource("Animation_qk3cw"),
+"slide_zoom_out_quarter": SubResource("Animation_0mg6n"),
+"tv_off": SubResource("Animation_hxesf"),
+"tv_on": SubResource("Animation_143vo")
+}
+
+[sub_resource type="Animation" id="Animation_ubsxe"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText0:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "animation"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": PackedStringArray("default"),
+"times": PackedFloat32Array(-0.1)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVContent/ViewportEffects:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/RestartButtonContainer:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_huoea"]
+resource_name = "game_over"
+length = 1.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText/Label"), "Unfortunately, a momentary lapse in quality assurance has led to a game over.\\nPlease reassess your commitment to cardboard excellence."],
+"method": &"_change_bg_text"
+}, {
+"args": [],
+"method": &"_release_mouse"
+}]
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("slide_zoom_out_quarter"),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/RestartButtonContainer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.7),
+"transitions": PackedFloat32Array(1.68179, 1.68179, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/RestartButtonContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ckwdh"]
+resource_name = "into_0_welcome"
+length = 5.0
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("tv_on"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText0/VBoxContainer/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.7, 1.4, 4.1, 5),
+"transitions": PackedFloat32Array(1, 1.56917, 1, 0.31864, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText0/VBoxContainer/Label2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.7, 2.4, 4.1, 5),
+"transitions": PackedFloat32Array(1, 0.840896, 1, 0.31864, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText0:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_pause_gameplay"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kxqh6"]
+resource_name = "intro_1_internal"
+length = 2.2
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText1/Label2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 2.2),
+"transitions": PackedFloat32Array(0.466516, 1.68179, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_pxls1"]
+resource_name = "intro_2_viewports"
+length = 2.9
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/ViewportEffects/ViewportTexture1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 1.7),
+"transitions": PackedFloat32Array(1.36604, 1),
+"update": 0,
+"values": [Vector2(752, -168), Vector2(-760, -168)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/ViewportEffects/ViewportTexture2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 1.7),
+"transitions": PackedFloat32Array(1.36604, 1),
+"update": 0,
+"values": [Vector2(-760, -152), Vector2(760, -152)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/ViewportEffects/ViewportTexture3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.3, 1.7),
+"transitions": PackedFloat32Array(1.36604, 1),
+"update": 0,
+"values": [Vector2(736, 120), Vector2(-784, 120)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TVContent/ViewportEffects/ViewportTexture4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 1.7),
+"transitions": PackedFloat32Array(1.36604, 1),
+"update": 0,
+"values": [Vector2(-944, 144), Vector2(800, 144)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText2/Label2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6, 2, 2.9),
+"transitions": PackedFloat32Array(0.466517, 1, 1.86607, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/IntroText2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TVContent/ViewportEffects:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lev0o"]
+resource_name = "intro_end"
+length = 0.1
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TVContent/ViewportEffects:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_game"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgayn"]
+_data = {
+"default": SubResource("Animation_ubsxe"),
+"game_over": SubResource("Animation_huoea"),
+"into_0_welcome": SubResource("Animation_ckwdh"),
+"intro_1_internal": SubResource("Animation_kxqh6"),
+"intro_2_viewports": SubResource("Animation_pxls1"),
+"intro_end": SubResource("Animation_lev0o")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jbhwm"]
+animation = &"default"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hu1ul"]
+animation = &"into_0_welcome"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q30k0"]
+animation = &"intro_1_internal"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pn5wm"]
+animation = &"intro_2_viewports"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_piq81"]
+animation = &"intro_end"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7fuog"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e7rnr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dwe14"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nnj0o"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qr2ct"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bhwkf"]
+states/End/position = Vector2(1086, 93)
+states/Start/position = Vector2(93, 100)
+states/default/node = SubResource("AnimationNodeAnimation_jbhwm")
+states/default/position = Vector2(209, 100)
+states/into_0_welcome/node = SubResource("AnimationNodeAnimation_hu1ul")
+states/into_0_welcome/position = Vector2(349, 100)
+states/intro_1_internal/node = SubResource("AnimationNodeAnimation_q30k0")
+states/intro_1_internal/position = Vector2(554, 100)
+states/intro_2_viewports/node = SubResource("AnimationNodeAnimation_pn5wm")
+states/intro_2_viewports/position = Vector2(759, 100)
+states/intro_end/node = SubResource("AnimationNodeAnimation_piq81")
+states/intro_end/position = Vector2(952, 100)
+transitions = ["into_0_welcome", "intro_1_internal", SubResource("AnimationNodeStateMachineTransition_7fuog"), "intro_1_internal", "intro_2_viewports", SubResource("AnimationNodeStateMachineTransition_e7rnr"), "Start", "default", SubResource("AnimationNodeStateMachineTransition_dwe14"), "default", "into_0_welcome", SubResource("AnimationNodeStateMachineTransition_nnj0o"), "intro_2_viewports", "intro_end", SubResource("AnimationNodeStateMachineTransition_qr2ct")]
+graph_offset = Vector2(169, 16)
+
+[node name="TestLevelPost" type="Node2D"]
+script = ExtResource("1_vcq25")
+
+[node name="BlackBackdrop" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="BlackBackdrop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TVContent" type="CanvasLayer" parent="."]
+layer = 0
+scale = Vector2(1, 0)
+transform = Transform2D(1, 0, 0, 0, 0, 0)
+
+[node name="VideoSlidesFrame" type="CanvasLayer" parent="TVContent"]
+layer = -1
+
+[node name="Control" type="Control" parent="TVContent/VideoSlidesFrame"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1152.0
+offset_right = 1152.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -504.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(324, 576)
+texture = ExtResource("2_j20b5")
+
+[node name="RestartButtonContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 480.003
+offset_top = 323.999
+offset_right = 480.003
+offset_bottom = 408.999
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+
+[node name="Button" type="Button" parent="TVContent/VideoSlidesFrame/Control/TextureRect/RestartButtonContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.729412, 0.509804, 1)
+theme_override_colors/font_pressed_color = Color(0.611765, 0.87451, 0.717647, 1)
+theme_override_colors/font_hover_color = Color(0.85098, 0.87451, 0.717647, 1)
+theme_override_colors/font_focus_color = Color(0.85098, 0.87451, 0.717647, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.611765, 0.87451, 0.717647, 1)
+theme_override_fonts/font = ExtResource("3_qeyw3")
+theme_override_font_sizes/font_size = 92
+text = "Retry"
+flat = true
+
+[node name="TopLeftText" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 120.0
+offset_top = 1050.0
+offset_right = 602.0
+offset_bottom = 1478.0
+rotation = -1.5708
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/TopLeftText"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.701961, 0.729412, 0.509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_constants/line_spacing = 9
+theme_override_fonts/font = ExtResource("3_qeyw3")
+theme_override_font_sizes/font_size = 48
+text = "We produce only the finest in boxes and box-accessories!
+
+Order now for the low low price of your soul!"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TopCenterText" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1056.0
+offset_right = 1032.0
+offset_bottom = 1224.0
+rotation = -1.5708
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/TopCenterText"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.729412, 0.509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_constants/line_spacing = 9
+theme_override_fonts/font = ExtResource("3_qeyw3")
+theme_override_font_sizes/font_size = 48
+text = "Follow the pros with our new ColourSplash tone applicator!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="IntroText0" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1056.0
+offset_right = 1032.0
+offset_bottom = 1544.0
+rotation = -1.5708
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/IntroText0"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/IntroText0/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.729412, 0.509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+theme_override_constants/line_spacing = 9
+theme_override_fonts/font = ExtResource("3_qeyw3")
+theme_override_font_sizes/font_size = 48
+text = "Cardboard Dynamics LLC"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/IntroText0/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.701961, 0.729412, 0.509804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("4_v25o1")
+theme_override_font_sizes/font_size = 28
+text = "Where dreams are shipped daily"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntroText1" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1056.0
+offset_right = 1032.0
+offset_bottom = 1544.0
+rotation = -1.5708
+
+[node name="Label2" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/IntroText1"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.866667, 0.392157, 0.270588, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_qeyw3")
+theme_override_font_sizes/font_size = 64
+text = "INTERNAL USE ONLY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntroText2" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1056.0
+offset_right = 1032.0
+offset_bottom = 1544.0
+rotation = -1.5708
+
+[node name="Label2" type="Label" parent="TVContent/VideoSlidesFrame/Control/TextureRect/IntroText2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.623529, 0.545098, 0.431373, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_qeyw3")
+theme_override_font_sizes/font_size = 48
+text = "Cardboard Technician Onboarding #19"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Button" type="Button" parent="TVContent/VideoSlidesFrame/Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ViewportEffects" type="CanvasLayer" parent="TVContent"]
+visible = false
+
+[node name="ViewportTexture1" type="TextureRect" parent="TVContent/ViewportEffects"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("ViewportTexture_fcmok")
+
+[node name="ViewportTexture2" type="TextureRect" parent="TVContent/ViewportEffects"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("ViewportTexture_fcmok")
+
+[node name="ViewportTexture3" type="TextureRect" parent="TVContent/ViewportEffects"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("ViewportTexture_fcmok")
+
+[node name="ViewportTexture4" type="TextureRect" parent="TVContent/ViewportEffects"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("ViewportTexture_fcmok")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+size_2d_override = Vector2i(1152, 648)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="LevelTemplate" parent="SubViewport" instance=ExtResource("5_keppy")]
+
+[node name="CRT" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="CRT"]
+material = SubResource("ShaderMaterial_8lgov")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n6uv4")
+}
+autoplay = "default"
+
+[node name="SceneAnims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dgayn")
+}
+autoplay = "default"
+
+[node name="SceneAnimTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dgayn")
+}
+tree_root = SubResource("AnimationNodeStateMachine_bhwkf")
+anim_player = NodePath("../SceneAnims")
+
+[connection signal="pressed" from="TVContent/VideoSlidesFrame/Control/TextureRect/RestartButtonContainer/Button" to="." method="_on_button_pressed"]

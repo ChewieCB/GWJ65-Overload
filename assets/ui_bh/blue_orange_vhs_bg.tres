@@ -1,0 +1,8 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://btfaf1q7b8bfv"]
+
+[sub_resource type="Gradient" id="Gradient_qoilb"]
+interpolation_mode = 2
+colors = PackedColorArray(0.796277, 0.199802, 0.0195315, 1, 0.333165, 0.282353, 0.694179, 1)
+
+[resource]
+gradient = SubResource("Gradient_qoilb")

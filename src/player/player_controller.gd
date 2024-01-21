@@ -243,8 +243,7 @@ func _on_dead_state_entered():
 	# Disable controls
 	is_player_control_disabled = true
 	# Show game over UI
-	await get_tree().create_timer(2.0).timeout
-	TransitionManager.emit_signal("exit_scene")
+	TransitionManager.emit_signal("game_over")
 
 
 func _on_projectile_detection_aera_body_entered(body):
