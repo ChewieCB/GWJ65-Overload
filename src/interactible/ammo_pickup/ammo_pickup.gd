@@ -13,6 +13,15 @@ extends Node3D
 @onready var counter_label = $Meshes/CounterLabel
 @export var ammo_amount: int = 1
 
+@onready var sfx_ammo_1 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets.mp3")
+@onready var sfx_ammo_2 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets_2.mp3")
+@onready var sfx_ammo_3 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets_3.mp3")
+@onready var sfx_ammo_4 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets_4.mp3")
+@onready var sfx_ammo = [sfx_ammo_1, sfx_ammo_2, sfx_ammo_3, sfx_ammo_4]
+
+func get_sfx_ammo() -> AudioStream:
+	return sfx_ammo[randi_range(0, 3)]
+
 @onready var anim_player = $AnimationPlayer
 
 enum AMMO_TYPE {
@@ -48,6 +57,7 @@ func _on_pickup_area_body_entered(body):
 				body.shotgun.reserve_ammo_2 += ammo_amount
 			AMMO_TYPE.YELLOW:
 				body.shotgun.reserve_ammo_3 += ammo_amount
+		SoundManager.play_sound(get_sfx_ammo())
 		anim_player.play("pickup")
 		await anim_player.animation_finished
 		self.queue_free()

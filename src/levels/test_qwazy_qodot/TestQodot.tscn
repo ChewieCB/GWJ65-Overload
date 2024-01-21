@@ -1,8 +1,9 @@
-[gd_scene load_steps=469 format=3 uid="uid://dlb80tidiwhsq"]
+[gd_scene load_steps=468 format=3 uid="uid://dlb80tidiwhsq"]
 
 [ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_xma8h"]
 [ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="2_8drrl"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="2_56qx2"]
+[ext_resource type="Environment" uid="uid://cilakn10pxuuj" path="res://src/levels/test_qwazy_qodot/indoor_env.tres" id="2_h036u"]
 [ext_resource type="PackedScene" uid="uid://c0dbasn84bjap" path="res://src/interactible/box_depot/BoxDepot.tscn" id="3_nxk4t"]
 [ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="3_s4pai"]
 [ext_resource type="Texture2D" uid="uid://ce3qt40e2x4wu" path="res://textures/dark.png" id="4_pxtp2"]
@@ -12,20 +13,6 @@
 [ext_resource type="Script" path="res://src/levels/test_qwazy_qodot/repeating_box_spawner.gd" id="9_jpvm6"]
 [ext_resource type="PackedScene" uid="uid://u22g8s5ni22" path="res://src/interactible/door/DoorTemp.tscn" id="10_cpgi7"]
 [ext_resource type="PackedScene" uid="uid://ckdj3b77iwqrg" path="res://src/interactible/ammo_pickup/AmmoPickup.tscn" id="11_cop4e"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gf6gi"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_7fnvd"]
-sky_material = SubResource("ProceduralSkyMaterial_gf6gi")
-
-[sub_resource type="Environment" id="Environment_waevu"]
-sky = SubResource("Sky_7fnvd")
-tonemap_mode = 2
-ssao_enabled = true
-sdfgi_enabled = true
-sdfgi_use_occlusion = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xaiwk"]
 
@@ -1596,11 +1583,14 @@ albedo_color = Color(0.501961, 1, 0.290196, 0.278431)
 material = SubResource("StandardMaterial3D_iv81k")
 size = Vector3(5, 5, 5)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_61ebj"]
+size = Vector3(18, 11, 16)
+
 [node name="LevelTemplate" type="Node3D"]
 script = ExtResource("1_xma8h")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_waevu")
+environment = ExtResource("2_h036u")
 
 [node name="Geom" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
@@ -3032,7 +3022,10 @@ shape = SubResource("ConcavePolygonShape3D_f5fgu")
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_8drrl")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.0149, 0.252997, 1.21362)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.0149, 0.5, 1.21362)
+
+[node name="MeshInstance3D" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Shotgun" parent="Player/CameraController/Camera3D/Shotgun/Rig" index="0"]
 transform = Transform3D(-1.81003e-05, 5.00009, 1.81001e-05, 0, -1.81003e-05, 5.00004, 5.00011, 1.81003e-05, 6.55222e-11, 0, 0, 0)
@@ -3264,7 +3257,19 @@ shape = SubResource("BoxShape3D_jjeun")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EndLevelTrigger"]
 mesh = SubResource("BoxMesh_jnfpm")
 
+[node name="AnimTriggers" type="Node3D" parent="."]
+
+[node name="Info0Trigger" type="Area3D" parent="AnimTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimTriggers/Info0Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 5, -0.5)
+shape = SubResource("BoxShape3D_61ebj")
+
 [connection signal="body_entered" from="EndLevelTrigger" to="." method="_on_end_level_trigger_body_entered"]
+[connection signal="body_entered" from="AnimTriggers/Info0Trigger" to="." method="_on_info_0_trigger_body_entered"]
 
 [editable path="Player"]
 [editable path="Player/CameraController/Camera3D/Shotgun"]

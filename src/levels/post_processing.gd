@@ -8,6 +8,10 @@ extends Node2D
 
 func _ready():
 	TransitionManager.game_over.connect(_game_over)
+	TransitionManager.info_0.connect(info_0_anim)
+	_change_level(TransitionManager.current_level_path)
+	TransitionManager.level_select.connect(_change_level)
+	TransitionManager.retry_current_level.connect(_restart_level)
 	anim_scene_player.play("default")
 	await anim_scene_player.animation_finished
 	anim_scene_player.play("level_start")
@@ -15,6 +19,28 @@ func _ready():
 
 func _input(event):
 	game_viewport.push_input(event)
+
+
+func info_0_anim():
+	anim_scene_player.play("info_0_boxes_a")
+	await anim_scene_player.animation_finished
+	anim_scene_player.play("info_0_boxes_b")
+	await anim_scene_player.animation_finished
+	anim_scene_player.play("info_0_boxes_c")
+	await anim_scene_player.animation_finished
+
+
+func _change_level(scene_path: String):
+	var previous_level = $SubViewport.get_child(0)
+	if previous_level:
+		$SubViewport.remove_child(previous_level)
+	var new_level = load(scene_path).instantiate()
+	$SubViewport.add_child(new_level)
+
+
+func _restart_level():
+	_change_level(TransitionManager.current_level_path)
+	anim_scene_player.play("level_start")
 
 
 func _change_bg_texture(new_texture: GradientTexture1D):

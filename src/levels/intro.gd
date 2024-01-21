@@ -6,14 +6,22 @@ extends Node2D
 @onready var game_viewport: SubViewport = $SubViewport
 @onready var vhs_bg: TextureRect = $TVContent/VideoSlidesFrame/Control/TextureRect
 
-@export var skip_intro: bool = true
+@export var _skip_intro: bool = false
+func skip_intro():
+	_skip_intro = true
+
+var current_level_idx = 0
+@onready var levels = $TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer.get_children()
+
 
 func _ready():
-	if skip_intro:
+	if _skip_intro:
 		anim_state_machine.travel("level_select_in_skip")
 	else:
 		anim_state_machine.travel("intro_0_welcome")
 	TransitionManager.level_select.connect(_select_level)
+	TransitionManager.level_complete.connect(_complete_level)
+	#locked_levels = locked_levels.slice(1)
 
 
 #func _input(event):
@@ -27,7 +35,13 @@ func start_game():
 func _select_level(level: String):
 	anim_state_machine.travel("level_select_out")
 	await get_tree().create_timer(0.9).timeout
-	get_tree().change_scene_to_file(level)
+	TransitionManager.change_level(level)
+
+
+func _complete_level(level):
+	pass
+	#completed_levels.append(level)
+	#locked_levels = locked_levels.slice(1)
 
 
 func _change_bg_texture(new_texture: GradientTexture1D):

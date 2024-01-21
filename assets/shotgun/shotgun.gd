@@ -4,6 +4,40 @@ extends Node3D
 @onready var anim_tree = $AnimationTree
 @onready var state_machine = anim_tree["parameters/playback"]
 
+# AUDIO
+enum AUDIO {
+	BLAST,
+	COCK,
+	DRY,
+	SHOVE,
+	LOAD
+}
+@onready var sfx_blast = load("res://src/player/sfx/shotgun/Shotgun_blast_only.mp3")
+@onready var sfx_cock = load("res://src/player/sfx/shotgun/Shotgun_Cock_only.mp3")
+@onready var sfx_dry = load("res://src/player/sfx/shotgun/Shotgun_Dry_Fire.mp3")
+@onready var sfx_shove = load("res://src/player/sfx/shotgun/Shotgun_shovemelee.mp3")
+@onready var sfx_load = load("res://src/player/sfx/shotgun/Shotgun_Load_Shell.mp3")
+@onready var sfx_box_throw_1 = load("res://src/player/sfx/box/Box_whoosh.mp3")
+@onready var sfx_box_throw_2 = load("res://src/player/sfx/box/Box_whoosh_2.mp3")
+@onready var sfx = [
+	sfx_blast,
+	sfx_cock,
+	sfx_dry,
+	sfx_shove,
+	sfx_load
+]
+@onready var sfx_ammo_1 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets.mp3")
+@onready var sfx_ammo_2 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets_2.mp3")
+@onready var sfx_ammo_3 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets_3.mp3")
+@onready var sfx_ammo_4 = load("res://src/interactible/ammo_pickup/sfx/Pocket_Bullets_4.mp3")
+@onready var sfx_ammo = [sfx_ammo_1, sfx_ammo_2, sfx_ammo_3, sfx_ammo_4]
+
+func get_sfx_ammo() -> AudioStream:
+	return sfx_ammo[randi_range(0, 3)]
+
+func box_throw_sfx() -> AudioStream:
+	return [sfx_box_throw_1, sfx_box_throw_2][randi_range(0, 1)]
+
 # Shooting 
 # Damage per pellet
 var damage: int = 5
@@ -31,6 +65,7 @@ var current_tex_idx = 0
 # The type/colour of shell currently held, to be loaded on next reload
 var palmed_shell_idx = 0
 var palmed_shell = AMMO_TYPE.BUCKSHOT
+var next_shell_idx
 
 var max_ammo: int = 5
 @export var starting_ammo: int = 0
@@ -109,6 +144,7 @@ func cycle_shell(backwards:bool=false):
 	# Cycle the index through the ammo types
 	var _new_shell_idx = palmed_shell_idx % AMMO_TYPE.size()
 	palmed_shell = _new_shell_idx
+	SoundManager.play_sound(get_sfx_ammo())
 
 
 func reset_shell():
@@ -123,12 +159,11 @@ func shoot(is_one_handed: bool = false):
 		return
 	
 	if _current_ammo == 0:
-		print("Click")
-		# TODO - Play empty click
+		SoundManager.play_sound(sfx_dry)
 		# TODO - Add auto reload 1 available shell when empty
 		return
 				
-	var next_shell_idx = loaded_ammo.pop_front()
+	next_shell_idx = loaded_ammo.pop_front()
 	ammo_mesh.texture.albedo_texture = ammo_textures[next_shell_idx]
 	match next_shell_idx:
 		0:
@@ -140,7 +175,20 @@ func shoot(is_one_handed: bool = false):
 	
 	_current_ammo -= 1
 	
-	# 
+	# UI updates
+	ammo_ui.spend_shell()
+	
+	var _anim_state = "shoot"
+	var _time = _2h_shot_time
+	if is_one_handed:
+		_anim_state = "shoot_1_hand"
+		_time = _1h_shot_time
+	
+	state_machine.travel(_anim_state)
+	_shoot_timer.start(_time)
+
+
+func hitscan_ray():
 	for _ray in ray_container.get_children():
 		_ray.target_position.z = randi_range(spread, -spread)
 		_ray.target_position.y = randi_range(spread, -spread)
@@ -154,18 +202,6 @@ func shoot(is_one_handed: bool = false):
 				var spark_instance = load("res://src/particles/spark/SparkParticles.tscn").instantiate()
 				spark_instance.set_position(_ray.get_collision_point())
 				get_tree().get_root().add_child(spark_instance)
-	
-	# UI updates
-	ammo_ui.spend_shell()
-	
-	var _anim_state = "shoot"
-	var _time = _2h_shot_time
-	if is_one_handed:
-		_anim_state = "shoot_1_hand"
-		_time = _1h_shot_time
-	
-	state_machine.travel(_anim_state)
-	_shoot_timer.start(_time)
 
 
 func _draw_debug_sphere(size: float, location: Vector3) -> void:
@@ -272,11 +308,13 @@ func launch_box():
 		get_tree().get_root().add_child(box_instance)
 		box_instance.current_box_colour = held_box_colours.pop_back()
 		box_instance.pickup_timer.start(1.0)
+		box_instance.is_collision_sfx = true
+		SoundManager.play_sound(box_throw_sfx())
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _play_sfx(sfx_idx: AUDIO):
+	var audio_stream = sfx[sfx_idx]
+	SoundManager.play_sound(audio_stream)
 
 
 func _on_reload_timer_timeout():

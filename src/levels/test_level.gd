@@ -4,7 +4,7 @@ extends Node3D
 
 
 func _ready():
-	TransitionManager.retry_current_level.connect(_retry_level)
+	#TransitionManager.retry_current_level.connect()
 	TransitionManager.pause_scene.connect(_pause)
 	TransitionManager.resume_scene.connect(_resume)
 
@@ -16,10 +16,18 @@ func _resume():
 	set_physics_process(true)
 	set_process(true)
 
-func _retry_level():
-	get_tree().reload_current_scene()
-
 
 func _on_end_level_trigger_body_entered(body):
 	if body is Player:
 		TransitionManager.complete_level(self)
+
+
+func _on_info_0_trigger_body_entered(body):
+	if body is Player:
+		TransitionManager.emit_signal("info_0")
+		$AnimTriggers/Info0Trigger.queue_free()
+
+
+func _on_kill_trigger_body_entered(body):
+	if body is Player:
+		body.health -= 200

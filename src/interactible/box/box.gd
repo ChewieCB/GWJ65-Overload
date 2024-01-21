@@ -8,6 +8,22 @@ class_name Box
 @onready var pickup_highlight = $PickupArea/PickupHighlight
 @onready var pickup_timer = $PickupTimer
 
+@onready var box_change_sfx = load("res://src/interactible/box/sfx/Box_type_change.mp3")
+@onready var box_impact_1 = load("res://src/interactible/box/sfx/Cardboard_impct_1.mp3")
+@onready var box_impact_2 = load("res://src/interactible/box/sfx/Cardboard_impct_2.mp3")
+@onready var box_impact_3 = load("res://src/interactible/box/sfx/Cardboard_impct_3.mp3")
+@onready var box_impact_4 = load("res://src/interactible/box/sfx/Cardboard_impct_4.mp3")
+@onready var box_impact_5 = load("res://src/interactible/box/sfx/Cardboard_impct_5.mp3")
+@onready var box_impact_6 = load("res://src/interactible/box/sfx/Cardboard_impct_6.mp3")
+@onready var box_impacts = [
+	box_impact_1, box_impact_2, box_impact_3, box_impact_4, box_impact_5, box_impact_6
+]
+@onready var collision_sfx_timer = $CollisionSFXTimer
+var is_collision_sfx: bool = false
+
+func box_impact_sfx() -> AudioStream:
+	return box_impacts[randi_range(0, 5)]
+
 enum BOX_COLOR {
 	BLANK,
 	RED,
@@ -48,6 +64,7 @@ var one_off_damage: float = 0.0
 			else:
 				var new_mat = colour_mats[value]
 				mesh.set_surface_override_material(0, new_mat)
+			SoundManager.play_sound(box_change_sfx)
 		current_box_colour = value
 
 func _ready():
@@ -64,12 +81,13 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
-	if player:
-		if is_instance_valid(particles):
-			# FIXME
-			# Rotate emitter to always point upwards
-			#$ParticlesPivot.look_at(self.global_transform.origin + Vector3.UP)
-			pass
+	pass
+	#if player:
+		#if is_instance_valid(particles):
+			## FIXME
+			## Rotate emitter to always point upwards
+			##$ParticlesPivot.look_at(self.global_transform.origin + Vector3.UP)
+			#pass
 
 
 func hit(damage:float=0.0, ammo_type:int=-1):
@@ -108,3 +126,8 @@ func _on_pickup_area_body_entered(body):
 func _on_pickup_area_body_exited(body):
 	if body is Player:
 		can_pickup = false
+
+func _on_body_entered(body):
+	if is_collision_sfx and collision_sfx_timer.is_stopped():
+		SoundManager.play_sound(box_impact_sfx())
+		collision_sfx_timer.start(0.3)

@@ -17,6 +17,8 @@ enum BOX_COLOR {
 @onready var mesh_yellow = $Area3D/MeshYellow
 @onready var meshes = [mesh_any, mesh_red, mesh_blue, mesh_yellow]
 
+@onready var sfx_activated = load("res://src/interactible/door/sfx/Door_Ding.mp3")
+
 @export var is_colour_specific: bool = false
 @export var accepts_colour: BOX_COLOR = BOX_COLOR.BLANK
 @export var boxes_required: int = 100:
@@ -29,8 +31,9 @@ var boxes_held: int = 0:
 		boxes_held = clamp(value, 0, boxes_required)
 		if count_label:
 			count_label.text = "(%s)" % [str(boxes_required - boxes_held)]
-		if boxes_held == boxes_required:
-			depot_activated = true
+		if boxes_held >= boxes_required:
+			if not depot_activated:
+				depot_activated = true
 
 var depot_activated: bool = false:
 	set(value):
@@ -82,6 +85,7 @@ func _on_area_3d_body_entered(body):
 				# TODO - Update UI
 				#
 				# TODO - play SFX
+				SoundManager.play_sound(sfx_activated)
 			else:
 				var bounce = body.get_linear_velocity()
 				bounce = bounce.reflect(Vector3.UP)
@@ -90,5 +94,7 @@ func _on_area_3d_body_entered(body):
 				body.apply_impulse(bounce * 1.7, Vector3.ZERO)
 		else:
 			await get_tree().create_timer(0.2).timeout
-			body.health = 0
+			if is_instance_valid(body):
+				body.health = 0
 			boxes_held += 1
+			SoundManager.play_sound(sfx_activated)
