@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_bo8lp"]
 [ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="2_bco2p"]
-[ext_resource type="Environment" uid="uid://cilakn10pxuuj" path="res://src/levels/test_qwazy_qodot/indoor_env.tres" id="2_c8c43"]
+[ext_resource type="Environment" uid="uid://cilakn10pxuuj" path="res://src/levels/_level_0_cardboard_101/indoor_env.tres" id="2_c8c43"]
 [ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="2_etg55"]
 [ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="3_ikjhc"]
 [ext_resource type="PackedScene" uid="uid://c0dbasn84bjap" path="res://src/interactible/box_depot/BoxDepot.tscn" id="3_pw26j"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://chgj35rjd8d67" path="res://textures/red.png" id="6_70g56"]
 [ext_resource type="PackedScene" uid="uid://2j7355lkklfq" path="res://src/enemies/shelving/ShelfEnemy.tscn" id="6_y7bv5"]
 [ext_resource type="Texture2D" uid="uid://knyqyt0pil1x" path="res://textures/light.png" id="7_alc2y"]
-[ext_resource type="Shader" path="res://src/levels/test_qwazy_qodot/glass.gdshader" id="8_ajnnm"]
+[ext_resource type="Shader" path="res://src/levels/_level_0_cardboard_101/glass.gdshader" id="8_ajnnm"]
 [ext_resource type="PackedScene" uid="uid://u22g8s5ni22" path="res://src/interactible/door/DoorTemp.tscn" id="9_u4sgi"]
 [ext_resource type="PackedScene" uid="uid://ckdj3b77iwqrg" path="res://src/interactible/ammo_pickup/AmmoPickup.tscn" id="10_lkls7"]
 

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://uqk5ew4wl8tq"]
 
-[ext_resource type="Shader" path="res://src/levels/test_qwazy_qodot/glass.gdshader" id="1_kr67x"]
+[ext_resource type="Shader" path="res://src/levels/_level_0_cardboard_101/glass.gdshader" id="1_kr67x"]
 
 [resource]
 render_priority = 0

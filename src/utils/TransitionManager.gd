@@ -15,13 +15,12 @@ signal info_0
 @onready var levels:
 	set(value):
 		levels = value
-		locked_levels = levels.duplicate()
-var locked_levels:
-	set(value):
-		locked_levels = value
-		for level in locked_levels:
+		for level in levels:
 			if level is VBoxContainer:
 				level.is_locked = true
+var unlocked_level_idx: int:
+	set(value):
+		unlocked_level_idx = value
 var completed_levels = []
 
 @onready var intro_music = load("res://assets/music/main_menu/main_intro.mp3")
@@ -37,7 +36,6 @@ func _ready():
 
 
 func main_screen():
-	SoundManager.pause_music(level_1_music)
 	SoundManager.play_music(main_menu_music, 0.5)
 
 
@@ -52,8 +50,9 @@ func change_level(level: String):
 
 
 func complete_level(level: Node3D):
-	#completed_levels.append(level)
-	#locked_levels = locked_levels.slice(1)
+	completed_levels.append(level)
+	unlocked_level_idx += 1
+	var test0 = SoundManager.get_currently_playing_music()
 	get_tree().change_scene_to_file("res://src/levels/IntroScene.tscn")
 
 

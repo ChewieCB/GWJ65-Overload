@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/levels/post_processing.gd" id="1_xubc4"]
 [ext_resource type="Texture2D" uid="uid://bak5fv1f5v454" path="res://assets/ui_bh/blue_vhs_bg.tres" id="2_2rab6"]
 [ext_resource type="FontFile" uid="uid://d2mkho4ufeiw2" path="res://assets/fonts/Franklin Gothic ITALIC/Franklin Gothic ITALIC.ttf" id="3_dkesf"]
-[ext_resource type="PackedScene" uid="uid://dlb80tidiwhsq" path="res://src/levels/test_qwazy_qodot/TestQodot.tscn" id="4_hdot0"]
+[ext_resource type="PackedScene" uid="uid://dlb80tidiwhsq" path="res://src/levels/_level_0_cardboard_101/Level0.tscn" id="4_hdot0"]
 [ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="5_ykk6l"]
 [ext_resource type="Texture2D" uid="uid://btfaf1q7b8bfv" path="res://assets/ui_bh/blue_orange_vhs_bg.tres" id="6_m4etj"]
 

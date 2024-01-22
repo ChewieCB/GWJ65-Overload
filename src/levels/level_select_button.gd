@@ -2,7 +2,7 @@ extends VBoxContainer
 
 @export var level: String
 @onready var best_time_label = $MarginContainer2/HBoxContainer/Label
-@onready var button = $"../LevelIcon2/MarginContainer/Button"
+@onready var button = $MarginContainer/Button
 
 @export var is_locked: bool = true:
 	set(value):

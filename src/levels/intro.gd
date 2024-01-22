@@ -21,6 +21,9 @@ func _ready():
 		anim_state_machine.travel("intro_0_welcome")
 	TransitionManager.level_select.connect(_select_level)
 	TransitionManager.level_complete.connect(_complete_level)
+	TransitionManager.levels = levels
+	levels[TransitionManager.unlocked_level_idx].is_locked = false 
+			
 	#locked_levels = locked_levels.slice(1)
 
 

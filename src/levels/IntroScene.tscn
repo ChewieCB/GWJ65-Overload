@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bemj1o1l3q7sj" path="res://assets/fonts/UtopiaBold/Utopia-Italic.otf" id="4_v25o1"]
 [ext_resource type="Script" path="res://src/levels/level_select_button.gd" id="5_0dba1"]
 [ext_resource type="Texture2D" uid="uid://dulp60in7xs20" path="res://src/levels/level_select/level_1_icon.png" id="5_f72cx"]
-[ext_resource type="PackedScene" uid="uid://dlb80tidiwhsq" path="res://src/levels/test_qwazy_qodot/TestQodot.tscn" id="5_keppy"]
+[ext_resource type="PackedScene" uid="uid://dlb80tidiwhsq" path="res://src/levels/_level_0_cardboard_101/Level0.tscn" id="5_keppy"]
 [ext_resource type="Shader" path="res://src/levels/crt.gdshader" id="6_i22po"]
 [ext_resource type="FontFile" uid="uid://t6sj6fc3oyan" path="res://assets/fonts/UtopiaBold/Utopia-Titling.otf" id="6_ppagb"]
 [ext_resource type="Texture2D" uid="uid://dc58kfb1gm3x6" path="res://src/levels/level_select/Clock.png" id="7_q6cng"]
@@ -1219,7 +1219,6 @@ size_flags_vertical = 3
 mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control"]
-modulate = Color(0, 0, 0, 1)
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -1395,7 +1394,6 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="LevelSelect" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
-modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 72.0
 offset_top = 1056.0
@@ -1433,7 +1431,7 @@ columns = 3
 layout_mode = 2
 theme_override_constants/separation = -32
 script = ExtResource("5_0dba1")
-level = "res://src/levels/test_qwazy_qodot/TestQodot.tscn"
+level = "res://src/levels/_level_0_cardboard_101/Level0.tscn"
 
 [node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon1"]
 layout_mode = 2
@@ -1516,7 +1514,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = -32
 script = ExtResource("5_0dba1")
-level = "res://src/levels/level_2_shelving/Level2.tscn"
+level = "res://src/levels/_level_1_shelving/Level1.tscn"
 
 [node name="MarginContainer" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer/LevelIcon2"]
 layout_mode = 2
@@ -1597,7 +1595,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LevelIcon3" type="VBoxContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer"]
-modulate = Color(0.329412, 0.329412, 0.329412, 1)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = -32
