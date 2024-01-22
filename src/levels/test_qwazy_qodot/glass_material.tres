@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://uqk5ew4wl8tq"]
+
+[ext_resource type="Shader" path="res://src/levels/test_qwazy_qodot/glass.gdshader" id="1_kr67x"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_kr67x")
+shader_parameter/Color = Color(0.0666667, 0.184314, 0.25098, 0.796078)
+shader_parameter/Shine = 0.14
+shader_parameter/Roughness = 0.43

@@ -28,6 +28,8 @@ func _on_info_0_trigger_body_entered(body):
 		$AnimTriggers/Info0Trigger.queue_free()
 
 
-func _on_kill_trigger_body_entered(body):
+func _on_kill_zone_body_entered(body):
 	if body is Player:
+		body.state_chart.send_event("death")
+	elif body is CharacterBody3D or body is RigidBody3D:
 		body.health -= 200
