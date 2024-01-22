@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal dead
+
 @onready var state_chart = $StateChart
 @onready var anim_player = $AnimationPlayer
 @onready var anim_tree = $AnimationTree
@@ -26,6 +28,7 @@ extends CharacterBody3D
 ]
 var held_box_colours = []
 
+@export var is_static: bool = false
 @export var shot_damage: float = 20.0
 @export var health: float = 100.0:
 	set(value):
@@ -72,6 +75,8 @@ func shoot_box():
 		# Determine target direction
 		var spawn_marker = box_spawns.pop_front()
 		var box_pos = spawn_marker.global_transform.origin
+		if not locked_shot_position:
+			return
 		spawn_marker.look_at(locked_shot_position, Vector3.UP)
 		var box_rot = spawn_marker.global_transform.basis
 		var direction = box_rot#.rotated(Vector3(1, 0, 0), PI/10)
@@ -88,17 +93,27 @@ func shoot_box():
 		box_instance.pickup_timer.start(1.0)
 		
 		# Remove spawn
-		spawn_marker.queue_free()
-		meshes.remove_child(spawn_marker)
+		spawn_marker.visible = false
+		#spawn_marker.queue_free()
+		#meshes.remove_child(spawn_marker)
 		# Remove the damage after we can expect it to have missed the player
 		await get_tree().create_timer(1.0).timeout
 		if is_instance_valid(box_instance):
 			box_instance.one_off_damage = 0.0
 		
-		# If we have no boxes left to shoot, the shelf dies
-		if not remove_box():
-			hit(100.0)
-			return
+	# If we have no boxes left to shoot, repopulate
+	if not remove_box():
+		box_spawns = [
+			$Meshes/BoxSpawn1,
+			$Meshes/BoxSpawn2,
+			$Meshes/BoxSpawn3,
+			$Meshes/BoxSpawn4
+		]
+		for _spawn in box_spawns:
+			var box_colour = randi_range(0, colour_mats.size() -1)
+			_spawn.get_child(0).set_surface_override_material(0, colour_mats[box_colour])
+			held_box_colours.append(box_colour)
+			_spawn.visible = true
 
 
 func populate_boxes_on_death():
@@ -128,9 +143,13 @@ func _on_idle_state_entered():
 
 
 func _on_walking_state_entered():
+	if is_static:
+		return
 	anim_state_machine.travel("walk")
 
 func _on_walking_state_physics_processing(delta):
+	if is_static:
+		return
 	if target:
 		var _target_position = target.transform.origin
 		_target_position.y = 0
@@ -220,6 +239,7 @@ func _on_hurt_state_entered():
 
 func _on_dead_state_entered():
 	velocity = Vector3.ZERO
+	emit_signal("dead")
 	anim_state_machine.travel("die")
 	await get_tree().create_timer(0.55).timeout
 	populate_boxes_on_death()

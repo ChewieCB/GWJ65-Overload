@@ -6,6 +6,7 @@ enum DOOR_STATES {
 }
 
 @export var linked_depots: Array[Node3D] = []
+@export var linked_enemies: Array[CharacterBody3D] = []
 @export var state: DOOR_STATES = DOOR_STATES.CLOSED:
 	set(value):
 		if anim_player:
@@ -26,6 +27,8 @@ func _ready():
 	state = state
 	for _depot in linked_depots:
 		_depot.activated.connect(_activate)
+	for _enemy in linked_enemies:
+		_enemy.dead.connect(_activate)
 
 
 func _activate() -> void:
@@ -42,6 +45,9 @@ func _activate() -> void:
 func check_activated() -> bool:
 	for depot in linked_depots:
 		if not depot.depot_activated:
+			return false
+	for enemy in linked_enemies:
+		if not enemy.health == 0:
 			return false
 	return true
 
