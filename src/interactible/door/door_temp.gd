@@ -5,7 +5,7 @@ enum DOOR_STATES {
 	OPEN
 }
 
-@export var linked_depots: Array[Node3D] = []
+@export var linked_depots: Array[BoxDepot] = []
 @export var linked_enemies: Array[CharacterBody3D] = []
 @export var state: DOOR_STATES = DOOR_STATES.CLOSED:
 	set(value):
