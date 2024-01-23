@@ -10,7 +10,7 @@ extends Node2D
 func skip_intro():
 	_skip_intro = true
 
-var current_level_idx = 0
+var current_level_idx = 1
 @onready var levels = $TVContent/VideoSlidesFrame/Control/TextureRect/LevelSelect/Levels/GridContainer.get_children()
 
 
@@ -22,9 +22,8 @@ func _ready():
 	TransitionManager.level_select.connect(_select_level)
 	TransitionManager.level_complete.connect(_complete_level)
 	TransitionManager.levels = levels
-	levels[TransitionManager.unlocked_level_idx].is_locked = false 
-			
-	#locked_levels = locked_levels.slice(1)
+	for idx in range(current_level_idx + 1):
+		levels[idx].is_locked = false
 
 
 #func _input(event):

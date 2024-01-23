@@ -1219,6 +1219,7 @@ size_flags_vertical = 3
 mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="TVContent/VideoSlidesFrame/Control"]
+modulate = Color(0, 0, 0, 1)
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -1394,6 +1395,7 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="LevelSelect" type="MarginContainer" parent="TVContent/VideoSlidesFrame/Control/TextureRect"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 72.0
 offset_top = 1056.0
