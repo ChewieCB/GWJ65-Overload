@@ -198,10 +198,15 @@ func hitscan_ray():
 			if collider is CharacterBody3D or collider is RigidBody3D:
 				collider.hit(damage, next_shell_idx)
 			# Draw spark
-			if collider is CharacterBody3D:
+			if collider is PhysicsBody3D:
 				var spark_instance = load("res://src/particles/spark/SparkParticles.tscn").instantiate()
 				spark_instance.set_position(_ray.get_collision_point())
 				get_tree().get_root().add_child(spark_instance)
+		else:
+			# Draw spark at end of ray
+			var spark_instance = load("res://src/particles/spark/SparkParticles.tscn").instantiate()
+			spark_instance.set_position(_ray.global_position + _ray.target_position)
+			get_tree().get_root().add_child(spark_instance)
 
 
 func _draw_debug_sphere(size: float, location: Vector3) -> void:

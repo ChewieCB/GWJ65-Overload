@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://dqaq5axwki75x"]
+[gd_scene load_steps=104 format=3 uid="uid://dqaq5axwki75x"]
 
 [ext_resource type="Script" path="res://assets/shotgun/shotgun.gd" id="1_0kws1"]
 [ext_resource type="Texture2D" uid="uid://bifxuau8mr147" path="res://assets/shotgun/Shotgun-c77a037ef8f366bf3dd4a93a935c9d03_Shotgun_Texture_2.png" id="1_jcjkl"]
@@ -255,10 +255,10 @@ tracks/2/path = NodePath("Rig/Shotgun:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1.8025),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1.8025),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -267,10 +267,10 @@ tracks/3/path = NodePath("Rig/Shotgun:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1.8025),
+"times": PackedFloat32Array(0.025, 0.2),
+"transitions": PackedFloat32Array(1, 1.8025),
 "update": 0,
-"values": [Vector3(-1.5708, -1.5708, 0)]
+"values": [Vector3(-1.5708, -1.5708, 0), Vector3(-1.5708, -1.5708, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1804,6 +1804,838 @@ tracks/15/keys = {
 "method": &"_play_sfx"
 }]
 }
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_ammo"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ypm0c"]
+resource_name = "reload_continous"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.68302, 1.56917, 1),
+"update": 0,
+"values": [Vector3(-0.0167688, -0.04708, -0.101929), Vector3(-0.00446942, -0.0898277, -0.0310189), Vector3(-0.0167688, -0.04708, -0.101929)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.68302, 1.56917, 1),
+"update": 0,
+"values": [Vector3(0.0894336, 2.78225, 0.129356), Vector3(-0.194628, 2.23707, 0.403695), Vector3(0.0894336, 2.78225, 0.129356)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/Shotgun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 0.329877),
+"update": 0,
+"values": [Vector3(0, 0.0662329, 0), Vector3(0, 0.0662329, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/Shotgun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 0.329877),
+"update": 0,
+"values": [Vector3(-1.09307, -0.27337, -1.31485), Vector3(-1.09307, -0.27337, -1.31485)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/Shotgun/Shotgun-Detach:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(1.30385e-10, 0.0902296, 0.00478581)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rig/Shotgun/RHandTarget:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(0.329877),
+"update": 0,
+"values": [Vector3(-0.0132962, -0.0460034, -0.0132669)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rig/Shotgun/RHandTarget:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(0.329877),
+"update": 0,
+"values": [Vector3(-0.0215915, 2.96366, -0.00681809)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rig/Arms/LForearmIKTarget:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector3(0.154305, -0.680631, -0.307095), Vector3(0.183133, -0.458425, -0.214745), Vector3(0.154305, -0.680631, -0.307095)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rig/Arms/LForearmIKTarget:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector3(0.873739, -0.0404391, -1.04761), Vector3(0.498302, 0.52878, -0.132784), Vector3(0.873739, -0.0404391, -1.04761)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rig/Arms/LUpperarmTarget:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector3(-0.124738, -0.73619, -0.452758), Vector3(-0.0934792, -0.654031, -0.381892), Vector3(-0.124738, -0.73619, -0.452758)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Rig/Arms/LUpperarmTarget:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector3(0.800032, -0.412191, -2.13223), Vector3(0.674241, -0.391475, -2.0938), Vector3(0.800032, -0.412191, -2.13223)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Rig/Shotgun/Ammo:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.68302, 2.82843),
+"update": 1,
+"values": [true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Rig/Shotgun/Ammo:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 0.574349, 1),
+"update": 0,
+"values": [Vector3(-0.0135333, 0.0660403, -0.0831971), Vector3(-0.000636495, 0.0267504, -0.0019458), Vector3(0.00299614, 0.0264835, 0.00166681)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Rig/Shotgun/Ammo:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 0.574349, 1),
+"update": 0,
+"values": [Vector3(-0.120094, -1.63647, 2.75661), Vector3(0.0677462, -1.0864, 3.13214), Vector3(0.0677461, -1.0864, 3.13214)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Rig/Shotgun/Ammo:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00400001, 0.00400001, 0.00400001)]
+}
+tracks/15/type = "method"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath(".")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [4],
+"method": &"_play_sfx"
+}]
+}
+tracks/16/type = "method"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"reload_anim_started"
+}, {
+"args": [],
+"method": &"reload_anim_complete"
+}]
+}
+tracks/17/type = "method"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath(".")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_ammo"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_sl3dp"]
+resource_name = "reload_continous_staging"
+length = 0.001
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(-0.0167688, -0.04708, -0.101929)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(0.0894336, 2.78225, 0.129356)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/Shotgun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0662329, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/Shotgun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.09307, -0.27337, -1.31485)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/Shotgun/Shotgun-Detach:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(1.30385e-10, 0.0902296, 0.00478581)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rig/Shotgun/RHandTarget:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0132962, -0.0460034, -0.0132669)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rig/Shotgun/RHandTarget:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0215915, 2.96366, -0.00681809)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rig/Arms/LForearmIKTarget:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.154305, -0.680631, -0.307095)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rig/Arms/LForearmIKTarget:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.873739, -0.0404391, -1.04761)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rig/Arms/LUpperarmTarget:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.124738, -0.73619, -0.452758)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Rig/Arms/LUpperarmTarget:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.800032, -0.412191, -2.13223)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Rig/Shotgun/Ammo:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Rig/Shotgun/Ammo:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0135333, 0.0660403, -0.0831971)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Rig/Shotgun/Ammo:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.120094, -1.63647, 2.75661)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Rig/Shotgun/Ammo:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00400001, 0.00400001, 0.00400001)]
+}
+tracks/15/type = "method"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath(".")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_tu5m6"]
+resource_name = "reload_continuous_end"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.68302, 1, 2.82843, 1),
+"update": 0,
+"values": [Vector3(-0.0167688, -0.04708, -0.101929), Vector3(-0.000578736, -0.0784381, -0.0421929), Vector3(0.00727202, -0.0114518, -0.0266712), Vector3(0.00753302, -0.0184087, -0.0136634)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.68302, 1, 2.82843, 1),
+"update": 0,
+"values": [Vector3(0.0894336, 2.78225, 0.129356), Vector3(-0.212691, 2.03175, 0.359666), Vector3(-0.0677885, 2.1237, 0.208881), Vector3(0.161675, 1.6533, 0.033066)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/Shotgun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1.8025, 2.82843, 0.34151),
+"update": 0,
+"values": [Vector3(0, 0.0662329, 0), Vector3(0, 0, 0), Vector3(-7.34893e-10, -0.0168124, -4.16334e-17), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/Shotgun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1.8025, 2.82843, 0.34151),
+"update": 0,
+"values": [Vector3(-1.09307, -0.27337, -1.31485), Vector3(-1.5708, -1.5708, 0), Vector3(-1.35438, -3.83972, 2.24624), Vector3(-1.5708, -1.5708, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/Shotgun/Shotgun-Detach:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.30385e-10, 0.0902296, 0.00478581), Vector3(1.30385e-10, 0.0902296, 0.00478581)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rig/Shotgun/RHandTarget:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1),
+"update": 0,
+"values": [Vector3(-0.0132962, -0.0460034, -0.0132669), Vector3(-0.0132962, -0.0460034, -0.0132669)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rig/Shotgun/RHandTarget:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1),
+"update": 0,
+"values": [Vector3(-0.0215915, 2.96366, -0.00681809), Vector3(-0.0215915, 2.96366, -0.00681809)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rig/Arms/LForearmIKTarget:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1, 2.82843, 1),
+"update": 0,
+"values": [Vector3(0.183133, -0.458425, -0.214745), Vector3(0.214141, -0.406639, -0.14166), Vector3(0.24913, -0.369017, -0.103766), Vector3(0.284119, -0.303066, -0.0658725)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rig/Arms/LForearmIKTarget:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1, 2.82843, 1),
+"update": 0,
+"values": [Vector3(0.498302, 0.52878, -0.132784), Vector3(0.635185, 0.25659, -0.573596), Vector3(0.520763, 0.0128162, -1.00176), Vector3(0.355406, -0.0632293, -1.08581)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rig/Arms/LUpperarmTarget:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1),
+"update": 0,
+"values": [Vector3(-0.0934792, -0.654031, -0.381892), Vector3(0.000297248, -0.407556, -0.169296)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Rig/Arms/LUpperarmTarget:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.329877, 1),
+"update": 0,
+"values": [Vector3(0.674241, -0.391475, -2.0938), Vector3(0.296871, -0.329328, -1.97851)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Rig/Shotgun/Ammo:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2.82843),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Rig/Shotgun/Ammo:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.000636495, 0.0267504, -0.0019458), Vector3(0.00299614, 0.0264835, 0.00166681)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Rig/Shotgun/Ammo:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0677462, -1.0864, 3.13214), Vector3(0.0677461, -1.0864, 3.13214)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Rig/Shotgun/Ammo:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00400001, 0.00400001, 0.00400001)]
+}
+tracks/15/type = "method"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath(".")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_040he"]
+resource_name = "reload_continuous_start"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(-0.0167688, -0.04708, -0.101929), Vector3(-0.0167688, -0.04708, -0.101929)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/Shotgun/Shotgun-Detach/LHandTarget:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(0.0894336, 2.78225, 0.129356), Vector3(0.0894336, 2.78225, 0.129356)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Rig/Shotgun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0662329, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rig/Shotgun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(-1.5708, -1.5708, 0), Vector3(-1.09307, -0.27337, -1.31485)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rig/Shotgun/Shotgun-Detach:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 0,
+"values": [Vector3(1.30385e-10, 0.0902296, 0.00478581)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Rig/Shotgun/RHandTarget:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0132962, -0.0460034, -0.0132669)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Rig/Shotgun/RHandTarget:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0215915, 2.96366, -0.00681809)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Rig/Arms/LForearmIKTarget:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(0.154305, -0.680631, -0.307095), Vector3(0.154305, -0.680631, -0.307095)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Rig/Arms/LForearmIKTarget:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(0.873739, -0.0404391, -1.04761), Vector3(0.873739, -0.0404391, -1.04761)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Rig/Arms/LUpperarmTarget:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(-0.124738, -0.73619, -0.452758), Vector3(-0.124738, -0.73619, -0.452758)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Rig/Arms/LUpperarmTarget:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(0.800032, -0.412191, -2.13223), Vector3(0.800032, -0.412191, -2.13223)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Rig/Shotgun/Ammo:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.68302),
+"update": 1,
+"values": [true]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Rig/Shotgun/Ammo:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(-0.015155, 0.0687371, -0.0837236), Vector3(-0.0135333, 0.0660403, -0.0831971)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Rig/Shotgun/Ammo:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector3(-0.121713, -1.02022, 2.72043), Vector3(-0.120094, -1.63647, 2.75661)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Rig/Shotgun/Ammo:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00400001, 0.00400001, 0.00400001)]
+}
+tracks/15/type = "method"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath(".")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_pgvat"]
 resource_name = "shoot"
@@ -2865,6 +3697,10 @@ _data = {
 "push": SubResource("Animation_2yjhh"),
 "push_1_hand": SubResource("Animation_j3h0m"),
 "reload": SubResource("Animation_hrnxh"),
+"reload_continous": SubResource("Animation_ypm0c"),
+"reload_continous_staging": SubResource("Animation_sl3dp"),
+"reload_continuous_end": SubResource("Animation_tu5m6"),
+"reload_continuous_start": SubResource("Animation_040he"),
 "shoot": SubResource("Animation_pgvat"),
 "shoot_1_hand": SubResource("Animation_fkik0"),
 "show_ammo": SubResource("Animation_fa1i5"),
@@ -2898,6 +3734,18 @@ animation = &"push_1_hand"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sg7ov"]
 animation = &"reload"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ho6y7"]
+animation = &"reload_continous"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_at6ok"]
+animation = &"reload_continous_staging"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5b5ru"]
+animation = &"reload_continuous_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8ic0"]
+animation = &"reload_continuous_start"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j0q52"]
 animation = &"shoot"
@@ -3028,6 +3876,26 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_54hf5"]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uk2k2"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1l2ww"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_elrpg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_06p4a"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awv0c"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jlxv7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yjy26"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fnbda"]
 states/1h_to_2h/node = SubResource("AnimationNodeAnimation_ude87")
 states/1h_to_2h/position = Vector2(400, 167)
@@ -3039,7 +3907,7 @@ states/cancel_ammo_change/position = Vector2(588, 216)
 states/hide_ammo/node = SubResource("AnimationNodeAnimation_4yo8i")
 states/hide_ammo/position = Vector2(841, 189)
 states/idle/node = SubResource("AnimationNodeAnimation_i6qlu")
-states/idle/position = Vector2(310, -19)
+states/idle/position = Vector2(310, -20)
 states/idle_1_hand/node = SubResource("AnimationNodeAnimation_pw6r6")
 states/idle_1_hand/position = Vector2(298, 338)
 states/push/node = SubResource("AnimationNodeAnimation_60ayy")
@@ -3047,7 +3915,15 @@ states/push/position = Vector2(564, -37)
 states/push_1_hand/node = SubResource("AnimationNodeAnimation_3bcji")
 states/push_1_hand/position = Vector2(452, 411)
 states/reload/node = SubResource("AnimationNodeAnimation_sg7ov")
-states/reload/position = Vector2(565, 39)
+states/reload/position = Vector2(564, 39)
+states/reload_continous/node = SubResource("AnimationNodeAnimation_ho6y7")
+states/reload_continous/position = Vector2(131, -233)
+states/reload_continous_staging/node = SubResource("AnimationNodeAnimation_at6ok")
+states/reload_continous_staging/position = Vector2(96, -171)
+states/reload_continuous_end/node = SubResource("AnimationNodeAnimation_5b5ru")
+states/reload_continuous_end/position = Vector2(372, -192)
+states/reload_continuous_start/node = SubResource("AnimationNodeAnimation_y8ic0")
+states/reload_continuous_start/position = Vector2(151, -94)
 states/shoot/node = SubResource("AnimationNodeAnimation_j0q52")
 states/shoot/position = Vector2(560, -101)
 states/shoot_1_hand/node = SubResource("AnimationNodeAnimation_853r8")
@@ -3058,8 +3934,8 @@ states/switch_ammo_pocket/node = SubResource("AnimationNodeAnimation_5au88")
 states/switch_ammo_pocket/position = Vector2(694, 306)
 states/switch_ammo_retrieve/node = SubResource("AnimationNodeAnimation_2plsx")
 states/switch_ammo_retrieve/position = Vector2(919, 306)
-transitions = ["idle", "push", SubResource("AnimationNodeStateMachineTransition_nvr6w"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_ibk1e"), "idle", "reload", SubResource("AnimationNodeStateMachineTransition_eyc8o"), "reload", "push", SubResource("AnimationNodeStateMachineTransition_k0mts"), "reload", "shoot", SubResource("AnimationNodeStateMachineTransition_0jumu"), "shoot", "push", SubResource("AnimationNodeStateMachineTransition_df3j5"), "shoot", "End", SubResource("AnimationNodeStateMachineTransition_h8l4e"), "push", "End", SubResource("AnimationNodeStateMachineTransition_goxkv"), "reload", "End", SubResource("AnimationNodeStateMachineTransition_r1uwp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_pvc2j"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_oae8j"), "reload", "idle", SubResource("AnimationNodeStateMachineTransition_paicr"), "idle_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_xqd25"), "idle_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_msiin"), "shoot_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_y8i0l"), "push_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_re6hl"), "shoot_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_p7oo1"), "push_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_lun5w"), "push", "idle", SubResource("AnimationNodeStateMachineTransition_yxujk"), "idle_1_hand", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_kddnh"), "idle", "2h_to_1h", SubResource("AnimationNodeStateMachineTransition_xxpro"), "1h_to_2h", "idle", SubResource("AnimationNodeStateMachineTransition_jfv8s"), "2h_to_1h", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_yrko6"), "show_ammo", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_at1lf"), "hide_ammo", "show_ammo", SubResource("AnimationNodeStateMachineTransition_egfnj"), "idle", "show_ammo", SubResource("AnimationNodeStateMachineTransition_81fwp"), "hide_ammo", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_xmgus"), "1h_to_2h", "reload", SubResource("AnimationNodeStateMachineTransition_illoy"), "idle_1_hand", "show_ammo", SubResource("AnimationNodeStateMachineTransition_m06ik"), "hide_ammo", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_2ow8q"), "show_ammo", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_hq3de"), "switch_ammo_retrieve", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_gitva"), "switch_ammo_retrieve", "reload", SubResource("AnimationNodeStateMachineTransition_jnqft"), "switch_ammo_retrieve", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_qcsjg"), "show_ammo", "reload", SubResource("AnimationNodeStateMachineTransition_yewlg"), "switch_ammo_pocket", "switch_ammo_retrieve", SubResource("AnimationNodeStateMachineTransition_87520"), "cancel_ammo_change", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_nuaws"), "switch_ammo_pocket", "cancel_ammo_change", SubResource("AnimationNodeStateMachineTransition_54hf5")]
-graph_offset = Vector2(38, 5)
+transitions = ["idle", "push", SubResource("AnimationNodeStateMachineTransition_nvr6w"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_ibk1e"), "idle", "reload", SubResource("AnimationNodeStateMachineTransition_eyc8o"), "reload", "push", SubResource("AnimationNodeStateMachineTransition_k0mts"), "reload", "shoot", SubResource("AnimationNodeStateMachineTransition_0jumu"), "shoot", "push", SubResource("AnimationNodeStateMachineTransition_df3j5"), "shoot", "End", SubResource("AnimationNodeStateMachineTransition_h8l4e"), "push", "End", SubResource("AnimationNodeStateMachineTransition_goxkv"), "reload", "End", SubResource("AnimationNodeStateMachineTransition_r1uwp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_pvc2j"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_oae8j"), "reload", "idle", SubResource("AnimationNodeStateMachineTransition_paicr"), "idle_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_xqd25"), "idle_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_msiin"), "shoot_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_y8i0l"), "push_1_hand", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_re6hl"), "shoot_1_hand", "push_1_hand", SubResource("AnimationNodeStateMachineTransition_p7oo1"), "push_1_hand", "shoot_1_hand", SubResource("AnimationNodeStateMachineTransition_lun5w"), "push", "idle", SubResource("AnimationNodeStateMachineTransition_yxujk"), "idle_1_hand", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_kddnh"), "idle", "2h_to_1h", SubResource("AnimationNodeStateMachineTransition_xxpro"), "1h_to_2h", "idle", SubResource("AnimationNodeStateMachineTransition_jfv8s"), "2h_to_1h", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_yrko6"), "show_ammo", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_at1lf"), "hide_ammo", "show_ammo", SubResource("AnimationNodeStateMachineTransition_egfnj"), "idle", "show_ammo", SubResource("AnimationNodeStateMachineTransition_81fwp"), "hide_ammo", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_xmgus"), "1h_to_2h", "reload", SubResource("AnimationNodeStateMachineTransition_illoy"), "idle_1_hand", "show_ammo", SubResource("AnimationNodeStateMachineTransition_m06ik"), "hide_ammo", "idle_1_hand", SubResource("AnimationNodeStateMachineTransition_2ow8q"), "show_ammo", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_hq3de"), "switch_ammo_retrieve", "hide_ammo", SubResource("AnimationNodeStateMachineTransition_gitva"), "switch_ammo_retrieve", "reload", SubResource("AnimationNodeStateMachineTransition_jnqft"), "switch_ammo_retrieve", "switch_ammo_pocket", SubResource("AnimationNodeStateMachineTransition_qcsjg"), "show_ammo", "reload", SubResource("AnimationNodeStateMachineTransition_yewlg"), "switch_ammo_pocket", "switch_ammo_retrieve", SubResource("AnimationNodeStateMachineTransition_87520"), "cancel_ammo_change", "1h_to_2h", SubResource("AnimationNodeStateMachineTransition_nuaws"), "switch_ammo_pocket", "cancel_ammo_change", SubResource("AnimationNodeStateMachineTransition_54hf5"), "reload_continuous_start", "reload_continuous_end", SubResource("AnimationNodeStateMachineTransition_uk2k2"), "reload_continuous_end", "idle", SubResource("AnimationNodeStateMachineTransition_1l2ww"), "idle", "reload_continuous_start", SubResource("AnimationNodeStateMachineTransition_elrpg"), "reload_continuous_start", "reload_continous_staging", SubResource("AnimationNodeStateMachineTransition_06p4a"), "reload_continous", "reload_continous_staging", SubResource("AnimationNodeStateMachineTransition_awv0c"), "reload_continous_staging", "reload_continous", SubResource("AnimationNodeStateMachineTransition_jlxv7"), "reload_continous_staging", "reload_continuous_end", SubResource("AnimationNodeStateMachineTransition_yjy26")]
+graph_offset = Vector2(-189, -263)
 
 [sub_resource type="ArrayMesh" id="1"]
 resource_name = "Cube.011"
@@ -3131,6 +4007,21 @@ target_position = Vector3(100, 0, 0)
 collision_mask = 3
 
 [node name="RayCast3D9" type="RayCast3D" parent="Rays"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
+target_position = Vector3(100, 0, 0)
+collision_mask = 3
+
+[node name="RayCast3D10" type="RayCast3D" parent="Rays"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
+target_position = Vector3(100, 0, 0)
+collision_mask = 3
+
+[node name="RayCast3D11" type="RayCast3D" parent="Rays"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
+target_position = Vector3(100, 0, 0)
+collision_mask = 3
+
+[node name="RayCast3D12" type="RayCast3D" parent="Rays"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0971634)
 target_position = Vector3(100, 0, 0)
 collision_mask = 3

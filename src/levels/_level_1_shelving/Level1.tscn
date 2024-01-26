@@ -3429,20 +3429,11 @@ transform = Transform3D(0.000785574, 0, -1, 0, 1, 0, 1, 0, 0.000785574, 19.6396,
 [node name="MeshInstance3D" parent="Player" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Shotgun" parent="Player/CameraController/Camera3D/Shotgun/Rig" index="0"]
-transform = Transform3D(-1.81003e-05, 5.00009, 1.81001e-05, 0, -1.81003e-05, 5.00004, 5.00011, 1.81003e-05, 6.55222e-11, 0, 0, 0)
-
 [node name="LHandTarget" parent="Player/CameraController/Camera3D/Shotgun/Rig/Shotgun/Shotgun-Detach" index="0"]
 transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
 
-[node name="RHandTarget" parent="Player/CameraController/Camera3D/Shotgun/Rig/Shotgun" index="1"]
-transform = Transform3D(-0.196833, -0.00210631, 0.0353909, -0.00136329, 0.199948, 0.00431798, -0.0354273, 0.00400833, -0.196797, -0.0132962, -0.0460034, -0.0132669)
-
 [node name="LForearmIKTarget" parent="Player/CameraController/Camera3D/Shotgun/Rig/Arms" index="1"]
 transform = Transform3D(0.484721, 0.872672, -0.0592391, -0.829401, 0.437066, -0.347976, -0.277773, 0.217801, 0.935644, 0.284119, -0.303066, -0.0658725)
-
-[node name="LUpperarmTarget" parent="Player/CameraController/Camera3D/Shotgun/Rig/Arms" index="2"]
-transform = Transform3D(-0.288354, 0.906216, -0.309263, -0.877879, -0.37917, -0.292532, -0.382357, 0.187141, 0.904876, 0.000297248, -0.407556, -0.169296)
 
 [node name="Boxes" type="Node3D" parent="."]
 
@@ -3516,16 +3507,21 @@ omni_range = 100.0
 [node name="Pickups" type="Node3D" parent="."]
 
 [node name="AmmoPickup4" parent="Pickups" instance=ExtResource("11_r45m5")]
-transform = Transform3D(0.711333, 0, 0.702855, 0, 1, 0, -0.702855, 0, 0.711333, 56.9831, 2.5, 38.6746)
+transform = Transform3D(-0.986695, 0, 0.162581, 0, 1, 0, -0.162581, 0, -0.986695, 56.9831, 2.5, 38.6746)
 ammo_amount = 10
 
 [node name="AmmoPickup5" parent="Pickups" instance=ExtResource("11_r45m5")]
-transform = Transform3D(0.319217, 0, -0.947682, 0, 1, 0, 0.947682, 0, 0.319217, 56.9831, 2.5, 8.4746)
+transform = Transform3D(0.674488, 0, 0.738285, 0, 1, 0, -0.738285, 0, 0.674488, 56.9831, 2.5, 8.4746)
 ammo_amount = 10
 ammo_type = 1
 
+[node name="AmmoPickup7" parent="Pickups" instance=ExtResource("11_r45m5")]
+transform = Transform3D(-0.975257, 0, -0.221069, 0, 1, 0, 0.221069, 0, -0.975257, 127.983, 4.4, 71.4746)
+ammo_amount = 20
+ammo_type = 1
+
 [node name="AmmoPickup6" parent="Pickups" instance=ExtResource("11_r45m5")]
-transform = Transform3D(0.963126, 0, 0.269049, 0, 1, 0, -0.269049, 0, 0.963126, 126.483, 16.4, 38.4846)
+transform = Transform3D(-0.65443, 0, 0.756122, 0, 1, 0, -0.756122, 0, -0.65443, 126.483, 16.4, 38.4846)
 ammo_amount = 15
 ammo_type = 2
 
@@ -3574,10 +3570,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.5, 
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 72.4, 4.83333, 23.5)
 state = 1
 
-[node name="DoorTemp3" parent="Doors" node_paths=PackedStringArray("linked_depots", "linked_enemies") instance=ExtResource("13_ucjmi")]
+[node name="DoorTemp3" parent="Doors" node_paths=PackedStringArray("linked_depots") instance=ExtResource("13_ucjmi")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 120.4, 4.83333, 23.5)
 linked_depots = [NodePath("../../Depots/BoxDepot6")]
-linked_enemies = [NodePath("../../Enemies/ShelfEnemy"), NodePath("../../Enemies/ShelfEnemy2"), NodePath("../../Enemies/ShelfEnemy3"), NodePath("../../Enemies/ShelfEnemy4")]
 
 [node name="DoorTemp4" parent="Doors" node_paths=PackedStringArray("linked_depots", "linked_enemies") instance=ExtResource("13_ucjmi")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 154.4, 4.83333, 24.5)
