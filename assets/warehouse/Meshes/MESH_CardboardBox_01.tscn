@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" path="res://assets/warehouse/Materials/MAT_Cardboard_Boxes.tres" id="1"]
 
-[sub_resource type="ArrayMesh" id="1"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_gvaja"]
 resource_name = "Cube.011"
 _surfaces = [{
 "aabb": AABB(-1, -1, -1, 2, 2, 2.00001),
@@ -24,7 +24,7 @@ data = PackedVector3Array(-1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1
 [node name="MESH_CardboardBox_01" type="Node3D"]
 
 [node name="CardboardBox_01" type="MeshInstance3D" parent="."]
-mesh = SubResource("1")
+mesh = SubResource("ArrayMesh_gvaja")
 
 [node name="CardboardBox_01" type="StaticBody3D" parent="CardboardBox_01"]
 

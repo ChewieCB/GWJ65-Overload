@@ -1,6 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccjw386fyxb8n"]
+[gd_scene load_steps=88 format=3 uid="uid://ccjw386fyxb8n"]
 
 [ext_resource type="Texture2D" uid="uid://suwhxvbhehba" path="res://assets/forklift/Texture/Forklift.png" id="1_rsyf5"]
+[ext_resource type="Script" path="res://src/enemies/forklift/forklift_enemy.gd" id="1_sesgg"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_1q6jy"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_c0yuo"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_cfxo0"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_p0si6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cwbkp"]
+size = Vector3(6.2, 7.4, 8.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36y32"]
 resource_name = "lambert2"
@@ -278,35 +286,1683 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3vncp")
 
-[node name="Forklift" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_8xrmp"]
+radius = 35.0
 
-[node name="Forklift" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, -0.00032316, 0.000200782, 0.000323295, 1, -0.000667046, -0.000200564, 0.000667111, 1, 0, 0, 0)
+[sub_resource type="BoxShape3D" id="BoxShape3D_tpcuw"]
+size = Vector3(6, 8, 74)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3hwa"]
+size = Vector3(8, 7.5, 13.316)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ek5hp"]
+transparency = 1
+albedo_color = Color(0.639216, 0.00784314, 0.00784314, 0.313726)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kelyv"]
+material = SubResource("StandardMaterial3D_ek5hp")
+size = Vector3(8, 7.5, 13.316)
+
+[sub_resource type="Animation" id="Animation_4qeaj"]
+resource_name = "charge_release"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1.1487, 0.378929, 1),
+"update": 0,
+"values": [Vector3(0, 0.759, -0.033), Vector3(5.58851e-05, 0.928731, -0.0348002), Vector3(6.51993e-05, 0.193422, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(0.406126, 1.1487, 1),
+"update": 0,
+"values": [Vector3(-0.364299, 0.000299806, 0.000150615), Vector3(0.333484, 0.000402221, 0.000148936), Vector3(0.1113, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.406126),
+"update": 0,
+"values": [Vector3(0, 5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 0.34151, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 0.34151, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(12.5664, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(12.5664, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshPivot/Forklift/Lift:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_charge"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5mfpi"]
+resource_name = "charge_up"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1.7411, 0.594604, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.758687, 0), Vector3(0, 0.758687, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.6),
+"transitions": PackedFloat32Array(1.7411, 0.594604, 1, 0.406126),
+"update": 0,
+"values": [Vector3(0.000667046, 0.00020078, 0.000323295), Vector3(0.272328, 0.000290849, 0.000335665), Vector3(-0.364299, 0.000299806, 0.000150615), Vector3(-0.364299, 0.000299806, 0.000150615)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1.7411, 0.594604, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 5, 0), Vector3(0, 5, 0), Vector3(-1.45519e-11, 1.01744, 3.27826e-07), Vector3(0, 5, 0), Vector3(-1.45519e-11, 1.01744, 3.27826e-07), Vector3(0, 5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12), Vector3(25.1327, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12), Vector3(25.1327, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshPivot/Forklift/Lift:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1.7411, 0.594604, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0903382, 2.44666e-05, -2.64295e-05), Vector3(2.98023e-08, -2.91038e-11, -2.91038e-11)]
+}
+
+[sub_resource type="Animation" id="Animation_7xa4b"]
+resource_name = "charging"
+length = 0.6
+loop_mode = 1
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5, 0.525, 0.55, 0.575, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003), Vector3(6.51993e-05, 0.143203, -0.0406003), Vector3(6.51993e-05, 0.268948, -0.0406003)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5, 0.525, 0.55, 0.575, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, -0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, -0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, -0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, -0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, -0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, 0.0174533), Vector3(0.111701, 0, -0.0174533), Vector3(0.111701, 0, 0.0174533)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(25.1327, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(25.1327, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(25.1327, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(25.1327, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshPivot/Forklift/Lift:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_mvrd2"]
+resource_name = "crash"
+length = 0.2
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.51993e-05, 0.179119, -0.597156), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0629392, -3.46264e-10, 0.0174533), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.075),
+"transitions": PackedFloat32Array(0.277392, 1),
+"update": 0,
+"values": [Vector3(0, 5, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshPivot/Forklift/Lift:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_5dnhc"]
+resource_name = "die"
+length = 0.6
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.225),
+"transitions": PackedFloat32Array(1.7411, 0.574349, 1.46409, 0.574349, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.455677, 0), Vector3(0, -0.199148, 0), Vector3(0, -0.521561, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.225),
+"transitions": PackedFloat32Array(1.7411, 0.574349, 1.46409, 0.574349, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.158759, 0.0037569, 0.0807183), Vector3(0.158825, -0.00698132, 0), Vector3(0.0149034, 0.0162668, -0.158688), Vector3(0.015708, 0.015708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.225, 0.6),
+"transitions": PackedFloat32Array(1, 0.482968, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 30, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.5708)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -1.5708)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, -1.5708)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.225),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 1.5708)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshPivot/Forklift/Lift:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MeshPivot/Forklift/Lift:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_np2pw"]
+resource_name = "driving"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.198101, 0), Vector3(0, 0, 0), Vector3(0, -0.198101, 0), Vector3(0, 0, 0), Vector3(0, -0.198101, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.000667046, 0.00020078, 0.000323295)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12), Vector3(9.42478, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12), Vector3(9.42478, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12), Vector3(9.42478, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12), Vector3(9.42478, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iw41o"]
+resource_name = "hit"
+length = 0.35
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3, 0.325, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.428825, 0), Vector3(0, 0, 0), Vector3(0, -0.325527, 0), Vector3(0, 0, 0), Vector3(0, 0.428825, 0), Vector3(0, 0, 0), Vector3(0, -0.325527, 0), Vector3(0, 0, 0), Vector3(0, 0.428825, 0), Vector3(0, 0, 0), Vector3(0, -0.325527, 0), Vector3(0, 0, 0), Vector3(0, 0.428825, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.1, 0.15, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0721519, -1.36545e-09, 0.123814), Vector3(0, 0, 0), Vector3(-0.151337, -2.3452e-09, -0.153903), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/Lift:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_k2g40"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.000667046, 0.00020078, 0.000323295)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MeshPivot/Forklift/Lift:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3iyi8"]
+resource_name = "lower_lift"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.000667046, 0.00020078, 0.000323295)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.287175, 1),
+"update": 0,
+"values": [Vector3(0, 5, 0), Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_tg40q"]
+resource_name = "raise_lift"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.000667046, 0.00020078, 0.000323295)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1.7411, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 5, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12)]
+}
+
+[sub_resource type="Animation" id="Animation_7h45p"]
+resource_name = "u_turn"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.022314, 0.000350276, 0.234678)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12), Vector3(12.5664, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12), Vector3(12.5664, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fg05c"]
+resource_name = "u_turn_end"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(2.14355, 1),
+"update": 0,
+"values": [Vector3(0, 0.589091, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(2.14355, 1),
+"update": 0,
+"values": [Vector3(-0.022314, 0.000350276, 0.234678), Vector3(0.000667046, 0.00020078, 0.000323295)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12), Vector3(6.28319, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(3.03143),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1.93187, 1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12), Vector3(6.28319, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r0gcm"]
+resource_name = "u_turn_start"
+length = 0.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot/Forklift:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.225, 0.25, 0.275, 0.3),
+"transitions": PackedFloat32Array(1.31951, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0), Vector3(0, 0.801224, 0), Vector3(0, 0.589091, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot/Forklift:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1.31951, 1),
+"update": 0,
+"values": [Vector3(0.000667046, 0.00020078, 0.000323295), Vector3(-0.022314, 0.000350276, 0.234678)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshPivot/Forklift/Lift:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshPivot/Forklift/WheelRFrontPivot:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -4.25147e-32, -8.05755e-12), Vector3(12.5664, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshPivot/Forklift/WheelLFrontPivot:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.02327e-32, -8.05755e-12)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshPivot/Forklift/WheelLBackPivot:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0785e-32, -8.05755e-12)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MeshPivot/Forklift/WheelRBackPivot:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.55088e-32, -8.05755e-12), Vector3(12.5664, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7u8wg"]
+_data = {
+"charge_release": SubResource("Animation_4qeaj"),
+"charge_up": SubResource("Animation_5mfpi"),
+"charging": SubResource("Animation_7xa4b"),
+"crash": SubResource("Animation_mvrd2"),
+"die": SubResource("Animation_5dnhc"),
+"driving": SubResource("Animation_np2pw"),
+"hit": SubResource("Animation_iw41o"),
+"idle": SubResource("Animation_k2g40"),
+"lower_lift": SubResource("Animation_3iyi8"),
+"raise_lift": SubResource("Animation_tg40q"),
+"u_turn": SubResource("Animation_7h45p"),
+"u_turn_end": SubResource("Animation_fg05c"),
+"u_turn_start": SubResource("Animation_r0gcm")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2epnw"]
+animation = &"charge_release"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t1apd"]
+animation = &"charge_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mq8h2"]
+animation = &"charging"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c34vo"]
+animation = &"crash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rfscu"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ctqy"]
+animation = &"driving"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l8poj"]
+animation = &"hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8ias"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j7nnq"]
+animation = &"lower_lift"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oygkq"]
+animation = &"raise_lift"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xklp0"]
+animation = &"u_turn"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0pvrc"]
+animation = &"u_turn_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f0kmb"]
+animation = &"u_turn_start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_507kx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qyt8m"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0pjrb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jr6q2"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g27wc"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ryole"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xysj6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c2mpl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d6ouj"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kbixp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fk1r8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xg3on"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k4et1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_157fn"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4i8fl"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kwe3h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0nya"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5rcb0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ei8o"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vk6bn"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_65gji"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rx7uo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_udv3h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f6yin"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_em785"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_utq2h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sl2jl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0pj31"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tpum4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ci0n5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4o7lt"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hro35"]
+states/End/position = Vector2(1036, 100)
+states/charge_release/node = SubResource("AnimationNodeAnimation_2epnw")
+states/charge_release/position = Vector2(568, 256)
+states/charge_up/node = SubResource("AnimationNodeAnimation_t1apd")
+states/charge_up/position = Vector2(568, 173)
+states/charging/node = SubResource("AnimationNodeAnimation_mq8h2")
+states/charging/position = Vector2(727, 256)
+states/crash/node = SubResource("AnimationNodeAnimation_c34vo")
+states/crash/position = Vector2(727, 94)
+states/die/node = SubResource("AnimationNodeAnimation_rfscu")
+states/die/position = Vector2(945, 117)
+states/driving/node = SubResource("AnimationNodeAnimation_5ctqy")
+states/driving/position = Vector2(568, 94)
+states/hit/node = SubResource("AnimationNodeAnimation_l8poj")
+states/hit/position = Vector2(838, 186)
+states/idle/node = SubResource("AnimationNodeAnimation_y8ias")
+states/idle/position = Vector2(296, 100)
+states/lower_lift/node = SubResource("AnimationNodeAnimation_j7nnq")
+states/lower_lift/position = Vector2(426, 156)
+states/raise_lift/node = SubResource("AnimationNodeAnimation_oygkq")
+states/raise_lift/position = Vector2(426, 94)
+states/u_turn/node = SubResource("AnimationNodeAnimation_xklp0")
+states/u_turn/position = Vector2(693, -5)
+states/u_turn_end/node = SubResource("AnimationNodeAnimation_0pvrc")
+states/u_turn_end/position = Vector2(831, -5)
+states/u_turn_start/node = SubResource("AnimationNodeAnimation_f0kmb")
+states/u_turn_start/position = Vector2(563, -5)
+transitions = ["driving", "charge_up", SubResource("AnimationNodeStateMachineTransition_507kx"), "charging", "crash", SubResource("AnimationNodeStateMachineTransition_qyt8m"), "driving", "crash", SubResource("AnimationNodeStateMachineTransition_0pjrb"), "crash", "driving", SubResource("AnimationNodeStateMachineTransition_jr6q2"), "charge_up", "charge_release", SubResource("AnimationNodeStateMachineTransition_g27wc"), "charge_release", "charging", SubResource("AnimationNodeStateMachineTransition_ryole"), "charging", "driving", SubResource("AnimationNodeStateMachineTransition_xysj6"), "idle", "raise_lift", SubResource("AnimationNodeStateMachineTransition_c2mpl"), "raise_lift", "driving", SubResource("AnimationNodeStateMachineTransition_d6ouj"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_kbixp"), "crash", "idle", SubResource("AnimationNodeStateMachineTransition_fk1r8"), "idle", "lower_lift", SubResource("AnimationNodeStateMachineTransition_xg3on"), "lower_lift", "idle", SubResource("AnimationNodeStateMachineTransition_k4et1"), "lower_lift", "raise_lift", SubResource("AnimationNodeStateMachineTransition_157fn"), "raise_lift", "lower_lift", SubResource("AnimationNodeStateMachineTransition_4i8fl"), "driving", "lower_lift", SubResource("AnimationNodeStateMachineTransition_kwe3h"), "u_turn_start", "u_turn", SubResource("AnimationNodeStateMachineTransition_a0nya"), "u_turn", "u_turn_end", SubResource("AnimationNodeStateMachineTransition_5rcb0"), "idle", "u_turn_start", SubResource("AnimationNodeStateMachineTransition_6ei8o"), "u_turn_end", "idle", SubResource("AnimationNodeStateMachineTransition_vk6bn"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_65gji"), "charging", "hit", SubResource("AnimationNodeStateMachineTransition_rx7uo"), "driving", "hit", SubResource("AnimationNodeStateMachineTransition_udv3h"), "charge_up", "hit", SubResource("AnimationNodeStateMachineTransition_f6yin"), "charge_release", "hit", SubResource("AnimationNodeStateMachineTransition_em785"), "u_turn_start", "hit", SubResource("AnimationNodeStateMachineTransition_utq2h"), "u_turn", "hit", SubResource("AnimationNodeStateMachineTransition_sl2jl"), "u_turn_end", "hit", SubResource("AnimationNodeStateMachineTransition_0pj31"), "raise_lift", "hit", SubResource("AnimationNodeStateMachineTransition_tpum4"), "lower_lift", "hit", SubResource("AnimationNodeStateMachineTransition_ci0n5"), "hit", "die", SubResource("AnimationNodeStateMachineTransition_4o7lt")]
+graph_offset = Vector2(152, -65)
+
+[node name="ForkliftEnemy" type="CharacterBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_sesgg")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0406696, 0.9, 0.35)
+shape = SubResource("BoxShape3D_cwbkp")
+
+[node name="MeshPivot" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Forklift" type="MeshInstance3D" parent="MeshPivot"]
+transform = Transform3D(1, -0.000323161, 0.00020078, 0.000323295, 1, -0.000667046, -0.000200564, 0.000667111, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_wu8ip")
 skeleton = NodePath("")
 
-[node name="Wheel_R_Front" type="MeshInstance3D" parent="Forklift"]
+[node name="WheelRFrontPivot" type="Node3D" parent="MeshPivot/Forklift"]
+transform = Transform3D(1, 8.05755e-12, -4.25147e-32, -8.05755e-12, 1, 0, 4.25147e-32, 3.41917e-43, 1, -3, -1.7, 3.3)
+
+[node name="Wheel_R_Front" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelRFrontPivot"]
+transform = Transform3D(1, -1.00044e-11, -4.22006e-10, -8.05755e-12, 1, 0, 0, 0, 1, 3, 1.7, -3.3)
 mesh = SubResource("ArrayMesh_nmwcx")
 skeleton = NodePath("")
 
-[node name="Wheel_L_Front" type="MeshInstance3D" parent="Forklift"]
+[node name="WheelLFrontPivot" type="Node3D" parent="MeshPivot/Forklift"]
+transform = Transform3D(1, 8.05754e-12, -3.02327e-32, -8.05755e-12, 0.999999, 0, 3.02327e-32, 2.43826e-43, 0.999999, 3, -1.75105, 3.33744)
+
+[node name="Wheel_L_Front" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelLFrontPivot"]
+transform = Transform3D(1, -9.97602e-12, -3.49246e-10, -8.05755e-12, 1, 0, 0, 0, 1, -3, 1.75105, -3.33744)
 mesh = SubResource("ArrayMesh_45vmj")
 skeleton = NodePath("")
 
-[node name="Wheel_L_Back" type="MeshInstance3D" parent="Forklift"]
+[node name="WheelLBackPivot" type="Node3D" parent="MeshPivot/Forklift"]
+transform = Transform3D(1, 8.05754e-12, -2.0785e-32, -8.05755e-12, 0.999999, 0, 2.0785e-32, 1.68156e-43, 1, 2.2, -1.81702, -2.66596)
+
+[node name="Wheel_L_Back" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelLBackPivot"]
+transform = Transform3D(1, -9.87654e-12, -2.32831e-10, -8.05755e-12, 1, 0, 0, 0, 1, -2.2, 1.81702, 2.66596)
 mesh = SubResource("ArrayMesh_12gfu")
 skeleton = NodePath("")
 
-[node name="Wheel_R_Back" type="MeshInstance3D" parent="Forklift"]
+[node name="WheelRBackPivot" type="Node3D" parent="MeshPivot/Forklift"]
+transform = Transform3D(1, 8.05754e-12, -2.55088e-32, -8.05755e-12, 0.999999, 0, 2.55088e-32, 2.05991e-43, 0.999999, -2.2, -1.82251, -2.66997)
+
+[node name="Wheel_R_Back" type="MeshInstance3D" parent="MeshPivot/Forklift/WheelRBackPivot"]
+transform = Transform3D(1, -9.9476e-12, -3.34694e-10, -8.05755e-12, 1, 0, 0, 0, 1, 2.2, 1.82251, 2.66997)
 mesh = SubResource("ArrayMesh_71p8n")
 skeleton = NodePath("")
 
-[node name="Lift" type="MeshInstance3D" parent="Forklift"]
+[node name="Lift" type="MeshInstance3D" parent="MeshPivot/Forklift"]
 mesh = SubResource("ArrayMesh_anipj")
 skeleton = NodePath("")
 
-[node name="Steering" type="VehicleWheel3D" parent="Forklift"]
+[node name="Steering" type="VehicleWheel3D" parent="MeshPivot/Forklift"]
+transform = Transform3D(1, -9.67759e-12, 1.01863e-10, -8.05755e-12, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Steering" type="MeshInstance3D" parent="Forklift/Steering"]
+[node name="Steering" type="MeshInstance3D" parent="MeshPivot/Forklift/Steering"]
 mesh = SubResource("ArrayMesh_mvltp")
 skeleton = NodePath("")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("SphereShape3D_8xrmp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 5.68434e-14, 0, 1, 0, -5.68434e-14, 0, 1, 4.54747e-13, 1.5, 41.25)
+shape = SubResource("BoxShape3D_tpcuw")
+
+[node name="CrashArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.75)
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrashArea"]
+shape = SubResource("BoxShape3D_o3hwa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CrashArea"]
+visible = false
+mesh = SubResource("BoxMesh_kelyv")
+
+[node name="UTurnRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91091e-05, 0.876651, -10.9406)
+target_position = Vector3(0, 0, 7)
+debug_shape_thickness = 5
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_1q6jy")
+track_in_editor = true
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("4_c0yuo")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="ToChaseBuildup" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../ChaseBuildup")
+event = &"player_seen"
+
+[node name="ToUTurn" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../UTurning")
+event = &"u_turn"
+
+[node name="ToReverse" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Reverse")
+event = &"reverse"
+
+[node name="ToHit" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Hit")
+event = &"hit"
+
+[node name="ChaseBuildup" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="ToChasing" type="Node" parent="StateChart/Root/ChaseBuildup"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Chasing")
+event = &"start_chase"
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/ChaseBuildup"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Idle")
+event = &"player_lost"
+
+[node name="ToHit" type="Node" parent="StateChart/Root/ChaseBuildup"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Hit")
+event = &"hit"
+
+[node name="Chasing" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="ToCrashing" type="Node" parent="StateChart/Root/Chasing"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Crashing")
+event = &"crash"
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Chasing"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Idle")
+event = &"charge_ended"
+
+[node name="ToHit" type="Node" parent="StateChart/Root/Chasing"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Hit")
+event = &"hit"
+
+[node name="Crashing" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Crashing"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Idle")
+event = &"crash_finished"
+
+[node name="UTurning" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/UTurning"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Idle")
+event = &"u_turn_complete"
+
+[node name="ToHit" type="Node" parent="StateChart/Root/UTurning"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Hit")
+event = &"hit"
+
+[node name="Reverse" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Reverse"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Idle")
+event = &"end_reverse"
+
+[node name="ToHit" type="Node" parent="StateChart/Root/Reverse"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Hit")
+event = &"hit"
+
+[node name="Hit" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Hit"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Idle")
+event = &"end_hit"
+
+[node name="ToChaseBuildup" type="Node" parent="StateChart/Root/Hit"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../ChaseBuildup")
+event = &"player_seen"
+
+[node name="ToDead" type="Node" parent="StateChart/Root/Hit"]
+script = ExtResource("6_p0si6")
+to = NodePath("../../Dead")
+event = &"death"
+
+[node name="Dead" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_cfxo0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7u8wg")
+}
+autoplay = "idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7u8wg")
+}
+tree_root = SubResource("AnimationNodeStateMachine_hro35")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="ChargeTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="CrashArea" to="." method="_on_crash_area_body_entered"]
+[connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/ChaseBuildup" to="." method="_on_chase_buildup_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/ChaseBuildup" to="." method="_on_chase_buildup_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Crashing" to="." method="_on_crashing_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Crashing" to="." method="_on_crashing_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Crashing" to="." method="_on_crashing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/UTurning" to="." method="_on_u_turning_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/UTurning" to="." method="_on_u_turning_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Reverse" to="." method="_on_reverse_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Reverse" to="." method="_on_reverse_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Reverse" to="." method="_on_reverse_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Hit" to="." method="_on_hit_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Dead" to="." method="_on_dead_state_entered"]

@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://ccfpxpswug3xp"]
+
+[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_4u2.tscn" id="1_6i511"]
+[ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_w22xs"]
+[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Frame_1u.tscn" id="2_ykdyt"]
+[ext_resource type="PackedScene" uid="uid://0ge3tvjfoo07" path="res://assets/warehouse/Meshes/MESH_Wall_Basic_1u_Green.tscn" id="3_m72ab"]
+[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Bay_Door_1u.tscn" id="4_3b358"]
+[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_1u.tscn" id="5_n37mv"]
+[ext_resource type="PackedScene" uid="uid://ccjw386fyxb8n" path="res://src/enemies/forklift/Forklift.tscn" id="6_khnjj"]
+[ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="8_xm3lm"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_usgu4"]
+[ext_resource type="PackedScene" uid="uid://c0dbasn84bjap" path="res://src/interactible/box_depot/BoxDepot.tscn" id="10_daa8j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2wv68"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_j7y77"]
+sky_material = SubResource("ProceduralSkyMaterial_2wv68")
+
+[sub_resource type="Environment" id="Environment_2n33l"]
+background_mode = 2
+sky = SubResource("Sky_j7y77")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_87knw"]
+size = Vector3(30.9399, 1, 39.3721)
+
+[node name="TestLevel" type="Node3D"]
+script = ExtResource("1_w22xs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2n33l")
+
+[node name="Geom" type="Node3D" parent="."]
+
+[node name="MESH_Floor_Basic_4u2" parent="Geom" instance=ExtResource("1_6i511")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
+
+[node name="MESH_Floor_Basic_4u3" parent="Geom" instance=ExtResource("1_6i511")]
+
+[node name="MESH_Bay_Frame_1u" parent="Geom" instance=ExtResource("2_ykdyt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.1, 0, -1)
+visible = false
+
+[node name="MESH_Wall_Basic_1u" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-4.37114e-08, 0, 1.6, 0, 2.079, 0, -1, 0, -6.99382e-08, -24, 0, 0)
+
+[node name="MESH_Wall_Basic_1u12" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-4.37114e-08, 0, 1.0368, 0, 1.0395, 0, -1, 0, -4.532e-08, -14, 10, 0)
+
+[node name="MESH_Wall_Basic_1u2" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-4.37114e-08, 0, 1.428, 0, 2.079, 0, -1, 0, -6.24199e-08, 0, 0, -1.90735e-06)
+
+[node name="MESH_Wall_Basic_1u3" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 2.079, 0, 8.74228e-08, 0, -1.428, 0, 0, -14)
+
+[node name="MESH_Wall_Basic_1u4" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 2.079, 0, 8.74228e-08, 0, -1.428, 0, 0, -28)
+
+[node name="MESH_Wall_Basic_1u5" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(-1, 0, -1.2484e-07, 0, 2.079, 0, 8.74228e-08, 0, -1.428, 0, 0, -42)
+
+[node name="MESH_Wall_Basic_1u6" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 2.079, 0, 1, 0, 1.8726e-07, -14, 0, -40)
+
+[node name="MESH_Wall_Basic_1u7" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 2.079, 0, 1, 0, 1.8726e-07, -28, 0, -40)
+
+[node name="MESH_Wall_Basic_1u8" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1.31134e-07, 0, -1.428, 0, 2.079, 0, 1, 0, 1.8726e-07, -42, 0, -40)
+
+[node name="MESH_Wall_Basic_1u9" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1, 0, 2.4968e-07, 0, 2.079, 0, -1.74846e-07, 0, 1.428, -40, 0, -26)
+
+[node name="MESH_Wall_Basic_1u10" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1, 0, 2.4968e-07, 0, 2.079, 0, -1.74846e-07, 0, 1.428, -40, 0, -12)
+
+[node name="MESH_Wall_Basic_1u11" parent="Geom" instance=ExtResource("3_m72ab")]
+transform = Transform3D(1, 0, 2.4968e-07, 0, 2.079, 0, -1.74846e-07, 0, 1.428, -40, 0, 2)
+
+[node name="MESH_Bay_Door_1u" parent="Geom" instance=ExtResource("4_3b358")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -24, 0, -4.76837e-07)
+
+[node name="MESH_Floor_Basic_1u" parent="Geom" instance=ExtResource("5_n37mv")]
+transform = Transform3D(1, 0, 0, 0, 0.999962, -0.00867418, 0, 0.00867418, 0.999962, 1, 5.78615, -21.0175)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="ForkliftEnemy" parent="Enemies" instance=ExtResource("6_khnjj")]
+transform = Transform3D(-0.0965791, 0, -0.388166, 0, 0.4, 0, 0.388166, 0, -0.0965791, -34.6889, 1.1, -32.3959)
+
+[node name="ForkliftEnemy2" parent="Enemies" instance=ExtResource("6_khnjj")]
+transform = Transform3D(0.286297, 0, -0.279346, 0, 0.4, 0, 0.279346, 0, 0.286297, -28.3491, 1.1, -12.0499)
+
+[node name="ForkliftEnemy3" parent="Enemies" instance=ExtResource("6_khnjj")]
+transform = Transform3D(0.396337, 0, 0.0540095, 0, 0.4, 0, -0.0540095, 0, 0.396337, -10.7385, 1.1, -6.43987)
+
+[node name="Player" parent="." instance=ExtResource("8_xm3lm")]
+transform = Transform3D(-0.707107, 0, 0.707106, 0, 1, 0, -0.707106, 0, -0.707107, -12.4339, 1, -28.3164)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.533399, 0.738816, -0.41187, -0.154542, 0.393606, 0.906196, 0.831626, 0.547015, -0.0957711, -41.2541, 35.8798, -1.33134)
+light_energy = 3.068
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="StateChartDebugger" parent="CanvasLayer" instance=ExtResource("9_usgu4")]
+offset_right = -859.0
+offset_bottom = -421.0
+initial_node_to_watch = NodePath("../../Player/StateChart")
+
+[node name="BoxDepot" parent="." instance=ExtResource("10_daa8j")]
+transform = Transform3D(8.47394, 0, 0, 0, 4.67333, -0.0780873, 0, 0.0405388, 9.00193, -4.46301, 8.25302, -26.1044)
+
+[node name="BoxSpawnZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3823, 19.7725, -20.2491)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoxSpawnZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.17215, 0, -0.0834961)
+shape = SubResource("BoxShape3D_87knw")
+
+[node name="Boxes" type="Node3D" parent="."]

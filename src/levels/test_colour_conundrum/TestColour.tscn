@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3nx5kh8ogfga"]
+
+[ext_resource type="Script" path="res://src/levels/test_level.gd" id="1_78vdd"]
+[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Floor_Basic_4u2.tscn" id="2_up32j"]
+[ext_resource type="PackedScene" uid="uid://c14qaqos0v1hu" path="res://src/player/Player.tscn" id="2_xj8jr"]
+[ext_resource type="PackedScene" uid="uid://c0dbasn84bjap" path="res://src/interactible/box_depot/BoxDepot.tscn" id="3_cabdk"]
+[ext_resource type="PackedScene" path="res://assets/warehouse/Meshes/MESH_Wall_Basic_4u_Green.tscn" id="3_pctsk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gf6gi"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7fnvd"]
+sky_material = SubResource("ProceduralSkyMaterial_gf6gi")
+
+[sub_resource type="Environment" id="Environment_waevu"]
+background_mode = 2
+sky = SubResource("Sky_7fnvd")
+tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bxu8"]
+size = Vector3(39, 5, 38)
+
+[node name="LevelTemplate" type="Node3D"]
+script = ExtResource("1_78vdd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_waevu")
+
+[node name="Geom" type="Node3D" parent="."]
+
+[node name="MESH_Floor_Basic_4u2" parent="Geom" instance=ExtResource("2_up32j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -1, 19)
+
+[node name="MESH_Wall_Basic_4u" parent="Geom" instance=ExtResource("3_pctsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -1, 19)
+
+[node name="MESH_Wall_Basic_4u2" parent="Geom" instance=ExtResource("3_pctsk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 20, -2, -21)
+
+[node name="MESH_Wall_Basic_4u3" parent="Geom" instance=ExtResource("3_pctsk")]
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, -20, -1, 19.4197)
+
+[node name="MESH_Wall_Basic_4u4" parent="Geom" instance=ExtResource("3_pctsk")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, -1, -20.9614)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_xj8jr")]
+
+[node name="BoxSpawnZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.3269, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BoxSpawnZone"]
+shape = SubResource("BoxShape3D_4bxu8")
+
+[node name="Boxes" type="Node3D" parent="."]
+
+[node name="BoxDepot" parent="." instance=ExtResource("3_cabdk")]
+transform = Transform3D(18.3, 0, 0, 0, 9.024, 0, 0, 0, 11.56, 0.00752869, 3.512, -14.7404)
+is_colour_specific = true
+accepts_colour = 2

@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0dbasn84bjap"]
+
+[ext_resource type="Script" path="res://src/interactible/box_depot/box_depot.gd" id="1_8uaqm"]
+[ext_resource type="FontFile" uid="uid://d2mkho4ufeiw2" path="res://assets/fonts/Franklin Gothic ITALIC/Franklin Gothic ITALIC.ttf" id="2_yxe7x"]
+[ext_resource type="FontFile" uid="uid://c08o42rbgvfq4" path="res://assets/fonts/Aki Lines Regular/Aki Lines Regular.otf" id="3_x0m6u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_skvhe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy0vx"]
+transparency = 1
+albedo_color = Color(0.137255, 0.835294, 0.0745098, 0.498039)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mad08"]
+material = SubResource("StandardMaterial3D_xy0vx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7txvu"]
+transparency = 1
+albedo_color = Color(1, 0.129412, 0.32549, 0.498039)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kwyy1"]
+material = SubResource("StandardMaterial3D_7txvu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2v2y1"]
+transparency = 1
+albedo_color = Color(0.227451, 0.403922, 0.8, 0.498039)
+
+[sub_resource type="BoxMesh" id="BoxMesh_arn1m"]
+material = SubResource("StandardMaterial3D_2v2y1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjgo7"]
+transparency = 1
+albedo_color = Color(0.976471, 0.921569, 0.0588235, 0.498039)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5apel"]
+material = SubResource("StandardMaterial3D_tjgo7")
+
+[node name="BoxDepot" type="Node3D"]
+script = ExtResource("1_8uaqm")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_skvhe")
+
+[node name="MeshAny" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_mad08")
+
+[node name="MeshRed" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_kwyy1")
+
+[node name="MeshBlue" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_arn1m")
+
+[node name="MeshYellow" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_5apel")
+
+[node name="ColourLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.173165, 0)
+billboard = 2
+text = "ANY"
+font = ExtResource("2_yxe7x")
+font_size = 64
+
+[node name="CountLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.070998, 0)
+billboard = 2
+text = "(000)"
+font = ExtResource("3_x0m6u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_skvhe")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://d3c8d8ooy35om"]
+
+[ext_resource type="Texture2D" uid="uid://bquighq753ng0" path="res://assets/warehouse/Textures/TEX_CardboardBoxes_1024x1024_albedo.png" id="1_kf25v"]
+[ext_resource type="Texture2D" uid="uid://drcymx8v15xyc" path="res://assets/warehouse/Textures/TEX_CardboardBoxes_1024x1024_normal.png" id="2_cl3wx"]
+[ext_resource type="Texture2D" uid="uid://b6fa5v8oei2e5" path="res://assets/warehouse/Textures/TEX_CardboardBoxes_1024x1024_roughness.png" id="3_i7cvj"]
+
+[resource]
+albedo_color = Color(1, 0.129412, 0.32549, 1)
+albedo_texture = ExtResource("1_kf25v")
+roughness_texture = ExtResource("3_i7cvj")
+normal_enabled = true
+normal_texture = ExtResource("2_cl3wx")
