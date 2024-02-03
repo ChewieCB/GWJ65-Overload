@@ -44,7 +44,7 @@ const JUMP_VELOCITY = 6.5
 @onready var coyote_timer = $CoyoteTimer
 @export var coyote_time: float = 0.7
 var coyote = false
-var last_floor = false
+var last_floor
 var is_jumping = false
 
 var _mouse_input: bool = false
@@ -253,7 +253,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
 	if not is_on_floor():
-		if last_floor and not is_jumping:
+		if last_floor == true and not is_jumping:
 			coyote = true
 			coyote_timer.start(coyote_time)
 		velocity.y -= gravity * delta
@@ -261,8 +261,9 @@ func _physics_process(delta: float) -> void:
 		if is_jumping:
 			state_chart.send_event("land")
 
-	move_and_slide()
 	last_floor = is_on_floor()
+	move_and_slide()
+	print("Last floor = %s : Coyote = %s" % [last_floor, coyote])
 
 
 func shove():
@@ -301,7 +302,7 @@ func _on_dead_state_entered():
 	TransitionManager.emit_signal("game_over")
 
 
-func _on_projectile_detection_aera_body_entered(body):
+func _on_projectile_detection_area_body_entered(body):
 	if body is RigidBody3D:
 		if body.one_off_damage > 0:
 			health -= body.one_off_damage

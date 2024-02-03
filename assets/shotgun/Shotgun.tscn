@@ -4260,14 +4260,13 @@ mesh = SubResource("ArrayMesh_qqc8w")
 skeleton = NodePath("")
 
 [node name="LHandTarget" type="Marker3D" parent="Rig/Shotgun/Shotgun-Detach"]
-transform = Transform3D(-0.0154123, 0.032612, 0.196721, 0.00652579, 0.197283, -0.0321944, -0.199299, 0.0039378, -0.0162671, 0.00753302, -0.0184087, -0.0136634)
+transform = Transform3D(-0.184852, 0.0303803, 0.0700509, 0.0256961, 0.197535, -0.0178629, -0.0719014, -0.00750972, -0.186478, -0.0167688, -0.04708, -0.101929)
 
 [node name="RHandTarget" type="Marker3D" parent="Rig/Shotgun"]
 transform = Transform3D(-0.196833, -0.00210631, 0.0353909, -0.00136329, 0.199948, 0.00431798, -0.0354273, 0.00400833, -0.196797, -0.0132962, -0.0460034, -0.0132669)
 
 [node name="Ammo" parent="Rig/Shotgun" instance=ExtResource("4_ve803")]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-visible = false
+transform = Transform3D(-0.00174064, -0.00123327, -0.00338368, 0.00162319, -0.00362346, 0.000485652, -0.00321489, -0.00116175, 0.00207724, -0.015155, 0.0687371, -0.0837236)
 
 [node name="Arms" type="Node3D" parent="Rig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.308269, 0, 0)
@@ -4598,10 +4597,10 @@ target_node = NodePath("../../../RUpperarmTarget")
 script = ExtResource("3_4wiq6")
 
 [node name="LForearmIKTarget" type="Marker3D" parent="Rig/Arms"]
-transform = Transform3D(0.484721, 0.872672, -0.0592391, -0.829401, 0.437066, -0.347976, -0.277773, 0.217801, 0.935644, 0.284119, -0.303066, -0.0658725)
+transform = Transform3D(0.52609, 0.850044, -0.0259537, -0.556095, 0.320756, -0.766745, -0.643433, 0.417804, 0.641448, 0.154305, -0.680631, -0.307095)
 
 [node name="LUpperarmTarget" type="Marker3D" parent="Rig/Arms"]
-transform = Transform3D(-0.288354, 0.906216, -0.309263, -0.877879, -0.37917, -0.292532, -0.382357, 0.187141, 0.904876, 0.000297248, -0.407556, -0.169296)
+transform = Transform3D(-0.244534, 0.928613, -0.279107, -0.589743, -0.370918, -0.717385, -0.76969, -0.010824, 0.638339, -0.124738, -0.73619, -0.452758)
 
 [node name="RForearmIKTarget" type="Marker3D" parent="Rig/Arms"]
 transform = Transform3D(1.00001, 0, 0, 0, 1.00001, 0, 0, 0, 1.00001, 0, 0, 0)
