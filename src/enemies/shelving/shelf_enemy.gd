@@ -7,6 +7,29 @@ signal dead
 @onready var anim_tree = $AnimationTree
 @onready var anim_state_machine = anim_tree["parameters/playback"]
 
+@onready var sfx_creak_1 = load("res://src/enemies/shelving/sfx/Shelf_Creak_1.mp3")
+@onready var sfx_creak_2 = load("res://src/enemies/shelving/sfx/Shelf_Creak_2.mp3")
+@onready var creak_sfx = [
+	sfx_creak_1, sfx_creak_2
+]
+@onready var sfx_hit_1 = load("res://src/enemies/shelving/sfx/Shelf_bullet_1.wav")
+@onready var sfx_hit_2 = load("res://src/enemies/shelving/sfx/Shelf_bulelt_2.wav")
+@onready var sfx_hit_3 = load("res://src/enemies/shelving/sfx/Shelf_bullet_3.wav")
+@onready var hit_sfx = [
+	sfx_hit_1, sfx_hit_2, sfx_hit_3
+]
+@onready var sfx_die = load("res://src/enemies/shelving/sfx/Shelf_die.mp3")
+@onready var sfx_step_1 = load("res://src/enemies/shelving/sfx/Shelf_Step_individual_1.mp3")
+@onready var sfx_step_2 = load("res://src/enemies/shelving/sfx/Shelf_Step_individual_2.mp3")
+@onready var sfx_step_3 = load("res://src/enemies/shelving/sfx/Shelf_Step_individual_3.mp3")
+@onready var sfx_step_4 = load("res://src/enemies/shelving/sfx/Shelf_Step_individual_4.mp3")
+@onready var sfx_step_5 = load("res://src/enemies/shelving/sfx/Shelf_Step_individual_5.mp3")
+@onready var sfx_step_6 = load("res://src/enemies/shelving/sfx/Shelf_Step_individual_6.mp3")
+@onready var sfx_step_7 = load("res://src/enemies/shelving/sfx/Shelf_Step_individual_7.mp3")
+@onready var step_sfx = [
+	sfx_step_1, sfx_step_2, sfx_step_3, sfx_step_4, sfx_step_5, sfx_step_6, sfx_step_7
+]
+
 @onready var aim_timer = $AimingTimer
 
 @onready var meshes = $Meshes
@@ -134,7 +157,20 @@ func populate_boxes_on_death():
 
 func hit(damage:float=0.0, ammo_type:int=-1):
 	health -= damage
+	SoundManager.play_sound(hit_sfx[randi_range(0, hit_sfx.size()-1)])
 	state_chart.send_event("hurt")
+
+
+func sfx_creak():
+	SoundManager.play_sound(creak_sfx[randi_range(0, creak_sfx.size()-1)])
+
+
+func sfx_step():
+	SoundManager.play_sound(step_sfx[randi_range(0, step_sfx.size()-1)])
+
+
+func sfx_death():
+	SoundManager.play_sound(sfx_die)
 
 
 func _on_idle_state_entered():

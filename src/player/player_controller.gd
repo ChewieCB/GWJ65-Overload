@@ -8,6 +8,26 @@ var is_dead: bool = false
 var SPEED = 10.0
 const JUMP_VELOCITY = 6.5
 
+@onready var sfx_hurt_1 = load("res://src/player/sfx/hurt/Player_damaged_1.mp3")
+@onready var sfx_hurt_2 = load("res://src/player/sfx/hurt/Player_damaged_2.mp3")
+@onready var sfx_hurt_3 = load("res://src/player/sfx/hurt/Player_damaged_3.mp3")
+@onready var sfx_hurt_4 = load("res://src/player/sfx/hurt/Player_damaged_4.mp3")
+@onready var sfx_hurt_5 = load("res://src/player/sfx/hurt/Player_damaged_5.mp3")
+@onready var sfx_hurt_6 = load("res://src/player/sfx/hurt/Player_Damaged_bonus.mp3")
+@onready var hurt_sfx = [
+	sfx_hurt_1,
+	sfx_hurt_2,
+	sfx_hurt_3,
+	sfx_hurt_4,
+	sfx_hurt_5
+]
+@onready var sfx_dead_1 = load("res://src/player/sfx/hurt/Player_dead_1.mp3")
+@onready var sfx_dead_2 = load("res://src/player/sfx/hurt/Player_dead_2.mp3")
+@onready var dead_sfx = [
+	sfx_dead_1,
+	sfx_dead_2
+]
+
 @export var MOUSE_SENSITIVITY: float = 0.5
 @export var TILT_LOWER_LIMIT := deg_to_rad(-90.0)
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
@@ -49,12 +69,25 @@ var health: float = max_health:
 				shotgun.health_ui.update_health_bar(int(health))
 				state_chart.send_event("hurt")
 				#
+				var _hurt_sfx
+				if randf() < 0.1:
+					_hurt_sfx = sfx_hurt_6
+				else:
+					_hurt_sfx = hurt_sfx[randi_range(0, hurt_sfx.size()-1)]
+				SoundManager.play_sound(_hurt_sfx)
+				#
 				if shotgun.health_ui.citations_left == 0:
 					overlay_label.text = "Final Warning!"
 				anim_player_text.play("citation")
 			else:
 				state_chart.send_event("death")
 		else:
+			var _hurt_sfx
+			if randf() < 0.1:
+				_hurt_sfx = sfx_hurt_6
+			else:
+				_hurt_sfx = hurt_sfx[randi_range(0, hurt_sfx.size()-1)]
+			SoundManager.play_sound(_hurt_sfx)
 			state_chart.send_event("hurt")
 
 # Gun handling
@@ -260,6 +293,7 @@ func _on_hurt_state_entered():
 
 func _on_dead_state_entered():
 	is_dead = true
+	SoundManager.play_sound(dead_sfx[randi_range(0, dead_sfx.size()-1)])
 	anim_player.play("dead")
 	# Disable controls
 	is_player_control_disabled = true

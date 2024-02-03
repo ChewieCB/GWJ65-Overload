@@ -3507,21 +3507,21 @@ omni_range = 100.0
 [node name="Pickups" type="Node3D" parent="."]
 
 [node name="AmmoPickup4" parent="Pickups" instance=ExtResource("11_r45m5")]
-transform = Transform3D(-0.986695, 0, 0.162581, 0, 1, 0, -0.162581, 0, -0.986695, 56.9831, 2.5, 38.6746)
+transform = Transform3D(-0.458556, 0, 0.888665, 0, 1, 0, -0.888665, 0, -0.458556, 56.9831, 2.5, 38.6746)
 ammo_amount = 10
 
 [node name="AmmoPickup5" parent="Pickups" instance=ExtResource("11_r45m5")]
-transform = Transform3D(0.674488, 0, 0.738285, 0, 1, 0, -0.738285, 0, 0.674488, 56.9831, 2.5, 8.4746)
+transform = Transform3D(0.994999, 0, -0.0998834, 0, 1, 0, 0.0998834, 0, 0.994999, 56.9831, 2.5, 8.4746)
 ammo_amount = 10
 ammo_type = 1
 
 [node name="AmmoPickup7" parent="Pickups" instance=ExtResource("11_r45m5")]
-transform = Transform3D(-0.975257, 0, -0.221069, 0, 1, 0, 0.221069, 0, -0.975257, 127.983, 4.4, 71.4746)
+transform = Transform3D(-0.760476, 0, 0.649364, 0, 1, 0, -0.649364, 0, -0.760476, 127.983, 4.4, 71.4746)
 ammo_amount = 20
 ammo_type = 1
 
 [node name="AmmoPickup6" parent="Pickups" instance=ExtResource("11_r45m5")]
-transform = Transform3D(-0.65443, 0, 0.756122, 0, 1, 0, -0.756122, 0, -0.65443, 126.483, 16.4, 38.4846)
+transform = Transform3D(0.460154, 0, 0.887839, 0, 1, 0, -0.887839, 0, 0.460154, 126.483, 13.4, 38.4846)
 ammo_amount = 15
 ammo_type = 2
 

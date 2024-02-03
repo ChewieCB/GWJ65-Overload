@@ -40,7 +40,7 @@ func retract():
 	#if not get_tree():
 		#return
 	#var tween = get_tree().create_tween()
-	#tween.tween_property(self, "self.global_transform.origin.y", retracted_y_pos, 1.0)
+	#tween.tween_property(self, "transform.origin.y", retracted_y_pos, 1.0)
 
 
 func open():
@@ -48,7 +48,15 @@ func open():
 	#if not get_tree():
 		#return
 	#var tween = get_tree().create_tween()
-	#tween.tween_property(self, "self.global_transform.origin.y", extended_y_pos, 1.0)
+	#tween.tween_property(self, "transform.origin.y", extended_y_pos, 1.0)
+
+
+func hit(_damage, _null):
+	return
+	#if state == STATES.RETRACTED:
+		#state = STATES.EXTENDED
+	#elif state == STATES.EXTENDED:
+		#state = STATES.RETRACTED
 
 
 func _activate() -> void:
