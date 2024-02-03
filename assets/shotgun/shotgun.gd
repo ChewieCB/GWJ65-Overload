@@ -93,7 +93,7 @@ var loaded_ammo = []
 
 var _2h_shot_time: float = 0.7
 var _1h_shot_time: float = 1.1
-var _2h_reload_time: float = 0.65
+var _2h_reload_time: float = 0.3
 #var _1h_reload_time: float = 1.1
 @onready var _shoot_timer = $ShootTimer
 @onready var _reload_timer = $ReloadTimer
